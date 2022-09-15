@@ -46,8 +46,8 @@ function Home() {
 const astyles = `text-grey`;
 
 const styles = {
-  container: "max-w-screen-lg mx-auto h-full bg-red-400",
-  nav: "flex flex-row bg-white items-center content-between",
+  container: "max-w-screen-lg mx-auto w-9/12 bg-red-400 grow",
+  nav: "flex flex-row bg-white items-center content-between sticky top-0",
   navbuttons: "mx-auto flex space-x-5",
   logo: "ml-5 w-32 md:w-48",
   login: "no-underline text-xl text-black px-3 py-2",
@@ -56,4 +56,5 @@ const styles = {
   btnActive: "text-white bg-black",
 };
 
+// https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
 export default Home;
