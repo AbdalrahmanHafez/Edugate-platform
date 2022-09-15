@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-import One from "./One";
-import Two from "./Two";
+import Home from "./Pages/Home";
 
 const App = () => {
   switch (window.location.pathname) {
-    case "/1":
-      return <One />;
-    case "/2":
-      return <Two />;
     default:
-      return null;
+      return <Home />;
   }
 };
 
