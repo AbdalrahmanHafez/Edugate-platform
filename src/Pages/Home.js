@@ -14,14 +14,14 @@ function Home() {
           className={styles.logo}
         />
 
-        <div className={styles.navbuttons}>
-          <button className={styles.btnActive}>Home</button>
-          <button className={styles.btn}>Universities in Egypt</button>
-          <button className={styles.btn}>Traning</button>
-          <button className={styles.btn}>Scholarships</button>
-          <button className={styles.btn}>Study Aborad</button>
-          <button className={styles.btn}>Services</button>
-        </div>
+        <ul className={styles.navbuttons}>
+          <li className={styles.navbtnActive}>Home</li>
+          <li className={styles.navbtn}>Universities in Egypt</li>
+          <li className={styles.navbtn}>Traning</li>
+          <li className={styles.navbtn}>Scholarships</li>
+          <li className={styles.navbtn}>Study Aborad</li>
+          <li className={styles.navbtn}>Services</li>
+        </ul>
 
         <div className="mr-5">
           <a href="/#login" className={styles.login}>
@@ -46,14 +46,18 @@ function Home() {
 const astyles = `text-grey`;
 
 const styles = {
-  container: "max-w-screen-lg mx-auto w-9/12 bg-red-400 grow",
-  nav: "flex flex-row bg-white items-center content-between sticky top-0",
-  navbuttons: "mx-auto flex space-x-5",
+  // container: "bg-red-400 container mx-auto",
+  container: "max-w-screen-lg mx-auto w-9/12 bg-red-400 min-h-full",
+  nav: "flex flex-row bg-white items-center justify-between sticky top-0",
   logo: "ml-5 w-32 md:w-48",
-  login: "no-underline text-xl text-black px-3 py-2",
-  signup: "no-underline text-xl text-white px-3 py-2 bg-red-500 rounded-md",
-  btn: "text-black",
-  btnActive: "text-white bg-black",
+  login: "no-underline text-sm text-black px-3 py-2 hover:text-slate-700",
+  signup:
+    "no-underline text-sm text-white px-3 py-2 bg-red-500 hover:bg-red-600 rounded-md",
+  navbuttons: "hidden md:flex mx-auto space-x-1 items-center",
+  navbtn:
+    "text-black p-2 pointer-events-auto cursor-pointer hover:bg-slate-100 rounded",
+  navbtnActive: "text-white bg-gray-900 p-2 cursor-pointer rounded",
+  carousel: "w-full h-60 bg-green-600",
 };
 
 // https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
