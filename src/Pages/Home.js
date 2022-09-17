@@ -9,7 +9,7 @@ import Carousel from "Components/Carousel";
 function Home() {
   const [hmbShowNav, sethmbShowNav] = useState(false);
   return (
-    <div className="h-full w-full bg-[url('../public/edugate-bg.JPG')] bg-cover">
+    <div className="h-full w-full bg-white bg-cover">
       <nav className={styles.nav}>
         <div className="flex space-around">
           <img
@@ -36,6 +36,13 @@ function Home() {
           <li className={styles.navbtn}>Scholarships</li>
           <li className={styles.navbtn}>Study Aborad</li>
           <li className={styles.navbtn}>Services</li>
+
+          {/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar */}
+          {/* <div className="flex flex-col absolute">
+            <a href="#">Link 1</a>
+            <a href="#">Link 2</a>
+            <a href="#">Link 3</a>
+          </div> */}
         </ul>
 
         <div className={styles.loginSignupContainer}>
@@ -59,7 +66,7 @@ function Home() {
       <div className={styles.adContainer2}>
         <img
           className={styles.adImage2}
-          src="https://cdn.myportfolio.com/eb205002-d4cb-410c-8cd1-4594a9db35f2/a134dab3-ae16-4f12-9ed6-ad8b8c4d62ff_rw_1920.png?h=1418c034bc2283a791a8ce1825e0cbfd"
+          src="https://www.aschamber.com/uploads/5/0/1/6/50162055/published/3li-enfr-wordmark-c.png?1655331290"
           alt=""
         />
       </div>
@@ -72,7 +79,6 @@ function Home() {
             src="https://www.harrowshanghai.cn/wp-content/uploads/2022/06/Harrow-Shanghai-2022-University-Offers.png"
             alt=""
           />
-          {/* https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Life_Cycle_Assessment_Overview.jpg/150px-Life_Cycle_Assessment_Overview.jpg */}
         </div>
         <div className={styles.mccontent}>
           <Carousel />
@@ -89,19 +95,18 @@ function Home() {
   );
 }
 
-const astyles = `text-grey`;
-
 const styles = {
   container: "/bg-red-400 w-full flex flex-col md:flex-row ",
-  adContainer2: "/bg-green-400 mx-auto md:w-3/4 mb-4 flex justify-center h-24",
+  adContainer2:
+    "bg-gray-200 mx-auto md:w-3/4 mb-4 flex justify-center max-h-24",
   adContainer13:
     "/bg-green-400 md:mx-5 md:w-2/12 md:h-auto md:flex items-start justify-center hidden",
-  adImage13: "sticky top-28",
+  adImage13: "sticky top-28 w-full",
   adImage2: "h-full w-auto",
   mccontent:
-    "/bg-cyan-500 md:w-8/12 flex flex-col justify-start items-start-center",
+    "bg-gray-200 md:w-8/12 flex flex-col justify-start items-start-center",
   searchBox: "bg-slate-400 w-full md:w-3/4  h-20 mx-auto mb-4",
-  nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10",
+  nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10 shadow-lg",
   logo: "ml-5 w-[250px] h-auto m-5",
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
   loginSignupContainer: "hidden mr-5 lg:flex flex-row mb-5",
