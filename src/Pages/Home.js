@@ -1,10 +1,10 @@
 import React from "react";
-import { FaBeer } from "react-icons/fa";
+
+import { FaBeer, FaBars } from "react-icons/fa";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 import classNames from "classnames";
 import Carousel from "Components/Carousel";
-import Navbar from "react-bootstrap/Navbar";
 
 function Home() {
   return (
@@ -25,7 +25,7 @@ function Home() {
           <li className={styles.navbtn}>Services</li>
         </ul>
 
-        <div className="mr-5">
+        <div className={styles.loginSignupContainer}>
           <a href="/#login" className={styles.login}>
             login
           </a>
@@ -33,7 +33,17 @@ function Home() {
             signup
           </a>
         </div>
+
+        <div className={styles.hmbmenu}>
+          <FaBars />
+        </div>
       </nav>
+
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
 
       <div className={styles.searchBox}>Search Box</div>
       {/* Ads 2 */}
@@ -64,17 +74,20 @@ const styles = {
   mccontent: "bg-cyan-500 md:w-8/12 flex flex-col justify-center items-center",
 
   searchBox: "bg-slate-400 w-full md:w-3/4  h-20 mx-auto mb-4",
-  nav: "flex flex-row bg-[#CCCCCC] bg-opacity-90 sticky top-0",
-  logo: "ml-5 w-32 md:w-48",
-  login: "no-underline text-black px-3 py-2 hover:text-slate-700",
+  nav: "flex flex-row bg-white bg-opacity-90 fixed top-0 w-full",
+  logo: "ml-5 w-[250px] h-auto m-5",
+  loginSignupContainer: "hidden mr-5 lg:flex flex-row mb-5",
+  login:
+    "no-underline text-black px-3 py-2 hover:text-slate-700 flex flex-col-reverse",
   signup:
-    "no-underline text-white px-3 py-2 bg-[#E22327] hover:bg-red-600 rounded-md",
-  navbuttons: "hidden md:flex mx-auto space-x-1 mb-5",
-  navbtn:
-    "text-black p-2 pointer-events-auto cursor-pointer hover:bg-gray-400 rounded-b-2xl flex flex-col-reverse",
-  navbtnActive:
     "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse ",
+  navbuttons: "hidden lg:flex mx-auto space-x-1 mb-5",
+  navbtn:
+    "text-black p-2 pointer-events-auto cursor-pointer hover:bg-gray-400 rounded-b-2xl flex flex-col-reverse text-center",
+  navbtnActive:
+    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center",
   carousel: "w-full h-60 bg-green-600",
+  hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
 };
 
 // https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
