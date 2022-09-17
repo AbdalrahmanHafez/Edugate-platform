@@ -104,15 +104,15 @@ const styles = {
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
   loginSignupContainer: "hidden mr-5 lg:flex flex-row mb-5",
   login:
-    "no-underline text-black px-3 py-2 hover:text-slate-700 flex flex-col-reverse",
+    "no-underline text-black px-3 py-2 hover:text-slate-600 flex flex-col-reverse",
   signup:
-    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse ",
+    "text-white bg-gray-900 hover:bg-gray-800 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse ",
   navbuttons:
     "hidden lg:flex flex-col lg:flex-row lg:mx-auto lg:space-x-1 mb-5",
   navbtn:
-    "text-black p-2 cursor-pointer hover:bg-gray-400 rounded-b-2xl flex flex-col-reverse text-center",
+    "text-black p-2 cursor-pointer hover:bg-gray-400 hover:text-white rounded-b-2xl flex flex-col-reverse text-center ",
   navbtnActive:
-    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center",
+    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center w-20",
   carousel: "w-full h-60 bg-green-600",
 };
 
