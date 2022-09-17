@@ -13,7 +13,7 @@ function Home() {
       <nav className={styles.nav}>
         <div className="flex space-around">
           <img
-            src="/Edugate-logo-min.png"
+            src="/Edugate-logo.png"
             alt="Edugate Logo"
             className={styles.logo}
           />
@@ -59,7 +59,7 @@ function Home() {
       <div className={styles.adContainer2}>
         <img
           className={styles.adImage2}
-          src="https://www.inma.org/blogs/print-innovations/assets/content/print_september20_hannah_2020-in-ads-1.jpg"
+          src="https://cdn.myportfolio.com/eb205002-d4cb-410c-8cd1-4594a9db35f2/a134dab3-ae16-4f12-9ed6-ad8b8c4d62ff_rw_1920.png?h=1418c034bc2283a791a8ce1825e0cbfd"
           alt=""
         />
       </div>
@@ -69,9 +69,10 @@ function Home() {
         <div className={styles.adContainer13}>
           <img
             className={styles.adImage13}
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Life_Cycle_Assessment_Overview.jpg/150px-Life_Cycle_Assessment_Overview.jpg"
+            src="https://www.harrowshanghai.cn/wp-content/uploads/2022/06/Harrow-Shanghai-2022-University-Offers.png"
             alt=""
           />
+          {/* https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Life_Cycle_Assessment_Overview.jpg/150px-Life_Cycle_Assessment_Overview.jpg */}
         </div>
         <div className={styles.mccontent}>
           <Carousel />
@@ -79,7 +80,7 @@ function Home() {
         <div className={styles.adContainer13}>
           <img
             className={styles.adImage13}
-            src="https://s3.envato.com/files/65500288/Orange%20Banner%20ad%20Design%20120x600.__thumbnail.png"
+            src="https://www.ruffalonl.com/wp-content/uploads/2020/11/Mizzou_Vertical-Banner.jpg"
             alt=""
           />
         </div>
@@ -91,13 +92,14 @@ function Home() {
 const astyles = `text-grey`;
 
 const styles = {
-  container: "bg-red-400 w-full flex flex-col md:flex-row ",
-  adContainer2: "bg-green-400 mx-auto md:w-3/4 mb-4 flex justify-center h-24",
+  container: "/bg-red-400 w-full flex flex-col md:flex-row ",
+  adContainer2: "/bg-green-400 mx-auto md:w-3/4 mb-4 flex justify-center h-24",
   adContainer13:
-    "bg-green-400 md:w-2/12 md:h-auto md:flex items-start justify-center hidden",
+    "/bg-green-400 md:mx-5 md:w-2/12 md:h-auto md:flex items-start justify-center hidden",
   adImage13: "sticky top-28",
   adImage2: "h-full w-auto",
-  mccontent: "bg-cyan-500 md:w-8/12 flex flex-col justify-center items-center",
+  mccontent:
+    "/bg-cyan-500 md:w-8/12 flex flex-col justify-start items-start-center",
   searchBox: "bg-slate-400 w-full md:w-3/4  h-20 mx-auto mb-4",
   nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10",
   logo: "ml-5 w-[250px] h-auto m-5",
@@ -112,7 +114,7 @@ const styles = {
   navbtn:
     "text-black p-2 cursor-pointer hover:bg-gray-400 hover:text-white rounded-b-2xl flex flex-col-reverse text-center ",
   navbtnActive:
-    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center w-20",
+    "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center lg:w-20",
   carousel: "w-full h-60 bg-green-600",
 };
 
