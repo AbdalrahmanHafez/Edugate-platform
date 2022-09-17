@@ -60,12 +60,24 @@ function Home() {
 
       {/* Ads1 - Content - Ads3 */}
       <div className={styles.container}>
-        <div className={styles.adContainer13}>Ad 1</div>
+        <div className={styles.adContainer13}>
+          <img
+            className={styles.adImage}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Life_Cycle_Assessment_Overview.jpg/150px-Life_Cycle_Assessment_Overview.jpg"
+            alt=""
+          />
+        </div>
         <div className={styles.mccontent}>
-          hello
+          hello world
           <Carousel />
         </div>
-        <div className={styles.adContainer13}>Ad 3</div>
+        <div className={styles.adContainer13}>
+          <img
+            className={styles.adImage}
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Life_Cycle_Assessment_Overview.jpg/150px-Life_Cycle_Assessment_Overview.jpg"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );
@@ -78,13 +90,14 @@ const styles = {
   container: "bg-red-400 w-full flex flex-col md:flex-row h-[2000px]",
   adContainer2: "bg-green-400 mx-auto md:w-3/4 mb-4 text-center",
   adContainer13:
-    "bg-green-400 w-full md:w-2/12 h-36 md:h-auto flex items-center justify-center",
+    "bg-green-400 w-full md:w-2/12 h-36 md:h-auto flex items-start justify-center",
+  adImage: "sticky top-28",
 
   mccontent: "bg-cyan-500 md:w-8/12 flex flex-col justify-center items-center",
 
   searchBox: "bg-slate-400 w-full md:w-3/4  h-20 mx-auto mb-4",
 
-  nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 fixed top-0 w-full",
+  nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10",
   logo: "ml-5 w-[250px] h-auto m-5",
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
 
