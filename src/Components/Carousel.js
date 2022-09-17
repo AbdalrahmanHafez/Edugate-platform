@@ -5,34 +5,37 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 function Carousel() {
   return (
     <CarouselCmp
-      showArrows={true}
+      showArrows
+      showStatus
+      infiniteLoop
+      autoPlay
+      stopOnHover
+      emulateTouch
+      swipeable
+      dynamicHeight
       onChange={() => {}}
       onClickItem={() => {}}
       onClickThumb={() => {}}
     >
       <div>
-        <img src="Edugate-logo.png" />
+        <img src="carousel-1.jpeg" />
         <p className="legend">Legend 1</p>
       </div>
       <div>
-        <img src="Edugate-logo.png" />
+        <img src="carousel-2.jpeg" />
         <p className="legend">Legend 2</p>
       </div>
       <div>
-        <img src="Edugate-logo.png" />
+        <img src="carousel-3.jpeg" />
         <p className="legend">Legend 3</p>
       </div>
       <div>
-        <img src="Edugate-logo.png" />
+        <img src="carousel-4.jpeg" />
         <p className="legend">Legend 4</p>
       </div>
       <div>
-        <img src="Edugate-logo.png" />
+        <img src="carousel-5.jpeg" />
         <p className="legend">Legend 5</p>
-      </div>
-      <div>
-        <img src="Edugate-logo.png" />
-        <p className="legend">Legend 6</p>
       </div>
     </CarouselCmp>
   );
