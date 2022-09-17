@@ -13,7 +13,7 @@ function Home() {
       <nav className={styles.nav}>
         <div className="flex space-around">
           <img
-            src="/Edugate-logo.png"
+            src="/Edugate-logo-min.png"
             alt="Edugate Logo"
             className={styles.logo}
           />
