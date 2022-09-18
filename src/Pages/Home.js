@@ -32,7 +32,7 @@ function Home() {
         <ul id="navlinks" className={styles.navbuttons}>
           <li className={styles.navbtnActive}>Home</li>
           <li className={styles.navbtn}>Universities in Egypt</li>
-          <li className={styles.navbtn}>Traning</li>
+          <li className={styles.navbtn}>Training</li>
           <li className={styles.navbtn}>Scholarships</li>
           <li className={styles.navbtn}>Study Aborad</li>
           <li className={styles.navbtn}>Services</li>
@@ -61,32 +61,30 @@ function Home() {
       <br />
       <br />
 
-      <div className={styles.searchBox}>Search Box</div>
-      {/* Ads 2 */}
-      <div className={styles.adContainer2}>
-        <img
-          className={styles.adImage2}
-          src="https://www.aschamber.com/uploads/5/0/1/6/50162055/published/3li-enfr-wordmark-c.png?1655331290"
-          alt=""
-        />
-      </div>
-
       {/* Ads1 - Content - Ads3 */}
       <div className={styles.container}>
         <div className={styles.adContainer13}>
-          <img
-            className={styles.adImage13}
-            src="https://www.harrowshanghai.cn/wp-content/uploads/2022/06/Harrow-Shanghai-2022-University-Offers.png"
-            alt=""
-          />
+          <img className={styles.adImage13} src="ad1.png" alt="" />
         </div>
         <div className={styles.mccontent}>
+          <div className={styles.searchBox}>Search Box</div>
+          {/* Ads 2 */}
+          <div className={styles.adContainer2}>
+            <img
+              className={styles.adImage2}
+              src="ad2.png"
+              // src="https://www.aschamber.com/uploads/5/0/1/6/50162055/published/3li-enfr-wordmark-c.png?1655331290"
+              alt=""
+            />
+          </div>
+
           <Carousel />
         </div>
         <div className={styles.adContainer13}>
           <img
             className={styles.adImage13}
-            src="https://www.ruffalonl.com/wp-content/uploads/2020/11/Mizzou_Vertical-Banner.jpg"
+            src="ad3.jpg"
+            // src="https://www.ruffalonl.com/wp-content/uploads/2020/11/Mizzou_Vertical-Banner.jpg"
             alt=""
           />
         </div>
@@ -104,8 +102,8 @@ const styles = {
   adImage13: "sticky top-28 w-full",
   adImage2: "h-full w-auto",
   mccontent:
-    "bg-gray-200 md:w-8/12 flex flex-col justify-start items-start-center",
-  searchBox: "bg-slate-400 w-full md:w-3/4  h-20 mx-auto mb-4",
+    "bg-red-200 md:w-8/12 flex flex-col justify-start items-start-center",
+  searchBox: "bg-slate-400 w-full h-20 mx-auto mb-4",
   nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10 shadow-lg",
   logo: "ml-5 w-[250px] h-auto m-5",
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
