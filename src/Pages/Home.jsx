@@ -3,6 +3,7 @@ import Navbar from "Components/Navbar";
 import React, { useState } from "react";
 import classNames from "classnames";
 import Carousel from "Components/Carousel";
+import FeaturedArticles from "Components/FeaturedArticles";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -32,6 +33,8 @@ function Home() {
 
           {/* Content */}
           <Carousel />
+
+          <FeaturedArticles />
         </div>
         <div className={styles.adContainer13}>
           <img className={styles.adImage13} src="ad3.jpg" alt="" />
