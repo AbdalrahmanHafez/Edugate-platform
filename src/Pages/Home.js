@@ -36,10 +36,12 @@ function Home() {
           <li className={styles.navbtn}>Scholarships</li>
           <li className={styles.navbtn}>Study Aborad</li>
 
-          <div className={"float-left flex group overflow-hidden"}>
-            <li className={styles.navbtn}>Services</li>
+          <div
+            className={"float-left flex group overflow-hidden w-full lg:w-auto"}
+          >
+            <li className={styles.navbtn + " w-full"}>Services</li>
 
-            <div className="top-[80%] absolute group-hover:block hidden z-10">
+            <div className="top-[80%] absolute group-hover:block /hidden z-10">
               <div className="flex flex-col space-y-3 bg-white shadow w-[150%] p-3 rounded">
                 <a href="/test" className={styles.dditem}>
                   Link 1
