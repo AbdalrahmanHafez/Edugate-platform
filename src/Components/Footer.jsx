@@ -1,14 +1,14 @@
 import React from "react";
 export default function Footer() {
   return (
-    <footer className="mt-10 p-4 rounded-t-lg shadow md:px-6 md:py-8 bg-gray-900">
+    <footer className="mt-10 p-4 drop-shadow-[0_-5px_5px_rgba(0,0,0,0.20)] rounded-t-lg md:px-6 md:py-8 bg-gray-900">
       {/* <footer class="p-4 rounded-t-lg shadow md:px-6 md:py-8 bg-gradient-to-t from-black to-[#291313] "> */}
 
       <div className="sm:flex sm:items-center sm:justify-between">
         <a href="/" className="flex items-center mb-4 sm:mb-0">
           <img
             src="Edugate-logo-white-min.png"
-            className="mr-3 h-10"
+            className="mr-3 h-14"
             alt="Edugate Logo"
           />
         </a>
