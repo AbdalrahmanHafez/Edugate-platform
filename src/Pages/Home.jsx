@@ -1,3 +1,4 @@
+import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import React, { useState } from "react";
 import classNames from "classnames";
@@ -29,12 +30,15 @@ function Home() {
             <img className={styles.adImage2} src="ad2.png" alt="" />
           </div>
 
+          {/* Content */}
           <Carousel />
         </div>
         <div className={styles.adContainer13}>
           <img className={styles.adImage13} src="ad3.jpg" alt="" />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
