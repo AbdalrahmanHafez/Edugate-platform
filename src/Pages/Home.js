@@ -35,14 +35,26 @@ function Home() {
           <li className={styles.navbtn}>Training</li>
           <li className={styles.navbtn}>Scholarships</li>
           <li className={styles.navbtn}>Study Aborad</li>
-          <li className={styles.navbtn}>Services</li>
+
+          <div className={"float-left flex group overflow-hidden"}>
+            <li className={styles.navbtn}>Services</li>
+
+            <div className="top-[80%] absolute group-hover:block hidden z-10">
+              <div className="flex flex-col space-y-3 bg-white shadow w-[150%] p-3 rounded">
+                <a href="/test" className={styles.dditem}>
+                  Link 1
+                </a>
+                <a href="/test" className={styles.dditem}>
+                  Link 2
+                </a>
+                <a href="/test" className={styles.dditem}>
+                  Link 3
+                </a>
+              </div>
+            </div>
+          </div>
 
           {/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar */}
-          {/* <div className="flex flex-col absolute">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div> */}
         </ul>
 
         <div className={styles.loginSignupContainer}>
@@ -70,23 +82,13 @@ function Home() {
           <div className={styles.searchBox}>Search Box</div>
           {/* Ads 2 */}
           <div className={styles.adContainer2}>
-            <img
-              className={styles.adImage2}
-              src="ad2.png"
-              // src="https://www.aschamber.com/uploads/5/0/1/6/50162055/published/3li-enfr-wordmark-c.png?1655331290"
-              alt=""
-            />
+            <img className={styles.adImage2} src="ad2.png" alt="" />
           </div>
 
           <Carousel />
         </div>
         <div className={styles.adContainer13}>
-          <img
-            className={styles.adImage13}
-            src="ad3.jpg"
-            // src="https://www.ruffalonl.com/wp-content/uploads/2020/11/Mizzou_Vertical-Banner.jpg"
-            alt=""
-          />
+          <img className={styles.adImage13} src="ad3.jpg" alt="" />
         </div>
       </div>
     </div>
@@ -119,6 +121,8 @@ const styles = {
   navbtnActive:
     "text-white bg-gray-900 p-2 cursor-pointer rounded-b-2xl flex flex-col-reverse text-center lg:w-20",
   carousel: "w-full h-60 bg-green-600",
+
+  dditem: "hover:bg-gray-400 p-2 hover:text-white rounded",
 };
 
 // https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
