@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
+import FeaturedUniversities from "Components/FeaturedUniversities";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -34,6 +35,7 @@ function Home() {
           {/* Content */}
           <Carousel />
 
+          <FeaturedUniversities />
           <FeaturedArticles />
         </div>
         <div className={styles.adContainer13}>

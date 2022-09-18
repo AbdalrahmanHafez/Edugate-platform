@@ -2,9 +2,9 @@ import React from "react";
 
 function FeaturedArticles() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-white ">
       <div className="container px-6 py-10 mx-auto">
-        <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">
+        <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl ">
           New Stories
         </h1>
 
@@ -19,12 +19,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 How to use sticky note for problem solving
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 20 October 2019
               </span>
             </div>
@@ -40,12 +40,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 How to use sticky note for problem solving
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 20 October 2019
               </span>
             </div>
@@ -61,12 +61,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 Morning routine to boost your mood
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 25 November 2020
               </span>
             </div>
@@ -82,12 +82,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 All the features you want to know
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 30 September 2020
               </span>
             </div>
@@ -103,12 +103,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 Minimal workspace for your inspirations
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 13 October 2019
               </span>
             </div>
@@ -124,12 +124,12 @@ function FeaturedArticles() {
             <div className="flex flex-col justify-between py-6 lg:mx-6">
               <a
                 href="/"
-                className="text-xl font-semibold text-gray-800 hover:underline dark:text-white "
+                className="text-xl font-semibold text-gray-800 hover:underline "
               >
                 What do you want to know about Blockchane
               </a>
 
-              <span className="text-sm text-gray-500 dark:text-gray-300">
+              <span className="text-sm text-gray-500 ">
                 On: 20 October 2019
               </span>
             </div>
