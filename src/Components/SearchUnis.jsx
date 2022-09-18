@@ -1,0 +1,69 @@
+import React from "react";
+import { FaCaretDown, FaAesymmetrik } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
+
+export default function SearchUnis() {
+  return (
+    <div className="w-full h-full bg-red-400">
+      {/* Search bar */}
+      <div className="w-full h-14 mb-2 py-2 px-5 bg-[#3F3F3F] rounded-[11px]">
+        {/* Inner container */}
+        <div className="w-full h-full flex space-x-1">
+          {/* Search input */}
+          <div className="flex-[1] h-full">
+            <input
+              type="text"
+              placeholder="Search University name"
+              className="w-full h-full px-4 bg-[#4F4F4F] text-white rounded-[11px] outline-none"
+            />
+          </div>
+
+          {/* Filter menus */}
+          <div className="h-full flex-[1] flex justify-end items-center space-x-3 bg-[#3F3F3F]">
+            <label className={styles.filterlabel}>
+              Faculty & Major <FaCaretDown />
+            </label>
+
+            <label className={styles.filterlabel}>
+              City <FaCaretDown />
+            </label>
+
+            <label className={styles.filterlabel}>
+              Budget <FaCaretDown />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      {/* Filtered Elements */}
+      {/* TODO: overflow on x scroll ? */}
+      <div className="w-full h-12 mb-3 min-h-[48px] flex flex-nowrap items-center gap-2 px-5 rounded-[11px]  bg-[#FDFDFD]">
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+      </div>
+
+      {/* Search Results */}
+      <div className="w-full h-full p-5 bg-[#FDFDFD] rounded-[11px] flex justify-center flex-wrap">
+        <div className={styles.searchresultcard}>
+          <img
+            className="object-contain w-full h-2/6 rounded-lg "
+            src="Edugate-logo.png"
+            alt=""
+          />
+          <label>German University in Cairo</label>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const styles = {
+  filterlabel:
+    "flex flex-row justify-center items-center gap-2 text-white cursor-pointer",
+  filteritemlabel:
+    "rounded-full flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
+  searchresultcard:
+    "w-32 min-h-[8rem] h-fit rounded-lg mr-5 bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer",
+};

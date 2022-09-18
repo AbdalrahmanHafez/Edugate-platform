@@ -5,6 +5,7 @@ import classNames from "classnames";
 import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
+import SearchUnis from "Components/SearchUnis";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -26,7 +27,9 @@ function Home() {
           <img className={styles.adImage13} src="ad1.png" alt="" />
         </div>
         <div className={styles.mccontent}>
-          <div className={styles.searchBox}>Search Box</div>
+          <div className={styles.searchBox}>
+            <SearchUnis />
+          </div>
           {/* Ads 2 */}
           <div className={styles.adContainer2}>
             <img className={styles.adImage2} src="ad2.png" alt="" />
