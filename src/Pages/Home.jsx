@@ -27,9 +27,7 @@ function Home() {
           <img className={styles.adImage13} src="ad1.png" alt="" />
         </div>
         <div className={styles.mccontent}>
-          <div className={styles.searchBox}>
-            <SearchUnis />
-          </div>
+          <div className={styles.searchBox}>Search Box</div>
           {/* Ads 2 */}
           <div className={styles.adContainer2}>
             <img className={styles.adImage2} src="ad2.png" alt="" />
@@ -60,7 +58,7 @@ const styles = {
   adImage13: "sticky top-28 w-full",
   adImage2: "h-full w-auto",
   mccontent:
-    "bg-red-200 md:w-8/12 flex flex-col justify-start items-start-center",
+    "/bg-red-200 md:w-8/12 flex flex-col justify-start items-start-center",
   searchBox: "bg-slate-400 w-full h-20 mx-auto mb-4",
 
   carousel: "w-full h-60 bg-green-600",
