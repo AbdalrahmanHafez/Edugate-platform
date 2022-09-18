@@ -39,18 +39,25 @@ function Home() {
           <div
             className={"float-left flex group overflow-hidden w-full lg:w-auto"}
           >
-            <li className={styles.navbtn + " w-full"}>Services</li>
+            <li className={styles.navbtn + " w-full"}>
+              <div className="hidden group-hover:flex group-hover:lg:hidden  flex-col space-y-3 bg-gray-300 text-black shadow w-full p-3 rounded-lg">
+                <a href="/test" className={styles.dditem}>
+                  Consultancy
+                </a>
+                <a href="/test" className={styles.dditem}>
+                  Score Calculators
+                </a>
+              </div>
+              Services
+            </li>
 
-            <div className="top-[80%] absolute group-hover:block /hidden z-10">
-              <div className="flex flex-col space-y-3 bg-white shadow w-[150%] p-3 rounded">
+            <div className="top-[80%] absolute hidden lg:group-hover:block z-10">
+              <div className="flex flex-col space-y-3 bg-white shadow w-[150%] p-3 rounded-lg">
                 <a href="/test" className={styles.dditem}>
-                  Link 1
+                  Consultancy
                 </a>
                 <a href="/test" className={styles.dditem}>
-                  Link 2
-                </a>
-                <a href="/test" className={styles.dditem}>
-                  Link 3
+                  Score Calculators
                 </a>
               </div>
             </div>
