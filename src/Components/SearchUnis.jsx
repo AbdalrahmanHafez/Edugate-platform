@@ -21,18 +21,131 @@ export default function SearchUnis() {
           </div>
 
           {/* Filter menus */}
-          <div className="h-full flex-[1] flex lg:justify-end justify-center mt-2 items-center space-x-3 bg-[#3F3F3F] ">
-            <label className={styles.filterlabel}>
-              Faculty & Major <FaCaretDown />
-            </label>
+          <div className="flex-[1] flex lg:justify-end lg:mt-0 justify-center mt-2 items-center space-x-3 bg-[#3F3F3F] ">
+            {/* Faculty and Major */}
+            <div className="relative group">
+              <label className={styles.filterlabel}>
+                Faculty & Major <FaCaretDown />
+              </label>
 
-            <label className={styles.filterlabel}>
-              City <FaCaretDown />
-            </label>
+              <div className="absolute hidden group-hover:flex group-focus-within:flex flex-row z-10 w-96 h-64 bg-white p-2 space-x-4 rounded shadow-lg">
+                <div className="w-1/2 flex flex-col">
+                  <div className="w-full mb-1">
+                    <label className="text-sm">Faculty</label>
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="w-full text-sm bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
+                    />
+                  </div>
+                  <div className="overflow-y-auto grow">
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Faculty 1
+                      <RiCheckboxCircleLine className="ml-auto" />
+                    </label>
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Faculty 2
+                    </label>
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Faculty 3
+                    </label>
+                  </div>
+                </div>
 
-            <label className={styles.filterlabel}>
-              Budget <FaCaretDown />
-            </label>
+                <div className="w-1/2 flex flex-col">
+                  <div className="w-full mb-1">
+                    <label className="text-sm">Major</label>
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="w-full text-sm bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
+                    />
+                  </div>
+                  <div className="overflow-y-auto grow">
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Major 1
+                      <RiCheckboxCircleLine className="ml-auto" />
+                    </label>
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Major 2
+                    </label>
+                    <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                      Major 3
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* City */}
+            <div className="relative group">
+              <label className={styles.filterlabel}>
+                City <FaCaretDown />
+              </label>
+
+              {/* City Filter */}
+              <div className="hidden group-focus-within:flex group-hover:flex absolute z-10 w-48 h-64 flex-col p-2 rounded shadow-lg bg-white">
+                <input
+                  type="text"
+                  placeholder="Search Cities"
+                  className="w-full mb-2 bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
+                />
+                <div className="overflow-y-auto grow">
+                  <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                    Item 1
+                    <RiCheckboxCircleLine className="ml-auto" />
+                  </label>
+                  <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                    Item 2
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            {/* Budget */}
+            <div className="relative group">
+              <label className={styles.filterlabel}>
+                Budget <FaCaretDown />
+              </label>
+
+              <div className="absolute hidden group-hover:flex flex-col z-10 w-48 h-64 bg-white p-2 rounded shadow-lg">
+                {/* price slider */}
+                <label className="text-sm">Range</label>
+                <div className="w-full h-10 py-3 px-2 text-black mb-5">
+                  <MultiRangeSlider
+                    min={0}
+                    max={1000}
+                    onChange={({ min, max }) => {
+                      // console.log(`min = ${min}, max = ${max}`)
+                    }}
+                  />
+                </div>
+
+                {/* OR divider */}
+                <div className="relative flex py-1 items-center mb-2">
+                  <div className="flex-grow border-t border-gray-400"></div>
+                  <span className="flex-shrink text-xs mx-4 text-gray-400">
+                    OR
+                  </span>
+                  <div className="flex-grow border-t border-gray-400"></div>
+                </div>
+
+                {/* price range presets*/}
+                <label className="text-sm">Preset</label>
+                <div className="overflow-y-auto grow">
+                  <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                    Price range 1
+                    <RiCheckboxCircleLine className="ml-auto" />
+                  </label>
+                  <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                    Price range 2
+                  </label>
+                  <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+                    Price range 3
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -70,121 +183,13 @@ export default function SearchUnis() {
           <label>German University in Cairo</label>
         </div>
       </div>
-
-      <div className="flex space-x-5">
-        {/* TODO: Make the filters components since each has its own little search */}
-        {/* TODO: add css to menus */}
-        {/* City Filter */}
-        <div className="w-48 h-32 bg-white p-2 flex flex-col rounded shadow-lg">
-          <input
-            type="text"
-            placeholder="Search Cities"
-            className="w-full mb-2 bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
-          />
-          <div className="overflow-y-scroll">
-            <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-              Item 1
-              <RiCheckboxCircleLine className="ml-auto" />
-            </label>
-            <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-              Item 2
-            </label>
-          </div>
-        </div>
-
-        {/* Budget Filter */}
-        <div className="w-48 h-64 bg-white p-2 flex flex-col rounded shadow-lg">
-          {/* price slider */}
-          <label className="text-sm">Range</label>
-          <div className="w-full h-10 py-3 px-2 text-black mb-5">
-            <MultiRangeSlider
-              min={0}
-              max={1000}
-              onChange={({ min, max }) =>
-                console.log(`min = ${min}, max = ${max}`)
-              }
-            />
-          </div>
-
-          {/* OR divider */}
-          <div class="relative flex py-1 items-center mb-2">
-            <div class="flex-grow border-t border-gray-400"></div>
-            <span class="flex-shrink text-xs mx-4 text-gray-400">OR</span>
-            <div class="flex-grow border-t border-gray-400"></div>
-          </div>
-
-          {/* price range presets*/}
-          <label className="text-sm">Preset</label>
-          <div className="overflow-y-scroll">
-            <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-              Price range 1
-              <RiCheckboxCircleLine className="ml-auto" />
-            </label>
-            <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-              Price range 2
-            </label>
-            <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-              Price range 3
-            </label>
-          </div>
-        </div>
-
-        {/* Faculty and Major */}
-        <div className="w-96 h-64 bg-white p-2 flex flex-row space-x-4 rounded shadow-lg">
-          <div className="w-1/2">
-            <div className="w-full mb-1">
-              <label className="text-sm">Faculty</label>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full text-sm bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
-              />
-            </div>
-            <div className="overflow-y-scroll">
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Faculty 1
-                <RiCheckboxCircleLine className="ml-auto" />
-              </label>
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Faculty 2
-              </label>
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Faculty 3
-              </label>
-            </div>
-          </div>
-
-          <div className="w-1/2">
-            <div className="w-full mb-1">
-              <label className="text-sm">Major</label>
-              <input
-                type="text"
-                placeholder="Search"
-                className="w-full text-sm bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
-              />
-            </div>
-            <div className="overflow-y-scroll">
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Major 1
-                <RiCheckboxCircleLine className="ml-auto" />
-              </label>
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Major 2
-              </label>
-              <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-                Major 3
-              </label>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
 
 const styles = {
   filterlabel:
-    "flex flex-row justify-center items-center gap-2 text-white cursor-pointer",
+    "flex flex-row justify-center items-center gap-1 text-white cursor-pointer",
   filteritemlabel:
     "rounded-full flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
   searchresultcard:
