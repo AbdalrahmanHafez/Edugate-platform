@@ -28,7 +28,7 @@ export default function SearchUnis() {
                 Faculty & Major <FaCaretDown />
               </label>
 
-              <div className="absolute hidden group-hover:flex group-focus-within:flex flex-row z-10 w-96 h-64 bg-white p-2 space-x-4 rounded shadow-lg">
+              <div className="left-[-180%] absolute hidden group-hover:flex group-focus-within:flex flex-row z-10 w-96 h-64 bg-white p-2 space-x-4 rounded shadow-lg">
                 <div className="w-1/2 flex flex-col">
                   <div className="w-full mb-1">
                     <label className="text-sm">Faculty</label>
@@ -84,7 +84,7 @@ export default function SearchUnis() {
               </label>
 
               {/* City Filter */}
-              <div className="hidden group-focus-within:flex group-hover:flex absolute z-10 w-48 h-64 flex-col p-2 rounded shadow-lg bg-white">
+              <div className="left-[-300%] hidden group-focus-within:flex group-hover:flex absolute z-10 w-48 h-64 flex-col p-2 rounded shadow-lg bg-white">
                 <input
                   type="text"
                   placeholder="Search Cities"
@@ -108,7 +108,7 @@ export default function SearchUnis() {
                 Budget <FaCaretDown />
               </label>
 
-              <div className="absolute hidden group-hover:flex flex-col z-10 w-48 h-64 bg-white p-2 rounded shadow-lg">
+              <div className="left-[-160%] absolute hidden group-hover:flex flex-col z-10 w-48 h-64 bg-white p-2 rounded shadow-lg">
                 {/* price slider */}
                 <label className="text-sm">Range</label>
                 <div className="w-full h-10 py-3 px-2 text-black mb-5">
