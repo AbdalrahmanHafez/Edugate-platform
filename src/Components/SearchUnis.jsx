@@ -151,8 +151,33 @@ export default function SearchUnis() {
       </div>
 
       {/* Filtered Elements */}
-      {/* TODO: overflow on x scroll ? */}
-      <div className="w-full h-12 mb-3 min-h-[48px] flex flex-nowrap items-center gap-2 px-5 rounded-[11px] shadow-md bg-[#FDFDFD]">
+      <div className="overflow-x-auto overflow-y-hidden w-full h-12 mb-3 min-h-[48px] flex flex-nowrap items-center gap-2 px-5 rounded-[11px] shadow-md bg-[#FDFDFD]">
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+        <label className={styles.filteritemlabel}>
+          City Cairo
+          <AiOutlineClose />
+        </label>
+
         <label className={styles.filteritemlabel}>
           City Cairo
           <AiOutlineClose />
@@ -191,7 +216,7 @@ const styles = {
   filterlabel:
     "flex flex-row justify-center items-center gap-1 text-white cursor-pointer",
   filteritemlabel:
-    "rounded-full flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
+    "rounded-full min-w-fit flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
   searchresultcard:
     "w-32 min-h-[8rem] h-fit rounded-lg mr-5 bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer",
 };
