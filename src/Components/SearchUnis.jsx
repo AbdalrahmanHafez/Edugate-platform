@@ -15,7 +15,7 @@ export default function SearchUnis() {
             <input
               type="text"
               placeholder="Search University name"
-              className="w-full h-full px-4 py-2 bg-[#4F4F4F] text-white rounded-[11px] outline-none focus:ring-2 focus:ring-[#FFD700] focus:ring-opacity-50"
+              className="w-full h-full px-4 py-2 bg-[#4F4F4F] text-white rounded-[11px] outline-none focus:ring-2 focus:ring-[#afafaf80] focus:ring-opacity-50"
             />
           </div>
 
@@ -73,19 +73,32 @@ export default function SearchUnis() {
       {/* TODO: Make the filters components since each has its own little search */}
       {/* TODO: add css to menus */}
       {/* Select City */}
-      <div className="w-48 h-32 bg-white p-2 flex flex-col rounded">
+      <div className="w-48 h-32 bg-white p-2 flex flex-col rounded shadow-lg">
         <input
           type="text"
           placeholder="Search Cities"
           className="w-full mb-2 bg-slate-200 p-1 rounded outline-none focus:ring-2 focus:ring-[#8a8a8a] focus:ring-opacity-50"
         />
-        <div className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-          <label>Item 1</label>
-          <RiCheckboxCircleLine className="ml-auto" />
-        </div>
-
-        <div className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
-          <label>Item 2</label>
+        <div className="overflow-y-scroll">
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 1
+            <RiCheckboxCircleLine className="ml-auto" />
+          </label>
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 2
+          </label>
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 3
+          </label>
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 4
+          </label>
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 5
+          </label>
+          <label className="flex items-center hover:bg-slate-200 rounded cursor-pointer px-2">
+            Item 6
+          </label>
         </div>
       </div>
     </div>

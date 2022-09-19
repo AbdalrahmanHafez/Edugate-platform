@@ -73,7 +73,7 @@ export default function Navbar() {
 }
 
 const styles = {
-  nav: "flex flex-col lg:flex-row bg-white bg-opacity-90 w-full fixed z-10 shadow-lg",
+  nav: "flex flex-col lg:flex-row bg-[rgba(255,255,255,0.9)]  w-full fixed z-10 shadow-lg rounded-b-lg backdrop-blur-md",
   logo: "ml-5 w-[250px] h-auto m-5",
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
   loginSignupContainer: "hidden mr-5 lg:flex flex-row mb-5",
