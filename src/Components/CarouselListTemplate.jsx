@@ -61,7 +61,7 @@ function CarouselListTemplate({ title, dark }) {
   );
 
   return (
-    <section className={dark ? "bg-gray-900" : "bg-white"}>
+    <section className={"rounded-lg " + (dark ? "bg-gray-900" : "bg-white")}>
       <div className="container px-6 py-10 mx-auto">
         <h1
           className={

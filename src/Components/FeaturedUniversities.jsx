@@ -59,7 +59,7 @@ function FeaturedArticles() {
   );
 
   return (
-    <section className="bg-gray-900">
+    <section className="bg-gray-900 rounded-b-lg">
       <div className="container px-6 py-10 mx-auto">
         <h1 className="text-3xl font-semibold capitalize lg:text-4xl text-white mb-5">
           Featured Universities

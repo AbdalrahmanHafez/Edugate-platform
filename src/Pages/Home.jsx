@@ -37,7 +37,7 @@ function Home() {
           <CarouselListTemplate title="Study Abroad" />
           <CarouselListTemplate title="Featured Programs" dark />
 
-          <div className="mx-3 ">
+          <div className="mx-3 mt-5">
             <Carousel />
           </div>
 
@@ -63,7 +63,7 @@ const styles = {
   adImage: "sticky top-0 w-full",
 
   mccontent:
-    "/bg-red-200 md:w-10/12 flex flex-col justify-start items-start-center",
+    "/bg-red-200 mr-3 md:w-10/12 flex flex-col justify-start items-start-center",
 
   searchBox: "w-8/12 h-fit mx-auto",
 
