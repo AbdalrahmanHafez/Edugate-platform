@@ -6,7 +6,12 @@ import MultiRangeSlider from "Components/multiRangeSlider/MultiRangeSlider";
 
 export default function SearchUnis({ inHomePage }) {
   const SearchBar = () => (
-    <div className="w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md">
+    <div
+      className={
+        "w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md" +
+        (inHomePage && " shadow-[0_0_30px_#585858]")
+      }
+    >
       {/* Inner container */}
       <div className="w-full h-full flex flex-col lg:flex-row space-x-1">
         {/* Search input */}

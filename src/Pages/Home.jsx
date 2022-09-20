@@ -18,17 +18,20 @@ function Home() {
       <br />
       <br />
       <br />
-      <br />
-      <br />
+
+      {/* Search Box */}
+      <section className="h-96 mt-[20px] bg-[url('../public/Banner2.jpg')] bg-[rgba(0,0,0,.5)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center">
+        <h1 className="text-5xl text-white mb-5">Create The Future</h1>
+        <div className={styles.searchBox}>
+          <SearchUnis inHomePage={true} />
+        </div>
+      </section>
 
       {/* Content and Ads*/}
       <div className={styles.container}>
         {/* Content */}
         <div className={styles.mccontent}>
           <div className="mx-3">
-            <div className={styles.searchBox}>
-              <SearchUnis inHomePage={true} />
-            </div>
             <Carousel />
           </div>
           <FeaturedUniversities />
@@ -56,7 +59,7 @@ const styles = {
   mccontent:
     "/bg-red-200 md:w-10/12 flex flex-col justify-start items-start-center",
 
-  searchBox: "w-full h-fit mx-auto",
+  searchBox: "w-8/12 h-fit mx-auto",
 
   carousel: "w-full h-60 bg-green-600",
 };
