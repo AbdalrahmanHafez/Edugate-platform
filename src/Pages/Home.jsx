@@ -6,6 +6,7 @@ import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
 import SearchUnis from "Components/SearchUnis";
+import CarouselListTemplate from "Components/CarouselListTemplate";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -20,7 +21,7 @@ function Home() {
       <br />
 
       {/* Search Box */}
-      <section className="h-96 mt-[20px] bg-[url('../public/Banner2.jpg')] bg-[rgba(0,0,0,.5)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center">
+      <section className="h-96 mt-[20px] bg-[url('../public/Banner2.jpg')] bg-[rgba(0,0,0,.5)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
         <h1 className="text-5xl text-white mb-5">Create The Future</h1>
         <div className={styles.searchBox}>
           <SearchUnis inHomePage={true} />
@@ -32,6 +33,9 @@ function Home() {
         {/* Content */}
         <div className={styles.mccontent}>
           <FeaturedUniversities />
+
+          <CarouselListTemplate title="Study Abroad" />
+          <CarouselListTemplate title="Featured Programs" dark />
 
           <div className="mx-3 ">
             <Carousel />

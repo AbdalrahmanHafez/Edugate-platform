@@ -7,12 +7,12 @@ export default function Footer() {
       <div className="sm:flex sm:items-center sm:justify-between">
         <a href="/" className="flex items-center mb-4 sm:mb-0">
           <img
-            src="Edugate-logo-white-min.png"
-            className="mr-3 h-14"
+            src="Edugate-new-logo.png"
+            className="mr-3 h-40"
             alt="Edugate Logo"
           />
         </a>
-        <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+        <ul className="flex flex-wrap items-center mb-6 text-sm text-gray-400 sm:mb-0">
           <li>
             <a href="/" className="mr-4 hover:underline md:mr-6 ">
               About
