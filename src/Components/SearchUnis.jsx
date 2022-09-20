@@ -28,7 +28,7 @@ export default function SearchUnis() {
                 Faculty & Major <FaCaretDown />
               </label>
 
-              <div className="lg:left-[-180%] left-[-20%] absolute hidden group-hover:flex group-focus-within:flex lg:flex-row flex-col z-10 lg:w-96 w-40 h-fit bg-white p-2 lg:space-x-4 space-y-2 rounded shadow-lg">
+              <div className="lg:left-[-180%] left-[-20%] absolute hidden group-hover:flex group-focus-within:flex lg:flex-row flex-col z-10 lg:w-96 w-40 h-fit bg-white p-2 lg:space-x-4 lg:space-y-0 space-y-2 rounded shadow-lg">
                 <div className="flex-1 flex flex-col">
                   <div className="w-full mb-1">
                     <label className="text-sm">Faculty</label>
