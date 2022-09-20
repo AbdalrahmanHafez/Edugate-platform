@@ -3,7 +3,7 @@ import { Carousel as CarouselCmp } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function CarouselListTemplate({ title, dark }) {
-  const textColor = dark ? "text-white" : "text-black";
+  const textColor = "text-[rgb(234,36,39)]";
 
   const Carousel = () => (
     <CarouselCmp
@@ -61,12 +61,11 @@ function CarouselListTemplate({ title, dark }) {
   );
 
   return (
-    <section className={"rounded-lg " + (dark ? "bg-gray-900" : "bg-white")}>
+    <section className={"rounded-lg bg-gray-200 mb-5"}>
       <div className="container px-6 py-10 mx-auto">
         <h1
           className={
-            "text-3xl font-semibold capitalize lg:text-4xl mb-5 " +
-            (dark ? "text-white" : "text-black")
+            "text-3xl font-semibold capitalize lg:text-4xl mb-5 " + textColor
           }
         >
           {title}

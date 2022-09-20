@@ -9,7 +9,7 @@ export default function SearchUnis({ inHomePage }) {
     <div
       className={
         "w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md" +
-        (inHomePage && " shadow-[0_5px_30px_#585858]")
+        (inHomePage && " shadow-[0_5px_30px_#c5c5c54a]")
       }
     >
       {/* Inner container */}

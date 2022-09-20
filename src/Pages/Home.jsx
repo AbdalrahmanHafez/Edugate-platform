@@ -21,7 +21,7 @@ function Home() {
       <br />
 
       {/* Search Box */}
-      <section className="h-96 mt-[20px] bg-[url('../public/Banner2.jpg')] bg-[rgba(0,0,0,.5)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
+      <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
         <h1 className="text-5xl text-white mb-5 select-none">
           Create The Future
         </h1>
@@ -37,7 +37,7 @@ function Home() {
           <FeaturedUniversities />
 
           <CarouselListTemplate title="Study Abroad" />
-          <CarouselListTemplate title="Featured Programs" dark />
+          <CarouselListTemplate title="Featured Programs" />
 
           <div className="mx-3 mt-5">
             <Carousel />
