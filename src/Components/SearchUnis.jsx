@@ -8,7 +8,7 @@ export default function SearchUnis() {
   return (
     <div className="w-full h-full bg-red-400">
       {/* Search bar */}
-      <div className="w-full h-fit mb-2 py-2 px-5 bg-[#3F3F3F] rounded-[11px] shadow-md">
+      <div className="w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md">
         {/* Inner container */}
         <div className="w-full h-full flex flex-col lg:flex-row space-x-1">
           {/* Search input */}
@@ -16,12 +16,12 @@ export default function SearchUnis() {
             <input
               type="text"
               placeholder="Search University name"
-              className="w-full h-full px-4 py-2 bg-[#4F4F4F] text-white rounded-[11px] outline-none focus:ring-2 focus:ring-[#afafaf80] focus:ring-opacity-50"
+              className="w-full h-full px-4 py-2 bg-white text-black rounded-[11px] outline-none focus:ring-2 focus:ring-[#afafaf80] focus:ring-opacity-50"
             />
           </div>
 
           {/* Filter menus */}
-          <div className="flex-[1] flex lg:justify-end lg:mt-0 justify-center mt-2 items-center space-x-3 bg-[#3F3F3F] ">
+          <div className="flex-[1] flex lg:justify-end lg:mt-0 justify-center mt-2 items-center space-x-3">
             {/* Faculty and Major */}
             <div className="relative group">
               <label className={styles.filterlabel}>
