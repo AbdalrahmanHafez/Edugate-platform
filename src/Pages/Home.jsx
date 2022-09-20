@@ -22,7 +22,9 @@ function Home() {
 
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner2.jpg')] bg-[rgba(0,0,0,.5)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
-        <h1 className="text-5xl text-white mb-5">Create The Future</h1>
+        <h1 className="text-5xl text-white mb-5 select-none">
+          Create The Future
+        </h1>
         <div className={styles.searchBox}>
           <SearchUnis inHomePage={true} />
         </div>
