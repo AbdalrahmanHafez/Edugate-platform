@@ -19,9 +19,40 @@ function FeaturedArticles() {
       showThumbs={false}
     >
       <div>
-        <div className="flex">
-          <img src="carousel-2.jpeg" alt="" />
-          <img src="carousel-3.jpeg" alt="" />
+        <div className="flex p-5 space-x-5">
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
+
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
+
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div className="flex p-5 space-x-5">
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
+
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
+
+          <a href="/todolink" className="flex flex-col flex-1">
+            <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
+            <h1 className="text-3xl text-white">University Name</h1>
+          </a>
         </div>
       </div>
     </CarouselCmp>
