@@ -9,7 +9,7 @@ export default function SearchUnis({ inHomePage }) {
     <div
       className={
         "w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md" +
-        (inHomePage && " shadow-[0_5px_30px_#c5c5c54a]")
+        (inHomePage ? " shadow-[0_5px_30px_#c5c5c54a]" : "")
       }
     >
       {/* Inner container */}
@@ -31,7 +31,10 @@ export default function SearchUnis({ inHomePage }) {
               Faculty & Major <FaCaretDown />
             </label>
 
-            <div className="lg:left-[-180%] left-[-20%] absolute hidden group-hover:flex group-focus-within:flex lg:flex-row flex-col z-10 lg:w-96 w-40 h-fit bg-white p-2 lg:space-x-4 lg:space-y-0 space-y-2 rounded shadow-lg">
+            <div
+              className="absolute hidden group-hover:flex group-focus-within:flex lg:flex-row flex-col z-10 lg:w-96 w-40 h-fit bg-white p-2 lg:space-x-4 lg:space-y-0 space-y-2 rounded shadow-lg"
+              style={{ inset: "100% 0 auto auto" }}
+            >
               <div className="flex-1 flex flex-col">
                 <div className="w-full mb-1">
                   <label className="text-sm">Faculty</label>
@@ -87,7 +90,10 @@ export default function SearchUnis({ inHomePage }) {
             </label>
 
             {/* City Filter */}
-            <div className="left-[-300%] hidden group-focus-within:flex group-hover:flex absolute z-10 w-48 h-64 flex-col p-2 rounded shadow-lg bg-white">
+            <div
+              className="hidden group-focus-within:flex group-hover:flex absolute z-10 w-48 h-64 flex-col p-2 rounded shadow-lg bg-white"
+              style={{ inset: "100% 0 auto auto" }}
+            >
               <input
                 type="text"
                 placeholder="Search Cities"
@@ -111,7 +117,10 @@ export default function SearchUnis({ inHomePage }) {
               Budget <FaCaretDown />
             </label>
 
-            <div className="left-[-160%] absolute hidden group-hover:flex flex-col z-10 w-48 h-64 bg-white p-2 rounded shadow-lg">
+            <div
+              className="absolute hidden group-hover:flex flex-col z-10 w-48 h-64 bg-white p-2 rounded shadow-lg"
+              style={{ inset: "100% 0 auto auto" }}
+            >
               {/* price slider */}
               <label className="text-sm">Range</label>
               <div className="w-full h-10 py-3 px-2 text-black mb-5">
