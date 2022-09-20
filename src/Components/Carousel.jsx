@@ -16,6 +16,8 @@ function Carousel() {
       onChange={() => {}}
       onClickItem={() => {}}
       onClickThumb={() => {}}
+      centerMode
+      centerSlidePercentage={60}
     >
       <div>
         <img src="carousel-1.jpeg" />

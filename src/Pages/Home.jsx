@@ -31,10 +31,12 @@ function Home() {
       <div className={styles.container}>
         {/* Content */}
         <div className={styles.mccontent}>
-          <div className="mx-3">
+          <FeaturedUniversities />
+
+          <div className="mx-3 ">
             <Carousel />
           </div>
-          <FeaturedUniversities />
+
           <FeaturedArticles />
         </div>
 
