@@ -26,7 +26,9 @@ function Home() {
         {/* Content */}
         <div className={styles.mccontent}>
           <div className="mx-3">
-            <div className={styles.searchBox}>Search Box</div>
+            <div className={styles.searchBox}>
+              <SearchUnis inHomePage={true} />
+            </div>
             <Carousel />
           </div>
           <FeaturedUniversities />
@@ -54,7 +56,7 @@ const styles = {
   mccontent:
     "/bg-red-200 md:w-10/12 flex flex-col justify-start items-start-center",
 
-  searchBox: "bg-slate-400 w-full h-20 mx-auto mb-4",
+  searchBox: "w-full h-fit mx-auto",
 
   carousel: "w-full h-60 bg-green-600",
 };
