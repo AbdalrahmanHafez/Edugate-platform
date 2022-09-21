@@ -19,22 +19,23 @@ function CarouselListTemplate({ title, dark }) {
       onClickItem={() => {}}
       onClickThumb={() => {}}
       showThumbs={false}
+      interval={title.charCodeAt(0) * 100}
     >
       <div>
         <div className="flex p-5 space-x-5">
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
         </div>
       </div>
@@ -43,17 +44,17 @@ function CarouselListTemplate({ title, dark }) {
         <div className="flex p-5 space-x-5">
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className={"text-3xl " + textColor}>{title}</h1>
+            <h1 className={"mb-5 text-lg " + textColor}>{title}</h1>
           </a>
         </div>
       </div>
@@ -61,13 +62,9 @@ function CarouselListTemplate({ title, dark }) {
   );
 
   return (
-    <section className={"rounded-lg bg-gray-200 mb-5"}>
-      <div className="container px-6 py-10 mx-auto">
-        <h1
-          className={
-            "text-3xl font-semibold capitalize lg:text-4xl mb-5 " + textColor
-          }
-        >
+    <section className="bg-gray-200 mt-3 rounded-lg mb-5">
+      <div className="px-3 py-4 mx-auto">
+        <h1 className="text-3xl font-semibold capitalize text-[rgb(234,36,39)]">
           {title}
         </h1>
 

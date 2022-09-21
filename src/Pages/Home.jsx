@@ -1,7 +1,7 @@
 import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import React, { useState } from "react";
-import classNames from "classnames";
+
 import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
@@ -22,7 +22,7 @@ function Home() {
 
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
-        <h1 className="text-5xl text-white mb-5 select-none">
+        <h1 className="text-5xl text-white mb-5 select-none drop-shadow-[2px_2px_0px_#000000]">
           Create The Future
         </h1>
         <div className={styles.searchBox}>
@@ -61,11 +61,11 @@ function Home() {
 const styles = {
   container: "/bg-red-400 w-full flex flex-col md:flex-row",
   adContainer:
-    "/bg-green-400 hidden md:flex md:h-auto flex-col w-2/12 items-start justify-start mr-3 gap-5",
+    "/bg-green-400 hidden mt-3 md:flex md:h-auto flex-col w-2/12 items-start justify-start mr-3 gap-5",
   adImage: "sticky top-0 w-full",
 
   mccontent:
-    "/bg-red-200 mr-3 md:w-10/12 flex flex-col justify-start items-start-center",
+    "/bg-red-200 mx-3 md:w-10/12 flex flex-col justify-start items-start-center",
 
   searchBox: "w-8/12 h-fit mx-auto",
 

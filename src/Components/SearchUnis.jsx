@@ -3,6 +3,7 @@ import { FaCaretDown, FaAesymmetrik } from "react-icons/fa";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 import MultiRangeSlider from "Components/multiRangeSlider/MultiRangeSlider";
+import { BsSearch } from "react-icons/bs";
 
 export default function SearchUnis({ inHomePage }) {
   const SearchBar = () => (
@@ -158,6 +159,12 @@ export default function SearchUnis({ inHomePage }) {
               </div>
             </div>
           </div>
+
+          {inHomePage && (
+            <button className="text-black p-2 rounded-full text-xl bg-white focus:ring-2 ring-gray-500">
+              <BsSearch />
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -17,22 +17,29 @@ function FeaturedArticles() {
       onClickItem={() => {}}
       onClickThumb={() => {}}
       showThumbs={false}
+      interval={5000}
     >
-      <div>
-        <div className="flex p-5 space-x-5">
+      <div className="">
+        <div className="flex p-5 gap-x-5 ">
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
         </div>
       </div>
@@ -41,17 +48,23 @@ function FeaturedArticles() {
         <div className="flex p-5 space-x-5">
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-2.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
 
           <a href="/todolink" className="flex flex-col flex-1">
             <div className="h-48 bg-cover bg-center bg-[url('../public/carousel-3.jpeg')]" />
-            <h1 className="text-3xl text-[rgb(234,36,39)]">University Name</h1>
+            <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
+              University Name
+            </h1>
           </a>
         </div>
       </div>
@@ -59,9 +72,9 @@ function FeaturedArticles() {
   );
 
   return (
-    <section className="bg-gray-200 rounded-b-lg mb-5">
-      <div className="px-6 py-10 mx-auto">
-        <h1 className="text-3xl font-semibold capitalize lg:text-4xl text-[rgb(234,36,39)] mb-5">
+    <section className="bg-gray-200 mt-3 rounded-lg mb-5">
+      <div className="px-3 py-4 mx-auto">
+        <h1 className="text-3xl font-semibold capitalize text-[rgb(234,36,39)]">
           Featured Universities
         </h1>
 
