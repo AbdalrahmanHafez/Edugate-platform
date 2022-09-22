@@ -88,21 +88,42 @@ export default function Footer() {
               href="https://www.facebook.com/edugate.eg/"
               className="text-blue-600"
             >
-              <AiFillFacebook />
+              {/* <AiFillFacebook /> */}
+              <img
+                className="h-5 w-auto"
+                src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                alt=""
+              />
             </a>
 
             <a
               href="https://www.linkedin.com/company/edugate-eg/"
               className="text-blue-400"
             >
-              <AiFillLinkedin />
+              <img
+                className="h-5 w-auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png"
+                alt=""
+              />
             </a>
 
             <a
               href="https://www.instagram.com/edugate.eg/"
               className="text-pink-500"
             >
-              <AiFillInstagram />
+              <img
+                className="h-5 w-auto"
+                src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                alt=""
+              />
+            </a>
+
+            <a href="https://www.youtube.com/channel/UCLfOlhOWdyhemOWbcWn0YHw">
+              <img
+                className="h-5 w-auto"
+                src="https://cdn-icons-png.flaticon.com/512/174/174883.png"
+                alt=""
+              />
             </a>
           </div>
         </div>
