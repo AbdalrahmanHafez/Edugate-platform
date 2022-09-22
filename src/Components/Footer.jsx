@@ -1,9 +1,4 @@
 import React from "react";
-import {
-  AiFillFacebook,
-  AiFillLinkedin,
-  AiFillInstagram,
-} from "react-icons/ai";
 import { GoLocation } from "react-icons/go";
 import { BsTelephone, BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -61,14 +56,41 @@ export default function Footer() {
 
           <TextWithIcon
             icon={<GoLocation />}
-            text="22 Forsan towers -Laserina Tower - Maadi Ring road - Qatamya - Cairo - Egypt"
+            text={
+              <a
+                href="https://goo.gl/maps/fMdDjUBScWYh3t499"
+                className="hover:text-slate-200"
+                target="_blank"
+                rel="noreferrer"
+              >
+                22 Forsan towers - Laserina Tower - Maadi Ring road - Qatamya -
+                Cairo - Egypt
+              </a>
+            }
           />
 
-          <TextWithIcon icon={<BsTelephone />} text="02 223151026" />
+          <TextWithIcon
+            icon={<BsTelephone />}
+            text={
+              <a href="tel:02 223151026" className="hover:text-slate-200">
+                02 223151026
+              </a>
+            }
+          />
 
           <TextWithIcon
             icon={<BsPhone />}
-            text="+201000429759 / +201012690901"
+            text={
+              <>
+                <a href="tel:+201000429759" className="hover:text-slate-200">
+                  +201000429759
+                </a>
+                {" / "}
+                <a href="tel:+201012690901" className="hover:text-slate-200">
+                  +201012690901
+                </a>
+              </>
+            }
           />
 
           <TextWithIcon
@@ -87,10 +109,11 @@ export default function Footer() {
             <a
               href="https://www.facebook.com/edugate.eg/"
               className="text-blue-600"
+              target="_blank"
+              rel="noreferrer"
             >
-              {/* <AiFillFacebook /> */}
               <img
-                className="h-5 w-auto"
+                className="h-7 w-auto"
                 src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
                 alt=""
               />
@@ -99,9 +122,11 @@ export default function Footer() {
             <a
               href="https://www.linkedin.com/company/edugate-eg/"
               className="text-blue-400"
+              target="_blank"
+              rel="noreferrer"
             >
               <img
-                className="h-5 w-auto"
+                className="h-7 w-auto"
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png"
                 alt=""
               />
@@ -110,17 +135,23 @@ export default function Footer() {
             <a
               href="https://www.instagram.com/edugate.eg/"
               className="text-pink-500"
+              target="_blank"
+              rel="noreferrer"
             >
               <img
-                className="h-5 w-auto"
+                className="h-7 w-auto"
                 src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
                 alt=""
               />
             </a>
 
-            <a href="https://www.youtube.com/channel/UCLfOlhOWdyhemOWbcWn0YHw">
+            <a
+              href="https://www.youtube.com/channel/UCLfOlhOWdyhemOWbcWn0YHw"
+              target="_blank"
+              rel="noreferrer"
+            >
               <img
-                className="h-5 w-auto"
+                className="h-8 w-auto"
                 src="https://cdn-icons-png.flaticon.com/512/174/174883.png"
                 alt=""
               />
