@@ -37,7 +37,7 @@ function FeaturedArticles() {
                     className="flex flex-col flex-1"
                   >
                     <div
-                      className="h-48 bg-cover bg-center"
+                      className="h-48 bg-contain bg-center bg-no-repeat"
                       style={{ backgroundImage: `url(uni_logos/${filename})` }}
                     />
                     <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">

@@ -21,7 +21,7 @@ const arr = [
   ],
   [
     ["13.jpg", "Egypt University of Informatics"],
-    ["14.jpg", "British Council"],
+    ["14.png", "British Council"],
     ["15.jpg", "Sinai University"],
   ],
 ];
