@@ -9,7 +9,7 @@ export default function SearchUnis({ inHomePage }) {
   const SearchBar = () => (
     <div
       className={
-        "w-full h-fit mb-2 py-2 px-5 bg-gray-900 rounded-[11px] shadow-md" +
+        "w-full h-fit mb-2 py-2 px-5 bg-white rounded-[11px] shadow-md" +
         (inHomePage ? " shadow-[0_5px_30px_#c5c5c54a]" : "")
       }
     >
@@ -20,7 +20,7 @@ export default function SearchUnis({ inHomePage }) {
           <input
             type="text"
             placeholder="Search University name"
-            className="w-full h-full px-4 py-2 bg-white text-black rounded-[11px] outline-none focus:ring-2 focus:ring-[#afafaf80] focus:ring-opacity-50"
+            className="w-full h-full px-4 py-2 bg-gray-200 text-black rounded-[11px] outline-none focus:ring-2 focus:ring-[#afafaf80] focus:ring-opacity-50"
           />
         </div>
 
@@ -241,7 +241,7 @@ export default function SearchUnis({ inHomePage }) {
 
 const styles = {
   filterlabel:
-    "flex flex-row justify-center items-center gap-1 text-white cursor-pointer",
+    "flex flex-row justify-center items-center gap-1 text-black cursor-pointer",
   filteritemlabel:
     "rounded-full min-w-fit flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
   searchresultcard:
