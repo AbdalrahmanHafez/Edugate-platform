@@ -1,7 +1,14 @@
 import React from "react";
 import { Carousel as CarouselCmp } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Unilogos from "Media/Unilogos.js";
+
+const Unilogos = [
+  ["1.jpg", "2.jpg", "3.jpg"],
+  ["4.jpg", "5.jpg", "6.jpg"],
+  ["7.jpg", "8.jpg", "9.jpg"],
+  ["10.jpg", "11.jpg", "12.jpg"],
+  ["13.jpg", "14.png", "15.jpg"],
+];
 
 function FeaturedArticles() {
   // console.log(Unilogos);
@@ -23,33 +30,20 @@ function FeaturedArticles() {
       showThumbs={false}
       interval={5000}
     >
-      {Unilogos.map((unigroup, idx) => {
-        // console.log("unigrpo", unigroup);
-        return (
-          <div key={idx}>
-            <div className="flex p-5 gap-x-5 ">
-              {unigroup.map(([filename, data], idx) => {
-                // console.log(smth);
-                return (
-                  <a
-                    key={idx}
-                    href="/todolink"
-                    className="flex flex-col flex-1"
-                  >
-                    <div
-                      className="h-48 bg-contain bg-center bg-no-repeat"
-                      style={{ backgroundImage: `url(uni_logos/${filename})` }}
-                    />
-                    <h1 className="mb-5 text-lg text-[rgb(234,36,39)]">
-                      {data}
-                    </h1>
-                  </a>
-                );
-              })}
-            </div>
+      {Unilogos.map((unigroup, idx) => (
+        <div key={idx}>
+          <div className="flex p-5 gap-x-5 ">
+            {unigroup.map((filename, idx) => (
+              <a key={idx} href="/todolink" className="flex flex-col flex-1">
+                <div
+                  className="h-48 bg-contain bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(uni_logos/${filename})` }}
+                />
+              </a>
+            ))}
           </div>
-        );
-      })}
+        </div>
+      ))}
     </CarouselCmp>
   );
 
