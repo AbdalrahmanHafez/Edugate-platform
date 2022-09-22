@@ -67,7 +67,7 @@ const styles = {
   mccontent:
     "/bg-red-200 mx-3 md:w-10/12 flex flex-col justify-start items-start-center",
 
-  searchBox: "w-8/12 h-fit mx-auto",
+  searchBox: "md:w-8/12 w-full h-fit mx-auto",
 
   carousel: "w-full h-60 bg-green-600",
 };
