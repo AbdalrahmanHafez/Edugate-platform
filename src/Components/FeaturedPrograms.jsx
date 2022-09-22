@@ -4,13 +4,10 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const Unilogos = [
   ["1.png", "2.png", "3.png"],
-  ["4.png", "5.png", "6.png"],
-  ["7.png", "8.png", "9.png"],
-  ["10.png", "11.png", "12.png"],
-  ["13.png", "14.png", "15.png"],
+  ["4.png", "5.png"],
 ];
 
-function FeaturedArticles() {
+function FeaturedPrograms() {
   // console.log(Unilogos);
   // Unilogos.forEach((data, filename) => console.log(data, filename));
 
@@ -37,7 +34,9 @@ function FeaturedArticles() {
               <a key={idx} href="/todolink" className="flex flex-col flex-1">
                 <div
                   className="h-48 bg-contain bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(uni_logos/${filename})` }}
+                  style={{
+                    backgroundImage: `url(featuredPrograms/${filename})`,
+                  }}
                 />
               </a>
             ))}
@@ -51,7 +50,7 @@ function FeaturedArticles() {
     <section className="bg-gray-200 mt-3 rounded-lg mb-5">
       <div className="px-3 py-4 mx-auto">
         <h1 className="text-3xl font-semibold capitalize text-[rgb(234,36,39)]">
-          Featured Universities
+          Featured Programs
         </h1>
 
         <Carousel />
@@ -60,4 +59,4 @@ function FeaturedArticles() {
   );
 }
 
-export default FeaturedArticles;
+export default FeaturedPrograms;

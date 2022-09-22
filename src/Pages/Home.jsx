@@ -6,12 +6,12 @@ import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
 import SearchUnis from "Components/SearchUnis";
-import CarouselListTemplate from "Components/CarouselListTemplate";
+import StudyAbroad from "Components/StudyAbroad";
+import FeaturedPrograms from "Components/FeaturedPrograms";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function Home() {
-  const [hmbShowNav, sethmbShowNav] = useState(false);
   return (
     <div className="h-full w-full bg-white bg-cover">
       <Navbar />
@@ -36,8 +36,8 @@ function Home() {
         <div className={styles.mccontent}>
           <FeaturedUniversities />
 
-          <CarouselListTemplate title="Study Abroad" />
-          <CarouselListTemplate title="Featured Programs" />
+          <StudyAbroad />
+          <FeaturedPrograms />
 
           <div className="mx-3 mt-5">
             <Carousel />
