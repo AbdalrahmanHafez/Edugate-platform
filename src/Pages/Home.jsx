@@ -13,7 +13,7 @@ import FeaturedPrograms from "Components/FeaturedPrograms";
 
 function Home() {
   return (
-    <div className="h-full w-full bg-white bg-cover">
+    <div className="w-full h-full bg-white bg-cover">
       <Navbar />
 
       <br />
