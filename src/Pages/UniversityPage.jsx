@@ -260,13 +260,14 @@ function UniversityPage() {
             </div>
 
             {/* Google Map */}
+            {/* //https://maps.google.com/maps?q=37.771008,+-122.41175+(You+can+insert+your+text+here)&amp;hl=en&amp;t=v&amp;vpsrc=0&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll=38.287602,-122.036186&amp;output=embed */}
             <div className="ml-auto w-96">
               <iframe
                 title="GMAP"
                 className="rounded-lg"
                 width="100%"
                 height="100%"
-                src="https://maps.google.com/maps?q=German University in Cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4199.614744735209!2d31.44060538650522!3d29.986056094456515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583cb2bfafbe73%3A0x6e7220116094726d!2sGerman%20University%20in%20Cairo!5e0!3m2!1sen!2seg!4v1664302560297!5m2!1sen!2seg"
                 frameBorder="0"
                 scrolling="no"
                 marginHeight="0"
@@ -277,7 +278,72 @@ function UniversityPage() {
         </div>
 
         {/* Right Side Nav */}
-        <div className="bg-green-400 w-52">Side Nav</div>
+        <div className="/bg-green-400 w-52">
+          {/* Side Nav */}
+          <div className="/bg-red-200 p-3 border-[#950003] border-2 border-r-0 rounded-l-lg sticky top-32">
+            <div className="flex flex-col gap-2 mb-5">
+              <div className="flex flex-col">
+                <a
+                  href="#about"
+                  className="hover:underline  hover:text-[#950003]"
+                >
+                  Faculties
+                </a>
+                <a
+                  href="#about"
+                  className="ml-5 hover:underline  hover:text-[#950003]"
+                >
+                  Engineering
+                </a>
+                <a
+                  href="#about"
+                  className="ml-5 hover:underline  hover:text-[#950003]"
+                >
+                  Pharmacy
+                </a>
+              </div>
+
+              <a
+                href="#about"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Accomodation
+              </a>
+
+              <a
+                href="#about"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Transportation
+              </a>
+
+              <a
+                href="#about"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Activities
+              </a>
+
+              <a
+                href="#about"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Contacts
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              {/* Apply Now */}
+              <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
+                Apply Now
+              </button>
+              {/* Add to Compare */}
+              <button className="bg-[#DFDFDF] text-slate-800 hover:bg-gray-200 w-full py-2 rounded">
+                Add to Compare
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Footer />

@@ -62,6 +62,7 @@ const styles = {
   container: "/bg-red-400 w-full flex flex-col md:flex-row",
   adContainer:
     "/bg-green-400 hidden mt-3 md:flex md:h-auto flex-col w-2/12 items-start justify-start mr-3 gap-5",
+
   adImage: "sticky top-0 w-full",
 
   mccontent:
