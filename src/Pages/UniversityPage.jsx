@@ -2,6 +2,8 @@ import React from "react";
 import Navbar from "Components/Navbar";
 import { AiOutlineDown } from "react-icons/ai";
 import Footer from "Components/Footer";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function UniversityPage() {
   return (
@@ -24,7 +26,7 @@ function UniversityPage() {
 
           <div className="ml-5 flex flex-col gap-3 mt-3">
             <div>City: Cairo</div>
-            <div className="text-[#EDEDED]">
+            <div className="text-[#EDEDED] text-justify">
               German university in Cairo/Deutsche Universität in Kairo has been
               established in 2002 in cooperation with the State Universities of
               Ulm and Stuttgart, under the patronage of the Egyptian Ministry of
@@ -65,16 +67,45 @@ function UniversityPage() {
       <div className="w-full flex gap-20">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
-          <div className="w-full h-72">TODO: Carousel</div>
+          {/* Media Carousel */}
+          <div className="w-full h-72 mb-5">
+            <Carousel
+              showArrows
+              showStatus
+              infiniteLoop
+              autoPlay
+              stopOnHover
+              emulateTouch
+              swipeable
+              dynamicHeight
+              onChange={() => {}}
+              onClickItem={() => {}}
+              onClickThumb={() => {}}
+              showThumbs={false}
+              interval={5000}
+            >
+              {["29", "33", "48", "01"].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="h-72 bg-contain bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
+                  }}
+                />
+              ))}
+            </Carousel>
+          </div>
           {/* Faculties */}
           <div className="w-full flex flex-col">
-            <h1 className="text-2xl mb-3">Faculties</h1>
+            <h1 className="text-2xl mb-3" id="Faculties">
+              Faculties
+            </h1>
 
             {/* Card */}
             <div className="bg-white rounded shadow-md p-4 mb-8">
               <h1 className="text-xl mb-1">Engineering</h1>
 
-              <div className="text-base ml-3 mb-1">
+              <div className="text-base ml-3 mb-1 text-justify">
                 The Faculty of Engineering provides lectures, experiments, as
                 well as the latest research and a wide variety of international
                 education and research programs that are all designed to prepare
@@ -98,7 +129,7 @@ function UniversityPage() {
                   </div>
                 </div>
                 {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg">
+                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg text-justify">
                   The CSEN Department conducts research in areas such as Human
                   Computation, Networking, and Reconfigurable Computing. Human
                   computation is an emerging area of multidisciplinary research.
@@ -140,8 +171,8 @@ function UniversityPage() {
                   </div>
                 </div>
                 {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-1">
-                  <div className="flex-1">
+                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3">
+                  <div className="flex-1 text-justify	">
                     GUC Hostel in Cairo - “Rehab City” In Cairo, GUC housing is
                     located in AL Rehab compound which is 10 minutes by shuttle
                     bus from the Campus. This housing service is equipped with
@@ -149,8 +180,34 @@ function UniversityPage() {
                     which make the students in an adequate environment that
                     support and facilitate their stay. Click here fo
                   </div>
-                  <div className="w-60">
-                    <img src="https://via.placeholder.com/500x400" alt="" />
+                  <div className="w-60 h-full">
+                    {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
+
+                    <Carousel
+                      showArrows
+                      showStatus
+                      infiniteLoop
+                      autoPlay
+                      stopOnHover
+                      emulateTouch
+                      swipeable
+                      dynamicHeight
+                      onChange={() => {}}
+                      onClickItem={() => {}}
+                      onClickThumb={() => {}}
+                      showThumbs={false}
+                      interval={5000}
+                    >
+                      {["29", "33", "48", "01"].map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="h-44 bg-contain bg-center bg-no-repeat"
+                          style={{
+                            backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
+                          }}
+                        />
+                      ))}
+                    </Carousel>
                   </div>
                 </div>
               </div>
@@ -284,7 +341,7 @@ function UniversityPage() {
             <div className="flex flex-col gap-2 mb-5">
               <div className="flex flex-col">
                 <a
-                  href="#about"
+                  href="#Faculties"
                   className="hover:underline  hover:text-[#950003]"
                 >
                   Faculties
