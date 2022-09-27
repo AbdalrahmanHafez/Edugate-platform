@@ -100,12 +100,28 @@ function UniversityPage() {
           </div>
           {/* Faculties */}
           <div className="w-full flex flex-col">
-            <h1 className="text-2xl mb-3" id="Faculties">
-              Faculties
-            </h1>
-
+            {/* This is a fake anchor to avoid the navbar */}
+            <div
+              id="Faculties"
+              style={{
+                display: "block",
+                position: "relative",
+                top: "-100px",
+                visibility: "hidden",
+              }}
+            />
+            <h1 className="text-2xl mb-3">Faculties</h1>
             {/* Card */}
             <div className="bg-white rounded shadow-md p-4 mb-8">
+              <div
+                id="Engineering"
+                style={{
+                  display: "block",
+                  position: "relative",
+                  top: "-100px",
+                  visibility: "hidden",
+                }}
+              />
               <h1 className="text-xl mb-1">Engineering</h1>
 
               <div className="text-base ml-3 mb-1 text-justify">
@@ -120,15 +136,40 @@ function UniversityPage() {
               </div>
 
               <h1 className="text-xl mb-1">Majors</h1>
-              <div className="/bg-blue-200 flex gap-10 mb-3">
+              <div className="/bg-blue-200 flex mb-3 gap-3">
                 {/* Items */}
                 <div className="/bg-blue-200 flex flex-col gap-3">
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Computer Science
+                  <div className="flex items-center">
+                    <div className="bg-[#950003] w-full px-10 py-3 text-white rounded-lg">
+                      Computer Science
+                    </div>
+
+                    <div
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "10px solid transparent",
+                        borderBottom: "10px solid transparent",
+                        borderLeft: "10px solid #950003",
+                      }}
+                    ></div>
                   </div>
 
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Mechatronics
+                  <div className="flex items-center">
+                    <div className="bg-[#950003] w-full px-10 py-3 text-white rounded-lg">
+                      Mechatronics
+                    </div>
+
+                    <div
+                      className="opacity-0"
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "10px solid transparent",
+                        borderBottom: "10px solid transparent",
+                        borderLeft: "10px solid #950003",
+                      }}
+                    ></div>
                   </div>
                 </div>
                 {/* Description */}
@@ -160,17 +201,39 @@ function UniversityPage() {
               </details>
             </div>
           </div>
-          {/* Accomodation */}
+          {/* Accommodation */}
           <div className="w-full flex flex-col">
-            <h1 className="text-2xl mb-3">Accomodation</h1>
+            <div
+              id="Accommodation"
+              style={{
+                display: "block",
+                position: "relative",
+                top: "-100px",
+                visibility: "hidden",
+              }}
+            />
+            <h1 className="text-2xl mb-3">Accommodation</h1>
 
             {/* Card */}
             <div className="bg-white rounded shadow-md p-4 mb-8">
-              <div className="/bg-blue-200 flex gap-10 mb-3">
+              <div className="/bg-blue-200 flex gap-3 mb-3">
                 {/* Items */}
                 <div className="/bg-blue-200 flex flex-col gap-3">
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Hostel
+                  <div className="flex items-center">
+                    <div className="bg-[#950003] w-full px-10 py-3 text-white rounded-lg">
+                      Hostel
+                    </div>
+
+                    <div
+                      // className="opacity-0"
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "10px solid transparent",
+                        borderBottom: "10px solid transparent",
+                        borderLeft: "10px solid #950003",
+                      }}
+                    ></div>
                   </div>
                 </div>
                 {/* Description */}
@@ -221,6 +284,16 @@ function UniversityPage() {
           <div>TODO: Activites</div>
 
           {/* Contacts */}
+          <div
+            id="Contacts"
+            style={{
+              display: "block",
+              position: "relative",
+              top: "-200px",
+              visibility: "hidden",
+            }}
+          />
+
           <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
             <div className="flex-1 flex flex-col gap-5">
               <div className="flex items-center gap-3">
@@ -358,13 +431,13 @@ function UniversityPage() {
                   Faculties
                 </a>
                 <a
-                  href="#about"
+                  href="#Engineering"
                   className="ml-5 hover:underline  hover:text-[#950003]"
                 >
                   Engineering
                 </a>
                 <a
-                  href="#about"
+                  href="#NOTIMPLEMENTED"
                   className="ml-5 hover:underline  hover:text-[#950003]"
                 >
                   Pharmacy
@@ -372,28 +445,28 @@ function UniversityPage() {
               </div>
 
               <a
-                href="#about"
+                href="#Accommodation"
                 className="hover:underline  hover:text-[#950003]"
               >
-                Accomodation
+                Accommodation
               </a>
 
               <a
-                href="#about"
+                href="#NOTIMPLEMENTED"
                 className="hover:underline  hover:text-[#950003]"
               >
                 Transportation
               </a>
 
               <a
-                href="#about"
+                href="#NOTIMPLEMENTED"
                 className="hover:underline  hover:text-[#950003]"
               >
                 Activities
               </a>
 
               <a
-                href="#about"
+                href="#Contacts"
                 className="hover:underline  hover:text-[#950003]"
               >
                 Contacts
