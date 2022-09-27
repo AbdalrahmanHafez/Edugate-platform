@@ -12,16 +12,14 @@ function UniversityPage() {
       <br />
       <br />
 
-      <div className="h-fit m-5 p-4 rounded bg-[#950003] flex justify-between text-white gap-3">
+      <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex justify-between text-white gap-3">
         {/* Logo */}
-        <div className="w-[12%]">
-          <div className="bg-white mx-5 rounded">
-            <img src="uni_logos/14.png" alt="" />
-          </div>
+        <div className="bg-white w-32 h-32 p-2 mx-1 rounded flex justify-center items-center">
+          <img src="uni_logos/guc_logo.png" alt="" />
         </div>
 
         {/* Uni Information */}
-        <div className="flex flex-col /bg-blue-300 flex-1">
+        <div className="flex flex-col flex-1">
           <div className="text-xl">German University in Cairo</div>
 
           <div className="ml-5 flex flex-col gap-3 mt-3">
@@ -41,7 +39,7 @@ function UniversityPage() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-start w-20 gap-3">
+        <div className="flex flex-col justify-start items-start w-20 gap-3">
           {/* Rank item */}
           <div className="w-full">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
@@ -67,8 +65,7 @@ function UniversityPage() {
       <div className="w-full flex gap-20">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
-          <div className="w-full h-72">Carousel</div>
-
+          <div className="w-full h-72">TODO: Carousel</div>
           {/* Faculties */}
           <div className="w-full flex flex-col">
             <h1 className="text-2xl mb-3">Faculties</h1>
@@ -125,11 +122,10 @@ function UniversityPage() {
                   <AiOutlineDown className="ml-auto" />
                 </summary>
 
-                <p>okay </p>
+                <p>REQUIREMENTS CONTENT</p>
               </details>
             </div>
           </div>
-
           {/* Accomodation */}
           <div className="w-full flex flex-col">
             <h1 className="text-2xl mb-3">Accomodation</h1>
@@ -153,14 +149,16 @@ function UniversityPage() {
                     which make the students in an adequate environment that
                     support and facilitate their stay. Click here fo
                   </div>
-                  <img src="" alt="" className="w-40" />
+                  <div className="w-60">
+                    <img src="https://via.placeholder.com/500x400" alt="" />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* TODO: Transportation */}
-          {/* TODO: Activites */}
+          <div>TODO: Transportation </div>
+          <div>TODO: Activites</div>
 
           {/* Contacts */}
           <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
