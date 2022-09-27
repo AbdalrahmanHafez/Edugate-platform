@@ -4,6 +4,9 @@ import { AiOutlineDown } from "react-icons/ai";
 import Footer from "Components/Footer";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { GoLocation } from "react-icons/go";
+import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
 
 function UniversityPage() {
   return (
@@ -220,49 +223,57 @@ function UniversityPage() {
           {/* Contacts */}
           <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
             <div className="flex-1 flex flex-col gap-5">
-              <div>
-                <h1 className="">Location</h1>
-                <div className="ml-5">Somewhere</div>
+              <div className="flex items-center gap-3">
+                <GoLocation className="text-3xl" />
+                <div>
+                  <div className="ml-5">Somewhere</div>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Website</h1>
-                <a
-                  href="https://guc.edu.eg/"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  https://guc.edu.eg
-                </a>
+              <div className="flex items-center gap-3">
+                <BsGlobe className="text-3xl" />
+                <div>
+                  <a
+                    href="https://guc.edu.eg/"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    https://guc.edu.eg
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Phone numbers</h1>
-                <a
-                  href="tel:01100000"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  01100000
-                </a>
+              <div className="flex items-center gap-3">
+                <BsTelephone className="text-3xl" />
+                <div>
+                  <a
+                    href="tel:01100000"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    01100000
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Email</h1>
-                <a
-                  href="mail:guc@guc.edu.eg"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  guc@guc.edu.eg
-                </a>
+              <div className="flex items-center gap-3">
+                <HiOutlineMail className="text-3xl" />
+                <div>
+                  <a
+                    href="mail:guc@guc.edu.eg"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    guc@guc.edu.eg
+                  </a>
+                </div>
               </div>
 
               {/* Socials */}
-              <div className="bg-white rounded-full w-fit p-2 px-5 flex gap-3">
+              <div className="w-fit flex gap-3">
                 <a
                   href="https://www.facebook.com/edugate.eg/"
                   className="text-blue-600"
@@ -297,7 +308,7 @@ function UniversityPage() {
                 >
                   <img
                     className="h-7 w-auto"
-                    src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
                     alt=""
                   />
                 </a>
@@ -308,8 +319,8 @@ function UniversityPage() {
                   rel="noreferrer"
                 >
                   <img
-                    className="h-8 w-auto"
-                    src="https://cdn-icons-png.flaticon.com/512/174/174883.png"
+                    className="h-7 w-auto"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
                     alt=""
                   />
                 </a>
