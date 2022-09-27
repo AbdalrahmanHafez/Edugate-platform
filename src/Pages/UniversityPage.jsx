@@ -163,7 +163,7 @@ function UniversityPage() {
           {/* TODO: Activites */}
 
           {/* Contacts */}
-          <div className="bg-[#950003] rounded shadow flex p-5 text-white">
+          <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
             <div className="flex-1 flex flex-col gap-5">
               <div>
                 <h1 className="">Location</h1>
@@ -262,7 +262,19 @@ function UniversityPage() {
             </div>
 
             {/* Google Map */}
-            <div className="w-96">GMAP</div>
+            <div className="ml-auto w-96">
+              <iframe
+                title="GMAP"
+                className="rounded-lg"
+                width="100%"
+                height="100%"
+                src="https://maps.google.com/maps?q=German University in Cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameBorder="0"
+                scrolling="no"
+                marginHeight="0"
+                marginWidth="0"
+              ></iframe>
+            </div>
           </div>
         </div>
 
