@@ -38,13 +38,21 @@ function UniversityPage() {
             "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
         },
       ],
-      requirements: "",
+      requirements: [
+        {
+          name: "IG",
+          description:
+            "8 olevels, 2 AS levels or 1 A-Levels, with minimum score of 97%",
+        },
+        { name: "American", description: "score of 950 in SAT" },
+      ],
     },
     {
       name: "Pharmacy",
       description:
         "The Faculty of Pharmacy provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
       price: "250,200",
+
       majors: [
         {
           name: "Computer Science",
@@ -56,6 +64,14 @@ function UniversityPage() {
           description:
             "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
         },
+      ],
+      requirements: [
+        {
+          name: "IG",
+          description:
+            "8 olevels, 2 AS levels or 1 A-Levels, with minimum score of 97%",
+        },
+        { name: "American", description: "score of 950 in SAT" },
       ],
     },
   ];
@@ -108,11 +124,21 @@ function UniversityPage() {
           </div>
         </div>
       </div>
-
-      <div className="w-full flex gap-20 ">
+      <div className="flex flex-col gap-2 lg:hidden block mb-5">
+        {/* Apply Now */}
+        <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
+          Apply Now
+        </button>
+        {/* Add to Compare */}
+        <button className="bg-[#DFDFDF] text-slate-800 hover:bg-gray-200 w-full py-2 rounded">
+          Add to Compare
+        </button>
+      </div>
+      <div className="w-full flex gap-20">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
           {/* Media Carousel */}
+
           <div className="w-full h-72 mb-5">
             <Carousel
               showArrows
@@ -132,7 +158,7 @@ function UniversityPage() {
               {["29", "33", "48", "01"].map((item, idx) => (
                 <div
                   key={idx}
-                  className="h-72 bg-contain bg-center bg-no-repeat  hidden"
+                  className="h-72 bg-contain bg-center bg-no-repeat"
                   style={{
                     backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
                   }}
@@ -178,22 +204,14 @@ function UniversityPage() {
 
                 <BasicAccordion
                   name="requirements"
-                  description=<ReqTabs
-                    data={[
-                      {
-                        name: "IG",
-                        description: "8 olevels, 2 AS levels, 2 A-Levels",
-                      },
-                      { name: "American", description: "test" },
-                    ]}
-                  />
+                  description=<ReqTabs data={faculty.requirements} />
                 />
               </div>
             ))}
           </div>
 
           {/* Accommodation */}
-          <div className="w-full flex flex-colen hidden">
+          <div className="w-full flex flex-col ">
             <div
               id="Accommodation"
               style={{
@@ -206,14 +224,14 @@ function UniversityPage() {
             <h1 className="text-2xl mb-3">Accommodation</h1>
 
             {/* Card */}
-            <div className="bg-white rounded shadow-md p-4 mb-8 hidden">
+            <div className="bg-white rounded shadow-md p-4 mb-8">
               <ButtonsWithDesc
                 data={[
                   {
                     name: "hostel",
                     description: (
-                      <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3">
-                        <div className="flex-1 text-justify	">
+                      <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3 lg:flex-row flex-col">
+                        <div className="flex-1 text-justify">
                           GUC Hostel in Cairo - “Rehab City” In Cairo, GUC
                           housing is located in AL Rehab compound which is 10
                           minutes by shuttle bus from the Campus. This housing
@@ -222,7 +240,7 @@ function UniversityPage() {
                           in an adequate environment that support and facilitate
                           their stay. Click here fo
                         </div>
-                        <div className="w-60 h-full">
+                        <div className="w-60 h-full lg:ml-auto mx-auto">
                           {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
 
                           <Carousel
@@ -243,7 +261,7 @@ function UniversityPage() {
                             {["29", "33", "48", "01"].map((item, idx) => (
                               <div
                                 key={idx}
-                                className="h-44 bg-contain bg-center bg-no-repeat hidden"
+                                className="h-44 bg-contain bg-center bg-no-repeat"
                                 style={{
                                   backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
                                 }}
@@ -273,8 +291,8 @@ function UniversityPage() {
             }}
           />
 
-          <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white hidden">
-            <div className="flex-1 flex flex-col gap-5">
+          <div className="bg-[#950003] rounded shadow flex p-5 text-white lg:flex-row flex-col">
+            <div className=" flex flex-col gap-5 flex-1 lg:mx-0 ml-0 lg:mb-0 mb-5 ">
               <div className="flex items-center gap-3">
                 <GoLocation className="text-3xl" />
                 <div>
@@ -381,9 +399,9 @@ function UniversityPage() {
 
             {/* Google Map */}
             {/* //https://maps.google.com/maps?q=37.771008,+-122.41175+(You+can+insert+your+text+here)&amp;hl=en&amp;t=v&amp;vpsrc=0&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll=38.287602,-122.036186&amp;output=embed */}
-            <div className="ml-auto w-96">
+            <div className="lg:w-96 lg:flex-none w-auto flex-1 lg:ml-auto mr-auto">
               <iframe
-                title="GMAP"
+                title="GMAP "
                 className="rounded-lg"
                 width="100%"
                 height="100%"
@@ -398,7 +416,7 @@ function UniversityPage() {
         </div>
 
         {/* Right Side Nav */}
-        <div className="/bg-green-400 w-52 hidden">
+        <div className="/bg-green-400 w-52 lg:block hidden">
           {/* Side Nav */}
           <div className="/bg-red-200 p-3 border-[#950003] border-2 border-r-0 rounded-l-lg sticky top-32">
             <div className="flex flex-col gap-2 mb-5">
