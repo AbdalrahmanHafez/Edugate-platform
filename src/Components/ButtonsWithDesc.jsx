@@ -4,14 +4,19 @@ export function ButtonsWithDesc(props) {
 
   return (
     <>
-      <div className="/bg-blue-200 flex gap-3 mb-3">
+      <div className="/bg-blue-200 flex lg:flex-row flex-col gap-3 mb-3">
         {/* Items */}
 
         <div className="/bg-blue-200 flex flex-col gap-3">
           {props.data.map((button, idx) => (
             <div key={idx} className="flex items-center">
               <button
-                className="bg-[#950003] w-full px-10 px-10 py-3 text-white rounded-lg"
+                className={
+                  "w-full px-10 px-10 py-3  rounded-lg lg:font-base " +
+                  (idx === index
+                    ? "font-bold bg-[#950003] text-white"
+                    : "text-black bg-white border-2 border-[#950003] ")
+                }
                 onClick={() => {
                   setIndex(idx);
                 }}
@@ -19,6 +24,7 @@ export function ButtonsWithDesc(props) {
                 {button.name}
               </button>
               <div
+                className="lg:block hidden"
                 style={{
                   opacity: idx === index ? 100 : 0,
                   width: 0,

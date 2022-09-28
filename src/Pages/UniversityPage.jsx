@@ -9,6 +9,7 @@ import { GoLocation } from "react-icons/go";
 import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import BasicAccordion from "Components/BasicAccordion";
+import ReqTabs from "Components/ReqTabs";
 
 function UniversityPage() {
   const uniObject = {
@@ -37,6 +38,7 @@ function UniversityPage() {
             "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
         },
       ],
+      requirements: "",
     },
     {
       name: "Pharmacy",
@@ -66,27 +68,27 @@ function UniversityPage() {
       <br />
       <br />
 
-      <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex justify-between text-white gap-3">
+      <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex lg:flex-row flex-col justify-between text-white gap-3">
         {/* Logo */}
-        <div className="bg-white w-32 h-32 p-2 mx-1 rounded flex justify-center items-center">
+        <div className="bg-white w-32 h-32 p-2 rounded flex justify-center items-center mx-auto">
           <img src="uni_logos/guc_logo.png" alt="" />
         </div>
 
         {/* Uni Information */}
-        <div className="flex flex-col /bg-blue-300 flex-1">
-          <div className="text-xl">{uniObject.name}</div>
+        <div className="flex flex-col /bg-blue-300 flex-1 ">
+          <div className="text-xl lg:mx-0 mx-auto">{uniObject.name}</div>
 
           <div className="ml-5 flex flex-col gap-3 mt-3">
-            <div>City: {uniObject.city}</div>
+            <div className="lg:mx-0 mx-auto">City: {uniObject.city}</div>
             <div className="text-[#EDEDED] text-justify">
               {uniObject.description}
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col justify-start items-start w-20 gap-3">
+        <div className="flex lg:flex-col flex-row justify-start items-start gap-3 mx-auto">
           {/* Rank item */}
-          <div className="w-full">
+          <div className="w-24">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
               {uniObject.qsRank}
             </div>
@@ -96,7 +98,7 @@ function UniversityPage() {
           </div>
 
           {/* Rank item */}
-          <div className="w-full">
+          <div className="w-24">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
               {uniObject.thRank}
             </div>
@@ -107,7 +109,7 @@ function UniversityPage() {
         </div>
       </div>
 
-      <div className="w-full flex gap-20">
+      <div className="w-full flex gap-20 ">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
           {/* Media Carousel */}
@@ -130,7 +132,7 @@ function UniversityPage() {
               {["29", "33", "48", "01"].map((item, idx) => (
                 <div
                   key={idx}
-                  className="h-72 bg-contain bg-center bg-no-repeat"
+                  className="h-72 bg-contain bg-center bg-no-repeat  hidden"
                   style={{
                     backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
                   }}
@@ -174,13 +176,24 @@ function UniversityPage() {
                 <h1 className="text-xl mb-1">Majors</h1>
                 <ButtonsWithDesc data={faculty.majors} />
 
-                <BasicAccordion />
+                <BasicAccordion
+                  name="requirements"
+                  description=<ReqTabs
+                    data={[
+                      {
+                        name: "IG",
+                        description: "8 olevels, 2 AS levels, 2 A-Levels",
+                      },
+                      { name: "American", description: "test" },
+                    ]}
+                  />
+                />
               </div>
             ))}
           </div>
 
           {/* Accommodation */}
-          <div className="w-full flex flex-col">
+          <div className="w-full flex flex-colen hidden">
             <div
               id="Accommodation"
               style={{
@@ -193,7 +206,7 @@ function UniversityPage() {
             <h1 className="text-2xl mb-3">Accommodation</h1>
 
             {/* Card */}
-            <div className="bg-white rounded shadow-md p-4 mb-8">
+            <div className="bg-white rounded shadow-md p-4 mb-8 hidden">
               <ButtonsWithDesc
                 data={[
                   {
@@ -230,7 +243,7 @@ function UniversityPage() {
                             {["29", "33", "48", "01"].map((item, idx) => (
                               <div
                                 key={idx}
-                                className="h-44 bg-contain bg-center bg-no-repeat"
+                                className="h-44 bg-contain bg-center bg-no-repeat hidden"
                                 style={{
                                   backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
                                 }}
@@ -260,7 +273,7 @@ function UniversityPage() {
             }}
           />
 
-          <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
+          <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white hidden">
             <div className="flex-1 flex flex-col gap-5">
               <div className="flex items-center gap-3">
                 <GoLocation className="text-3xl" />
@@ -385,7 +398,7 @@ function UniversityPage() {
         </div>
 
         {/* Right Side Nav */}
-        <div className="/bg-green-400 w-52">
+        <div className="/bg-green-400 w-52 hidden">
           {/* Side Nav */}
           <div className="/bg-red-200 p-3 border-[#950003] border-2 border-r-0 rounded-l-lg sticky top-32">
             <div className="flex flex-col gap-2 mb-5">

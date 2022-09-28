@@ -25,7 +25,9 @@ export default function BasicAccordion({ name, description }) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography style={{ fontSize: "1.25rem" }}>Accordion 1</Typography>
+          <Typography style={{ fontSize: "1.25rem", margin: "0 !important" }}>
+            {name}
+          </Typography>
         </AccordionSummary>
         <AccordionDetails className="bg-[#EBEBEB] rounded">
           <Typography
@@ -33,8 +35,7 @@ export default function BasicAccordion({ name, description }) {
               fontSize: "0.875rem",
             }}
           >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
+            {description}
           </Typography>
         </AccordionDetails>
       </Accordion>
