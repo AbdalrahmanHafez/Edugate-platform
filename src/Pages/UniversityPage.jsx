@@ -2,6 +2,11 @@ import React from "react";
 import Navbar from "Components/Navbar";
 import { AiOutlineDown } from "react-icons/ai";
 import Footer from "Components/Footer";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { GoLocation } from "react-icons/go";
+import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
+import { HiOutlineMail } from "react-icons/hi";
 
 function UniversityPage() {
 
@@ -50,12 +55,10 @@ function UniversityPage() {
       <br />
       <br />
 
-      <div className="h-fit m-5 p-4 rounded bg-[#950003] flex justify-between text-white gap-3">
+      <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex justify-between text-white gap-3">
         {/* Logo */}
-        <div className="w-[12%]">
-          <div className="bg-white mx-5 rounded">
-            <img src="uni_logos/14.png" alt="" />
-          </div>
+        <div className="bg-white w-32 h-32 p-2 mx-1 rounded flex justify-center items-center">
+          <img src="uni_logos/guc_logo.png" alt="" />
         </div>
 
         {/* Uni Information */}
@@ -64,13 +67,13 @@ function UniversityPage() {
 
           <div className="ml-5 flex flex-col gap-3 mt-3">
             <div>City: {uniObject.city}</div>
-            <div className="text-[#EDEDED]">
+            <div className="text-[#EDEDED] text-justify">
               {uniObject.description}
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-start w-20 gap-3">
+        <div className="flex flex-col justify-start items-start w-20 gap-3">
           {/* Rank item */}
           <div className="w-full">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
@@ -96,17 +99,61 @@ function UniversityPage() {
       <div className="w-full flex gap-20">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
-          <div className="w-full h-72">Carousel</div>
-
+          {/* Media Carousel */}
+          <div className="w-full h-72 mb-5">
+            <Carousel
+              showArrows
+              showStatus
+              infiniteLoop
+              autoPlay
+              stopOnHover
+              emulateTouch
+              swipeable
+              dynamicHeight
+              onChange={() => {}}
+              onClickItem={() => {}}
+              onClickThumb={() => {}}
+              showThumbs={false}
+              interval={5000}
+            >
+              {["29", "33", "48", "01"].map((item, idx) => (
+                <div
+                  key={idx}
+                  className="h-72 bg-contain bg-center bg-no-repeat"
+                  style={{
+                    backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
+                  }}
+                />
+              ))}
+            </Carousel>
+          </div>
           {/* Faculties */}
           <div className="w-full flex flex-col">
+            {/* This is a fake anchor to avoid the navbar */}
+            <div
+              id="Faculties"
+              style={{
+                display: "block",
+                position: "relative",
+                top: "-100px",
+                visibility: "hidden",
+              }}
+            />
             <h1 className="text-2xl mb-3">Faculties</h1>
-
             {/* Card */}
             {uniFaculties.map(faculty => (
 
             
             <div className="bg-white rounded shadow-md p-4 mb-8">
+              <div
+                id={faculty.name}
+                style={{
+                  display: "block",
+                  position: "relative",
+                  top: "-100px",
+                  visibility: "hidden",
+                }}
+              />
               <h1 className="text-xl mb-1">{faculty.name}</h1>
 
               <div className="text-base ml-3 mb-1">
@@ -119,18 +166,28 @@ function UniversityPage() {
 
               <h1 className="text-xl mb-1">Majors</h1>
               {(faculty.majors).map( major => (
-              <div className="/bg-blue-200 flex gap-10 mb-3">
+              <div className="/bg-blue-200 flex gap-3 mb-3">
                 {/* Items */}
                
                 <div className="/bg-blue-200 flex flex-col gap-3">
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
+                <div className="flex items-center">
+                  <div className="bg-[#950003] w-full px-10 px-10 py-3 text-white rounded-lg">
                     {major.name}
                   </div>
-
+                  <div
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "10px solid transparent",
+                        borderBottom: "10px solid transparent",
+                        borderLeft: "10px solid #950003",
+                      }}
+                    />
+                    </div>
                 </div>
                
                 {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg">
+                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg text-justify">
                   {major.description}
                 </div>
               </div>
@@ -142,28 +199,49 @@ function UniversityPage() {
                   <AiOutlineDown className="ml-auto" />
                 </summary>
 
-                <p>okay </p>
+                <p>REQUIREMENTS CONTENT</p>
               </details>
             </div>
             )) }
           </div>
-
-          {/* Accomodation */}
+          {/* Accommodation */}
           <div className="w-full flex flex-col">
-            <h1 className="text-2xl mb-3">Accomodation</h1>
+            <div
+              id="Accommodation"
+              style={{
+                display: "block",
+                position: "relative",
+                top: "-100px",
+                visibility: "hidden",
+              }}
+            />
+            <h1 className="text-2xl mb-3">Accommodation</h1>
 
             {/* Card */}
             <div className="bg-white rounded shadow-md p-4 mb-8">
-              <div className="/bg-blue-200 flex gap-10 mb-3">
+              <div className="/bg-blue-200 flex gap-3 mb-3">
                 {/* Items */}
                 <div className="/bg-blue-200 flex flex-col gap-3">
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Hostel
+                  <div className="flex items-center">
+                    <div className="bg-[#950003] w-full px-10 py-3 text-white rounded-lg">
+                      Hostel
+                    </div>
+
+                    <div
+                      // className="opacity-0"
+                      style={{
+                        width: 0,
+                        height: 0,
+                        borderTop: "10px solid transparent",
+                        borderBottom: "10px solid transparent",
+                        borderLeft: "10px solid #950003",
+                      }}
+                    ></div>
                   </div>
                 </div>
                 {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-1">
-                  <div className="flex-1">
+                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3">
+                  <div className="flex-1 text-justify	">
                     GUC Hostel in Cairo - “Rehab City” In Cairo, GUC housing is
                     located in AL Rehab compound which is 10 minutes by shuttle
                     bus from the Campus. This housing service is equipped with
@@ -171,61 +249,107 @@ function UniversityPage() {
                     which make the students in an adequate environment that
                     support and facilitate their stay. Click here fo
                   </div>
-                  <img src="" alt="" className="w-40" />
+                  <div className="w-60 h-full">
+                    {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
+
+                    <Carousel
+                      showArrows
+                      showStatus
+                      infiniteLoop
+                      autoPlay
+                      stopOnHover
+                      emulateTouch
+                      swipeable
+                      dynamicHeight
+                      onChange={() => {}}
+                      onClickItem={() => {}}
+                      onClickThumb={() => {}}
+                      showThumbs={false}
+                      interval={5000}
+                    >
+                      {["29", "33", "48", "01"].map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="h-44 bg-contain bg-center bg-no-repeat"
+                          style={{
+                            backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
+                          }}
+                        />
+                      ))}
+                    </Carousel>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* TODO: Transportation */}
-          {/* TODO: Activites */}
+          <div>TODO: Transportation </div>
+          <div>TODO: Activites</div>
 
           {/* Contacts */}
+          <div
+            id="Contacts"
+            style={{
+              display: "block",
+              position: "relative",
+              top: "-200px",
+              visibility: "hidden",
+            }}
+          />
+
           <div className="bg-[#950003] rounded shadow h-fit flex p-5 text-white">
             <div className="flex-1 flex flex-col gap-5">
-              <div>
-                <h1 className="">Location</h1>
-                <div className="ml-5">Somewhere</div>
+              <div className="flex items-center gap-3">
+                <GoLocation className="text-3xl" />
+                <div>
+                  <div className="ml-5">Somewhere</div>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Website</h1>
-                <a
-                  href="https://guc.edu.eg/"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  https://guc.edu.eg
-                </a>
+              <div className="flex items-center gap-3">
+                <BsGlobe className="text-3xl" />
+                <div>
+                  <a
+                    href="https://guc.edu.eg/"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    https://guc.edu.eg
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Phone numbers</h1>
-                <a
-                  href="tel:01100000"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  01100000
-                </a>
+              <div className="flex items-center gap-3">
+                <BsTelephone className="text-3xl" />
+                <div>
+                  <a
+                    href="tel:01100000"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    01100000
+                  </a>
+                </div>
               </div>
 
-              <div>
-                <h1 className="">Email</h1>
-                <a
-                  href="mail:guc@guc.edu.eg"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="ml-5 hover:underline hover:text-slate-300"
-                >
-                  guc@guc.edu.eg
-                </a>
+              <div className="flex items-center gap-3">
+                <HiOutlineMail className="text-3xl" />
+                <div>
+                  <a
+                    href="mail:guc@guc.edu.eg"
+                    rel="noreferrer"
+                    target="_blank"
+                    className="ml-5 hover:underline hover:text-slate-300"
+                  >
+                    guc@guc.edu.eg
+                  </a>
+                </div>
               </div>
 
               {/* Socials */}
-              <div className="bg-white rounded-full w-fit p-2 px-5 flex gap-3">
+              <div className="w-fit flex gap-3">
                 <a
                   href="https://www.facebook.com/edugate.eg/"
                   className="text-blue-600"
@@ -260,7 +384,7 @@ function UniversityPage() {
                 >
                   <img
                     className="h-7 w-auto"
-                    src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
                     alt=""
                   />
                 </a>
@@ -271,8 +395,8 @@ function UniversityPage() {
                   rel="noreferrer"
                 >
                   <img
-                    className="h-8 w-auto"
-                    src="https://cdn-icons-png.flaticon.com/512/174/174883.png"
+                    className="h-7 w-auto"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
                     alt=""
                   />
                 </a>
@@ -280,13 +404,14 @@ function UniversityPage() {
             </div>
 
             {/* Google Map */}
+            {/* //https://maps.google.com/maps?q=37.771008,+-122.41175+(You+can+insert+your+text+here)&amp;hl=en&amp;t=v&amp;vpsrc=0&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll=38.287602,-122.036186&amp;output=embed */}
             <div className="ml-auto w-96">
               <iframe
                 title="GMAP"
                 className="rounded-lg"
                 width="100%"
                 height="100%"
-                src="https://maps.google.com/maps?q=German University in Cairo&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4199.614744735209!2d31.44060538650522!3d29.986056094456515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583cb2bfafbe73%3A0x6e7220116094726d!2sGerman%20University%20in%20Cairo!5e0!3m2!1sen!2seg!4v1664302560297!5m2!1sen!2seg"
                 frameBorder="0"
                 scrolling="no"
                 marginHeight="0"
@@ -297,7 +422,72 @@ function UniversityPage() {
         </div>
 
         {/* Right Side Nav */}
-        <div className="bg-green-400 w-52">Side Nav</div>
+        <div className="/bg-green-400 w-52">
+          {/* Side Nav */}
+          <div className="/bg-red-200 p-3 border-[#950003] border-2 border-r-0 rounded-l-lg sticky top-32">
+            <div className="flex flex-col gap-2 mb-5">
+              <div className="flex flex-col">
+                <a
+                  href="#Faculties"
+                  className="hover:underline  hover:text-[#950003]"
+                >
+                  Faculties
+                </a>
+                <a
+                  href="#Engineering"
+                  className="ml-5 hover:underline  hover:text-[#950003]"
+                >
+                  Engineering
+                </a>
+                <a
+                  href="#NOTIMPLEMENTED"
+                  className="ml-5 hover:underline  hover:text-[#950003]"
+                >
+                  Pharmacy
+                </a>
+              </div>
+
+              <a
+                href="#Accommodation"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Accommodation
+              </a>
+
+              <a
+                href="#NOTIMPLEMENTED"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Transportation
+              </a>
+
+              <a
+                href="#NOTIMPLEMENTED"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Activities
+              </a>
+
+              <a
+                href="#Contacts"
+                className="hover:underline  hover:text-[#950003]"
+              >
+                Contacts
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-2">
+              {/* Apply Now */}
+              <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
+                Apply Now
+              </button>
+              {/* Add to Compare */}
+              <button className="bg-[#DFDFDF] text-slate-800 hover:bg-gray-200 w-full py-2 rounded">
+                Add to Compare
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <Footer />

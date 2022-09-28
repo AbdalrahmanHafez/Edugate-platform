@@ -140,7 +140,7 @@ export default function Footer() {
             >
               <img
                 className="h-7 w-auto"
-                src="https://cdn-icons-png.flaticon.com/512/174/174855.png"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
                 alt=""
               />
             </a>
@@ -151,8 +151,8 @@ export default function Footer() {
               rel="noreferrer"
             >
               <img
-                className="h-8 w-auto"
-                src="https://cdn-icons-png.flaticon.com/512/174/174883.png"
+                className="h-7 w-auto"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
                 alt=""
               />
             </a>

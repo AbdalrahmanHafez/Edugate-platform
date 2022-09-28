@@ -5,13 +5,7 @@ import React from "react";
 // import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function Test() {
-  return (
-    <div className="w-full h-full bg-gray-200">
-      <div className="relative mx-auto bg-blue-300 top-14 min-w-9/12 h-3/6">
-        <SearchUnis />
-      </div>
-    </div>
-  );
+  return <div className="bg-gray-200 w-full h-full">TEST PAGE</div>;
 }
 
 export default Test;
