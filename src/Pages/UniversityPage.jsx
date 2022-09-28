@@ -1,3 +1,4 @@
+import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
 import React from "react";
 import Navbar from "Components/Navbar";
 import { AiOutlineDown } from "react-icons/ai";
@@ -7,45 +8,55 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { GoLocation } from "react-icons/go";
 import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
+import BasicAccordion from "Components/BasicAccordion";
 
 function UniversityPage() {
-
   const uniObject = {
     name: "German University in Cairo",
     city: "Cairo",
-    description: "German university in Cairo/Deutsche Universität in Kairo has been established in 2002 in cooperation with the State Universities of Ulm and Stuttgart, under the patronage of the Egyptian Ministry of Higher Education, the Ministry of Science, Research and Arts, State of Baden- Württemberg, Germany, and supported by the German Academic Exchange Service (DAAD), the German Embassy in Cairo, the Arab/German Chamber of Industry and Commerce (AHK), the Federal Ministry of Education and Research, Germany, The State University of Tübingen, The State University of Mannheim and the Academy of Fine Arts Leipzig.",
+    description:
+      "German university in Cairo/Deutsche Universität in Kairo has been established in 2002 in cooperation with the State Universities of Ulm and Stuttgart, under the patronage of the Egyptian Ministry of Higher Education, the Ministry of Science, Research and Arts, State of Baden- Württemberg, Germany, and supported by the German Academic Exchange Service (DAAD), the German Embassy in Cairo, the Arab/German Chamber of Industry and Commerce (AHK), the Federal Ministry of Education and Research, Germany, The State University of Tübingen, The State University of Mannheim and the Academy of Fine Arts Leipzig.",
     qsRank: 58,
     thRank: 64,
-  }
-  const uniFaculties = [{
-    name: "Engineering", 
-    description: "The Faculty of Engineering provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
-    price: "123,123",
-    majors: [{
-      name: "Computer Science",
-      description: "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+  };
+  const uniFaculties = [
+    {
+      name: "Engineering",
+      description:
+        "The Faculty of Engineering provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
+      price: "123,123",
+      majors: [
+        {
+          name: "Computer Science",
+          description:
+            "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
+        },
+        {
+          name: "Mechatronics",
+          description:
+            "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
+        },
+      ],
     },
     {
-      name: "Mechatronics",
-      description: "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
-    }, 
-  ]
-  },
-  {
-    name: "Pharmacy", 
-    description: "The Faculty of Pharmacy provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
-    price: "250,200",
-    majors: [{
-      name: "Computer Science",
-      description: "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+      name: "Pharmacy",
+      description:
+        "The Faculty of Pharmacy provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
+      price: "250,200",
+      majors: [
+        {
+          name: "Computer Science",
+          description:
+            "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
+        },
+        {
+          name: "Mechatronics",
+          description:
+            "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks.",
+        },
+      ],
     },
-    {
-      name: "Mechatronics",
-      description: "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
-    }, 
-  ]
-  }
-]
+  ];
 
   return (
     <div className="w-full h-full bg-white bg-cover">
@@ -141,69 +152,33 @@ function UniversityPage() {
             />
             <h1 className="text-2xl mb-3">Faculties</h1>
             {/* Card */}
-            {uniFaculties.map(faculty => (
+            {uniFaculties.map((faculty, idx) => (
+              <div key={idx} className="bg-white rounded shadow-md p-4 mb-8">
+                <div
+                  id={faculty.name}
+                  style={{
+                    display: "block",
+                    position: "relative",
+                    top: "-100px",
+                    visibility: "hidden",
+                  }}
+                />
+                <h1 className="text-xl mb-1">{faculty.name}</h1>
 
-            
-            <div className="bg-white rounded shadow-md p-4 mb-8">
-              <div
-                id={faculty.name}
-                style={{
-                  display: "block",
-                  position: "relative",
-                  top: "-100px",
-                  visibility: "hidden",
-                }}
-              />
-              <h1 className="text-xl mb-1">{faculty.name}</h1>
+                <div className="text-base ml-3 mb-1">{faculty.description}</div>
 
-              <div className="text-base ml-3 mb-1">
-                {faculty.description}
-              </div>
-
-              <div className="ml-auto text-white w-fit rounded-full bg-[#950003] px-3 py-1">
-                {faculty.price} EGP / year
-              </div>
-
-              <h1 className="text-xl mb-1">Majors</h1>
-              {(faculty.majors).map( major => (
-              <div className="/bg-blue-200 flex gap-3 mb-3">
-                {/* Items */}
-               
-                <div className="/bg-blue-200 flex flex-col gap-3">
-                <div className="flex items-center">
-                  <div className="bg-[#950003] w-full px-10 px-10 py-3 text-white rounded-lg">
-                    {major.name}
-                  </div>
-                  <div
-                      style={{
-                        width: 0,
-                        height: 0,
-                        borderTop: "10px solid transparent",
-                        borderBottom: "10px solid transparent",
-                        borderLeft: "10px solid #950003",
-                      }}
-                    />
-                    </div>
+                <div className="ml-auto text-white w-fit rounded-full bg-[#950003] px-3 py-1">
+                  {faculty.price} EGP / year
                 </div>
-               
-                {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg text-justify">
-                  {major.description}
-                </div>
+
+                <h1 className="text-xl mb-1">Majors</h1>
+                <ButtonsWithDesc data={faculty.majors} />
+
+                <BasicAccordion />
               </div>
-              ))}
-
-              <details className="p-3 bg-[#EBEBEB] rounded-lg">
-                <summary className="list-none flex items-center">
-                  Requirements
-                  <AiOutlineDown className="ml-auto" />
-                </summary>
-
-                <p>REQUIREMENTS CONTENT</p>
-              </details>
-            </div>
-            )) }
+            ))}
           </div>
+
           {/* Accommodation */}
           <div className="w-full flex flex-col">
             <div
@@ -219,67 +194,55 @@ function UniversityPage() {
 
             {/* Card */}
             <div className="bg-white rounded shadow-md p-4 mb-8">
-              <div className="/bg-blue-200 flex gap-3 mb-3">
-                {/* Items */}
-                <div className="/bg-blue-200 flex flex-col gap-3">
-                  <div className="flex items-center">
-                    <div className="bg-[#950003] w-full px-10 py-3 text-white rounded-lg">
-                      Hostel
-                    </div>
+              <ButtonsWithDesc
+                data={[
+                  {
+                    name: "hostel",
+                    description: (
+                      <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3">
+                        <div className="flex-1 text-justify	">
+                          GUC Hostel in Cairo - “Rehab City” In Cairo, GUC
+                          housing is located in AL Rehab compound which is 10
+                          minutes by shuttle bus from the Campus. This housing
+                          service is equipped with internet, entertainment, food
+                          court, and safety facilities which make the students
+                          in an adequate environment that support and facilitate
+                          their stay. Click here fo
+                        </div>
+                        <div className="w-60 h-full">
+                          {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
 
-                    <div
-                      // className="opacity-0"
-                      style={{
-                        width: 0,
-                        height: 0,
-                        borderTop: "10px solid transparent",
-                        borderBottom: "10px solid transparent",
-                        borderLeft: "10px solid #950003",
-                      }}
-                    ></div>
-                  </div>
-                </div>
-                {/* Description */}
-                <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3">
-                  <div className="flex-1 text-justify	">
-                    GUC Hostel in Cairo - “Rehab City” In Cairo, GUC housing is
-                    located in AL Rehab compound which is 10 minutes by shuttle
-                    bus from the Campus. This housing service is equipped with
-                    internet, entertainment, food court, and safety facilities
-                    which make the students in an adequate environment that
-                    support and facilitate their stay. Click here fo
-                  </div>
-                  <div className="w-60 h-full">
-                    {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
-
-                    <Carousel
-                      showArrows
-                      showStatus
-                      infiniteLoop
-                      autoPlay
-                      stopOnHover
-                      emulateTouch
-                      swipeable
-                      dynamicHeight
-                      onChange={() => {}}
-                      onClickItem={() => {}}
-                      onClickThumb={() => {}}
-                      showThumbs={false}
-                      interval={5000}
-                    >
-                      {["29", "33", "48", "01"].map((item, idx) => (
-                        <div
-                          key={idx}
-                          className="h-44 bg-contain bg-center bg-no-repeat"
-                          style={{
-                            backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
-                          }}
-                        />
-                      ))}
-                    </Carousel>
-                  </div>
-                </div>
-              </div>
+                          <Carousel
+                            showArrows
+                            showStatus
+                            infiniteLoop
+                            autoPlay
+                            stopOnHover
+                            emulateTouch
+                            swipeable
+                            dynamicHeight
+                            onChange={() => {}}
+                            onClickItem={() => {}}
+                            onClickThumb={() => {}}
+                            showThumbs={false}
+                            interval={5000}
+                          >
+                            {["29", "33", "48", "01"].map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="h-44 bg-contain bg-center bg-no-repeat"
+                                style={{
+                                  backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
+                                }}
+                              />
+                            ))}
+                          </Carousel>
+                        </div>
+                      </div>
+                    ),
+                  },
+                ]}
+              />
             </div>
           </div>
 
