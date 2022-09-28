@@ -4,6 +4,44 @@ import { AiOutlineDown } from "react-icons/ai";
 import Footer from "Components/Footer";
 
 function UniversityPage() {
+
+  const uniObject = {
+    name: "German University in Cairo",
+    city: "Cairo",
+    description: "German university in Cairo/Deutsche Universität in Kairo has been established in 2002 in cooperation with the State Universities of Ulm and Stuttgart, under the patronage of the Egyptian Ministry of Higher Education, the Ministry of Science, Research and Arts, State of Baden- Württemberg, Germany, and supported by the German Academic Exchange Service (DAAD), the German Embassy in Cairo, the Arab/German Chamber of Industry and Commerce (AHK), the Federal Ministry of Education and Research, Germany, The State University of Tübingen, The State University of Mannheim and the Academy of Fine Arts Leipzig.",
+    qsRank: 58,
+    thRank: 64,
+  }
+  const uniFaculties = [{
+    name: "Engineering", 
+    description: "The Faculty of Engineering provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
+    price: "123,123",
+    majors: [{
+      name: "Computer Science",
+      description: "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+    },
+    {
+      name: "Mechatronics",
+      description: "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+    }, 
+  ]
+  },
+  {
+    name: "Pharmacy", 
+    description: "The Faculty of Pharmacy provides lectures, experiments, as well as the latest research and a wide variety of international education and research programs that are all designed to prepare students to meet this expectation.",
+    price: "250,200",
+    majors: [{
+      name: "Computer Science",
+      description: "The CSEN Department conducts research in areas such as Human Computation, Networking, and Reconfigurable Computing. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+    },
+    {
+      name: "Mechatronics",
+      description: "The mechatronics Department conducts research in areas such as Robotics. Human computation is an emerging area of multidisciplinary research. It includes research in fields such as Logic & Cognitive Systems, Constrained Programming, Game with a Purpose, and HCI. The area draws on insights from computer science, complexity theory, psychology, economics, engineering, machine learning, and many other disciplines to explore the computational potential of systems in which humans and machines collaborate to solve problems. Networking research strives to realize the full potential of not only next generation wireless networks but also Internet of Things (IoT) as well as to explore energy efficiency in different types of networks."
+    }, 
+  ]
+  }
+]
+
   return (
     <div className="w-full h-full bg-white bg-cover">
       <Navbar />
@@ -22,21 +60,12 @@ function UniversityPage() {
 
         {/* Uni Information */}
         <div className="flex flex-col /bg-blue-300 flex-1">
-          <div className="text-xl">German University in Cairo</div>
+          <div className="text-xl">{uniObject.name}</div>
 
           <div className="ml-5 flex flex-col gap-3 mt-3">
-            <div>City: Cairo</div>
+            <div>City: {uniObject.city}</div>
             <div className="text-[#EDEDED]">
-              German university in Cairo/Deutsche Universität in Kairo has been
-              established in 2002 in cooperation with the State Universities of
-              Ulm and Stuttgart, under the patronage of the Egyptian Ministry of
-              Higher Education, the Ministry of Science, Research and Arts,
-              State of Baden- Württemberg, Germany, and supported by the German
-              Academic Exchange Service (DAAD), the German Embassy in Cairo, the
-              Arab/German Chamber of Industry and Commerce (AHK), the Federal
-              Ministry of Education and Research, Germany, The State University
-              of Tübingen, The State University of Mannheim and the Academy of
-              Fine Arts Leipzig.
+              {uniObject.description}
             </div>
           </div>
         </div>
@@ -45,7 +74,7 @@ function UniversityPage() {
           {/* Rank item */}
           <div className="w-full">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
-              58
+              {uniObject.qsRank}
             </div>
             <div className="bg-black h-6 rounded-b-lg text-center flex justify-center items-center">
               QS
@@ -55,10 +84,10 @@ function UniversityPage() {
           {/* Rank item */}
           <div className="w-full">
             <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
-              64
+              {uniObject.thRank}
             </div>
             <div className="bg-black h-6 rounded-b-lg text-xs text-center flex justify-center items-center">
-              Times Hire
+              Times Higher
             </div>
           </div>
         </div>
@@ -74,50 +103,38 @@ function UniversityPage() {
             <h1 className="text-2xl mb-3">Faculties</h1>
 
             {/* Card */}
+            {uniFaculties.map(faculty => (
+
+            
             <div className="bg-white rounded shadow-md p-4 mb-8">
-              <h1 className="text-xl mb-1">Engineering</h1>
+              <h1 className="text-xl mb-1">{faculty.name}</h1>
 
               <div className="text-base ml-3 mb-1">
-                The Faculty of Engineering provides lectures, experiments, as
-                well as the latest research and a wide variety of international
-                education and research programs that are all designed to prepare
-                students to meet this expectation.
+                {faculty.description}
               </div>
 
               <div className="ml-auto text-white w-fit rounded-full bg-[#950003] px-3 py-1">
-                123,123 EGP / year
+                {faculty.price} EGP / year
               </div>
 
               <h1 className="text-xl mb-1">Majors</h1>
+              {(faculty.majors).map( major => (
               <div className="/bg-blue-200 flex gap-10 mb-3">
                 {/* Items */}
+               
                 <div className="/bg-blue-200 flex flex-col gap-3">
                   <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Computer Science
+                    {major.name}
                   </div>
 
-                  <div className="bg-[#950003] px-10 py-3 text-white rounded-lg">
-                    Mechatronics
-                  </div>
                 </div>
+               
                 {/* Description */}
                 <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg">
-                  The CSEN Department conducts research in areas such as Human
-                  Computation, Networking, and Reconfigurable Computing. Human
-                  computation is an emerging area of multidisciplinary research.
-                  It includes research in fields such as Logic & Cognitive
-                  Systems, Constrained Programming, Game with a Purpose, and
-                  HCI. The area draws on insights from computer science,
-                  complexity theory, psychology, economics, engineering, machine
-                  learning, and many other disciplines to explore the
-                  computational potential of systems in which humans and
-                  machines collaborate to solve problems. Networking research
-                  strives to realize the full potential of not only next
-                  generation wireless networks but also Internet of Things (IoT)
-                  as well as to explore energy efficiency in different types of
-                  networks.
+                  {major.description}
                 </div>
               </div>
+              ))}
 
               <details className="p-3 bg-[#EBEBEB] rounded-lg">
                 <summary className="list-none flex items-center">
@@ -128,6 +145,7 @@ function UniversityPage() {
                 <p>okay </p>
               </details>
             </div>
+            )) }
           </div>
 
           {/* Accomodation */}
