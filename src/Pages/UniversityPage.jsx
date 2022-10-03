@@ -80,9 +80,7 @@ function UniversityPage() {
   return (
     <div className="w-full h-full bg-white bg-cover">
       <Navbar />
-      <br />
-      <br />
-      <br />
+
       <br />
 
       <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex lg:flex-row flex-col justify-between text-white gap-3">

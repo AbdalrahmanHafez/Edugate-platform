@@ -7,7 +7,7 @@ import React from "react";
 function Search() {
   return (
     <div className="w-full h-full bg-gray-200">
-      <div className="relative mx-auto bg-blue-300 top-14 min-w-9/12 h-3/6">
+      <div className="relative mx-auto top-14 min-w-9/12 h-3/6">
         <SearchUnis />
       </div>
     </div>

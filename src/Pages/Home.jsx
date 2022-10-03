@@ -16,9 +16,7 @@ function Home() {
     <div className="w-full h-full bg-white bg-cover">
       <Navbar />
 
-      <br />
-      <br />
-      <br />
+
 
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">

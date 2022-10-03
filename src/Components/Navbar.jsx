@@ -4,6 +4,7 @@ import { FaBeer, FaBars } from "react-icons/fa";
 export default function Navbar() {
   // TODO: make Navbar a formalized componenet, don't repeat yourself
   return (
+    <>
     <nav className={styles.nav}>
       <div className="flex space-around">
         <img
@@ -69,11 +70,15 @@ export default function Navbar() {
         </a>
       </div>
     </nav>
+    <div className="mt-24">
+    {/* This Offsets the content to account for the navbar, This assumes that this component is at the top of any imported file */}
+    </div>
+    </>
   );
 }
 
 const styles = {
-  nav: "flex flex-col lg:flex-row bg-[rgba(255,255,255,0.9)]  w-full fixed z-10 shadow-lg rounded-b-lg backdrop-blur-md",
+  nav: "flex flex-col lg:flex-row bg-[rgba(255,255,255,0.9)]  w-full fixed top-0 z-10 shadow-lg rounded-b-lg backdrop-blur-md",
   logo: "ml-5 w-[250px] h-auto m-5",
   hmbmenu: "lg:hidden flex justify-center items-center ml-auto mr-10 text-3xl",
   loginSignupContainer: "hidden mr-5 lg:flex flex-row mb-5",
