@@ -12,7 +12,6 @@ export default function BasicAccordion({ name, description }) {
         style={{
           backgroundColor: "#EBEBEB",
           color: "#000",
-          // border: "1px solid #000",
           borderRadius: "5px",
           boxShadow: "none",
         }}

@@ -9,7 +9,7 @@ import { GoLocation } from "react-icons/go";
 import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import BasicAccordion from "Components/BasicAccordion";
-import ReqTabs from "Components/ReqTabs";
+import RequirementTabs from "Components/RequirementTabs";
 
 function UniversityPage() {
   const uniObject = {
@@ -45,6 +45,7 @@ function UniversityPage() {
             "8 olevels, 2 AS levels or 1 A-Levels, with minimum score of 97%",
         },
         { name: "American", description: "score of 950 in SAT" },
+        { name: "Thanawya", description: "score joierwhripewh" },
       ],
     },
     {
@@ -134,7 +135,7 @@ function UniversityPage() {
           Add to Compare
         </button>
       </div>
-      <div className="w-full flex gap-20">
+      <div className="w-full flex gap-0 lg:gap-20">
         {/* Left Content */}
         <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
           {/* Media Carousel */}
@@ -203,8 +204,8 @@ function UniversityPage() {
                 <ButtonsWithDesc data={faculty.majors} />
 
                 <BasicAccordion
-                  name="requirements"
-                  description=<ReqTabs data={faculty.requirements} />
+                  name="Requirements"
+                  description=<RequirementTabs data={faculty.requirements} />
                 />
               </div>
             ))}
@@ -228,7 +229,7 @@ function UniversityPage() {
               <ButtonsWithDesc
                 data={[
                   {
-                    name: "hostel",
+                    name: "Hostel",
                     description: (
                       <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3 lg:flex-row flex-col">
                         <div className="flex-1 text-justify">
