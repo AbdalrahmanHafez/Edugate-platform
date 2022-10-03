@@ -242,5 +242,5 @@ const styles = {
   filteritemlabel:
     "rounded-full min-w-fit flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
   searchresultcard:
-    "m-3 w-48 min-h-[8rem] h-fit rounded-lg bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer",
+    "m-3 w-48 min-h-[8rem] h-fit rounded-lg bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer hover:outline-[#950003] hover:outline hover:outline-2",
 };

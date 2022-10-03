@@ -123,7 +123,7 @@ function UniversityPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 lg:hidden mb-5">
+      <div className="flex flex-col gap-2 lg:hidden mb-5 mx-5">
         {/* Apply Now */}
         <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
           Apply Now
