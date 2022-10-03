@@ -39,7 +39,7 @@ export function ButtonsWithDesc(props) {
         </div>
 
         {/* Description */}
-        <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg text-justify">
+        <div className="bg-[#EBEBEB] text-sm flex flex-1 px-3 py-1 rounded-lg text-justify">
           {props.data[index].description}
         </div>
       </div>

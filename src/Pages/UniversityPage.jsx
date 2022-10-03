@@ -85,7 +85,7 @@ function UniversityPage() {
 
       <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex lg:flex-row flex-col justify-between text-white gap-3">
         {/* Logo */}
-        <div className="bg-white w-32 h-32 p-2 rounded flex justify-center items-center mx-auto">
+        <div className="bg-white max-w-[8rem] max-h-[8rem] p-2 rounded flex justify-center items-center mx-auto">
           <img src="uni_logos/guc_logo.png" alt="" />
         </div>
 
@@ -123,7 +123,7 @@ function UniversityPage() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 lg:hidden mb-5 mx-5">
+      <div className="flex flex-col gap-2 lg:hidden mb-5">
         {/* Apply Now */}
         <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
           Apply Now
@@ -239,7 +239,7 @@ function UniversityPage() {
                           in an adequate environment that support and facilitate
                           their stay. Click here fo
                         </div>
-                        <div className="w-60 h-full lg:ml-auto mx-auto">
+                        <div className="max-w-[15rem] h-60 w-full flex-1 lg:ml-auto mx-auto">
                           {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
 
                           <Carousel

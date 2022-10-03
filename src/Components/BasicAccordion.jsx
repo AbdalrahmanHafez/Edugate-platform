@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function BasicAccordion({ name, description }) {
   return (
-    <div>
+    <div className="hidden">
       <Accordion
         style={{
           backgroundColor: "#EBEBEB",
