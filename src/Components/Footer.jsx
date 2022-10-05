@@ -15,11 +15,11 @@ const TextWithIcon = ({ icon, text }) => {
 export default function Footer() {
   return (
     // <footer className="mt-10 p-4 drop-shadow-[0_-5px_5px_rgba(0,0,0,0.20)] rounded-t-lg md:px-6 md:py-8 bg-black">
-    <footer className="mt-10 p-4 rounded-t-lg shadow md:px-6 md:py-8 bg-gradient-to-t from-black to-[#291313] ">
+    <footer className="p-4 rounded-t-lg shadow md:px-6 md:py-8 bg-gradient-to-t from-black to-[#291313] ">
       <div className="flex sm:flex-row flex-col items-start justify-around">
         <a href="/" className="flex mb-5 sm:mb-0">
           <img
-            src="Edugate-new-logo.png"
+            src="/Edugate-new-logo.png"
             className="mr-3 h-40"
             alt="Edugate Logo"
           />

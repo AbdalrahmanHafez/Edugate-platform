@@ -79,14 +79,12 @@ function UniversityPage() {
 
   return (
     <div className="w-full h-full bg-white bg-cover">
-      <Navbar />
-
       <br />
 
       <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex lg:flex-row flex-col justify-between text-white gap-3">
         {/* Logo */}
         <div className="bg-white max-w-[8rem] max-h-[8rem] p-2 rounded flex justify-center items-center mx-auto">
-          <img src="uni_logos/guc_logo.png" alt="" />
+          <img src="/uni_logos/guc_logo.png" alt="" />
         </div>
 
         {/* Uni Information */}
@@ -482,8 +480,6 @@ function UniversityPage() {
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
