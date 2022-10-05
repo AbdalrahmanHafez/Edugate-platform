@@ -7,7 +7,7 @@ import React from "react";
 
 function Test() {
   return (
-    <div className="bg-gray-200 w-full h-full">
+    <div className="h-full w-full bg-gray-200">
       <ButtonsWithDesc
         data={[
           {

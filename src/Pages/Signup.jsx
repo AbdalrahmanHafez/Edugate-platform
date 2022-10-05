@@ -7,174 +7,89 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import { color } from "@mui/system";
 
-function SignupContent() {
-  const theme = useTheme();
-  const [activeStep, setActiveStep] = React.useState(0);
-
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const Content = () => {
-    if (activeStep === 0) {
-      return (<div className="flex flex-1 flex-col justify-center items-center ">
-      <h1 className={styles.h1 + " md:mt-0 mt-10"}>Create Your Account</h1>
-      <div className="flex flex-col items-center gap-3 w-full max-w-[380px] mt-5">
-      
-      <input type="text" placeholder="Email" className={styles.input} />
-      <input
-              type="text"
-              placeholder="Password"
-              className={styles.input}
-            /> 
-            <input
-              type="text"
-              placeholder="Confirm Password"
-              className={styles.input}
-            /> 
-            </div> 
-            
-          
-            <div  className="flex flex-row mt-10 space-x-36 ">
-              <button
-                className="w-full px-10 px-10 py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white focus:outline-none disabled:opacity-50 " disabled
-              >
-                Back
-              </button>
-           
-              <button
-                className="w-full px-10 px-10 py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white hover:bg-[#bb0003]  " onClick={handleNext}
-              >
-                Next
-              </button>
-            </div>
-         
-      </div>);
-    }
-    if (activeStep === 1) {
-      return (<div className="flex flex-1 flex-col justify-center items-center ">
-      <h1 className={styles.h1 + " md:mt-0 mt-10"}>Create Your Account</h1>
-      <div className="flex flex-col items-center gap-3 w-full max-w-[380px] mt-5">
-      
-      <input type="text" placeholder="Email" className={styles.input} />
-      <input
-              type="text"
-              placeholder="Password"
-              className={styles.input}
-            /> 
-            <input
-              type="text"
-              placeholder="Confirm Password"
-              className={styles.input}
-            /> 
-            </div> 
-            
-          
-            <div  className="flex flex-row mt-10 space-x-36 ">
-              <button
-                className="w-full px-10 px-10 py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white focus:outline-none disabled:opacity-50 " onClick={handleBack}
-              >
-                Back
-              </button>
-           
-              <button
-                className="w-full px-10 px-10 py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white hover:bg-[#bb0003]  " onClick={handleNext}
-              >
-                Next
-              </button>
-            </div>
-         
-      </div>);
-    
-    }
-    if (activeStep === 2) {
-      return (<div className="flex flex-1 flex-col justify-center items-center ">
-      <h1 className={styles.h1 + " md:mt-0 mt-10"}>Create Your Account</h1>
-      <div className="flex flex-col items-center gap-3 w-full max-w-[380px] mt-5">
-      
-      <input type="text" placeholder="Email" className={styles.input} />
-      <input
-              type="text"
-              placeholder="Password"
-              className={styles.input}
-            /> 
-            <input
-              type="text"
-              placeholder="Confirm Password"
-              className={styles.input}
-            /> 
-            </div> 
-            
-          
-            <div  className="flex flex-row mt-10 space-x-36 ">
-              <button
-                className="w-full px-10 px-10 py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white focus:outline-none disabled:opacity-50 " onClick={handleBack}
-              >
-                Back
-              </button>
-           
-              <button
-                className="w-full px-10  py-3  rounded-lg lg:font-base font-bold bg-[#950003] text-white hover:bg-[#bb0003]  " 
-              >
-                Signup
-              </button>
-            </div>
-         
-      </div>);
-    
-    }
-  };
-
-  return (
+const MAX_STEPS = 3;
+function SignupForm({ activeStep }) {
+  return [
     <>
-    
-      <Content  />
-      
-
-     
-      
-     
-     
-    </>
-    
-  );
+      <div className="mt-5 flex w-full max-w-[380px] flex-col items-center gap-3">
+        <input type="text" placeholder="Email" className={styles.input} />
+        <input type="text" placeholder="Password" className={styles.input} />
+        <input
+          type="text"
+          placeholder="Confirm Password"
+          className={styles.input}
+        />
+      </div>
+    </>,
+    "step 2",
+    "step 3",
+  ][activeStep];
 }
 
 function Signup() {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const handleStepNext = () =>
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const handleStepBack = () =>
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+
+  const submitForm = () => {
+    console.log("TODO:Submitting the form");
+  };
+
   return (
-    <div className="flex md:flex-row flex-col h-full">
+    <div className="flex flex-col-reverse md:h-full md:flex-row">
       <div
-        className="bg-cyan-200 flex-1 flex flex-col"
+        className="flex flex-1 flex-col"
         style={{
           backgroundImage:
             "linear-gradient(236deg, rgb(190 0 4) 0px, #560002 100%)",
         }}
       >
         {/* Logo */}
-        <a href="/" className="max-w-[250px] h-auto mt-6 ml-6">
+        <a href="/" className="m-6 mb-0 h-auto max-w-[250px]">
           <img src="/Edugate-logo-white-min.png" alt="Edugate Logo" />
         </a>
 
         {/* Login */}
-        <div className="flex flex-1 flex-col gap-10 justify-center items-center text-center text-white">
-          <h1 className={styles.h1 + " md:mt-0 mt-10"}>One Of Us?</h1>
+        <div className="flex flex-1 flex-col items-center justify-center gap-10 px-5 pb-10 text-center text-white">
+          <h1 className={styles.h1 + " mt-10 md:mt-0"}>One of Us?</h1>
           <h2 className={styles.h2}>
             If you already have an account, just sign in. We've missed you!
           </h2>
-          <button className="bg-white w-44 py-3 rounded-full font-bold hover:bg-gray-100 text-black">
+          <button className="w-44 rounded-full bg-white py-3 font-bold text-black hover:bg-gray-100">
             Sign in
           </button>
         </div>
       </div>
 
       {/* Student Signup */}
-      <div className="bg-white h-full flex-[3] flex flex-col">
-        <div className="flex-1 flex flex-col gap-10 justify-center items-center">
-          <SignupContent />
+      <div className=" flex flex-[3] flex-col bg-white pb-10 md:pb-0">
+        <div className="flex flex-1 flex-col items-center justify-center gap-10">
+          <div className="flex flex-1 flex-col items-center justify-center ">
+            <h1 className={styles.h1 + " mt-10 md:mt-0"}>
+              Create Your Account {activeStep}
+            </h1>
+
+            <SignupForm activeStep={activeStep} />
+
+            <div className="mt-10 flex w-full flex-row justify-around">
+              <button
+                className="w-fit rounded-lg bg-[#950003] px-10 py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
+                onClick={handleStepBack}
+                disabled={activeStep === 0}
+              >
+                Back
+              </button>
+
+              <button
+                className="w-fit rounded-lg bg-[#950003] px-10 py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
+                onClick={activeStep !== MAX_STEPS ? handleStepNext : submitForm}
+              >
+                {activeStep === MAX_STEPS ? "Sign up" : "Next"}
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

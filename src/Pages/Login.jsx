@@ -2,26 +2,26 @@ import React from "react";
 
 function Login() {
   return (
-    <div className="flex md:flex-row flex-col h-full">
+    <div className="flex h-full flex-col md:flex-row">
       {/* Login */}
-      <div className="bg-white h-full flex-[3] flex flex-col">
+      <div className="flex h-full flex-[3] flex-col bg-white">
         {/* Logo */}
-        <a href="/" className="max-w-[250px] h-auto mt-6 ml-6">
+        <a href="/" className="mt-6 ml-6 h-auto max-w-[250px]">
           <img src="/Edugate-logo-min.png" alt="Edugate Logo" />
         </a>
 
-        <div className="flex-1 flex flex-col gap-10 justify-center items-center">
-          <h1 className={styles.h1 + " md:mt-0 mt-10"}>
+        <div className="flex flex-1 flex-col items-center justify-center gap-10">
+          <h1 className={styles.h1 + " mt-10 md:mt-0"}>
             Login to Your Account
           </h1>
-          <div className="flex flex-col items-center gap-3 w-full max-w-[380px]">
+          <div className="flex w-full max-w-[380px] flex-col items-center gap-3">
             <input type="text" placeholder="Email" className={styles.input} />
             <input
               type="text"
               placeholder="Password"
               className={styles.input}
             />
-            <button className="bg-[#950003] text-white w-44 py-3 rounded-full font-bold hover:bg-[#bb0003] md:mb-0 mb-10">
+            <button className="mb-10 w-44 rounded-full bg-[#950003] py-3 font-bold text-white hover:bg-[#bb0003] md:mb-0">
               Login
             </button>
           </div>
@@ -29,18 +29,17 @@ function Login() {
       </div>
 
       {/* Signup */}
-
       <div
-        className="bg-cyan-200 flex-1 flex flex-col gap-10 justify-center items-center text-center text-white"
+        className="flex flex-1 flex-col items-center justify-center gap-10 bg-cyan-200 px-5 pb-10 text-center text-white md:pb-0"
         style={{
           backgroundImage:
             "linear-gradient(236deg, rgb(190 0 4) 0px, #560002 100%)",
         }}
       >
-        <h1 className={styles.h1 + " md:mt-0 mt-10"}>New Here?</h1>
+        <h1 className={styles.h1 + " mt-10 md:mt-0"}>New Here?</h1>
         <h2 className={styles.h2}>Sign up and create your future!</h2>
-        <button className="bg-white w-44 py-3 rounded-full font-bold hover:bg-gray-100 text-black">
-          Signup
+        <button className="w-44 rounded-full bg-white py-3 font-bold text-black hover:bg-gray-100">
+          Sign up
         </button>
       </div>
     </div>
