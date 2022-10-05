@@ -1,15 +1,183 @@
 import React from "react";
 import { useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import MobileStepper from "@mui/material/MobileStepper";
+import TextField from "@mui/material/TextField";
+import InputLabel from "@mui/material/InputLabel";
+import Input from "@mui/material/Input";
+import FormHelperText from "@mui/material/FormHelperText";
+import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import { color } from "@mui/system";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Checkbox from "@mui/material/Checkbox";
+import {
+  createTheme,
+  Styled,
+  Theme,
+  ThemeProvider,
+} from "@mui/material/styles";
 
-const MAX_STEPS = 3;
+const CustomTextField = ({ ...params }) => (
+  <TextField
+    sx={{
+      "& fieldset": {
+        borderRadius: "0.5rem",
+      },
+    }}
+    {...params}
+  />
+);
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#950003",
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          // borderRadius: "10px",
+          // outline: "none",
+          // border: "3px solid red",
+        },
+      },
+    },
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          // fontSize: "3rem",
+          // backgroundColor: "orange",
+          // border: "3px solid black",
+          // borderRadius: "70%",
+        },
+      },
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+  },
+});
+
+const STEP_COUNT = 3;
+
 function SignupForm({ activeStep }) {
   return [
+    <ThemeProvider theme={theme}>
+      <div className="flex flex-col gap-5 ">
+        <div className="flex gap-2">
+          <TextField
+            required
+            id="fname"
+            label="First Name"
+            size="small"
+            className="max-w-[130px]"
+          />
+          <TextField
+            required
+            id="mname"
+            label="Middle Name"
+            size="small"
+            className="max-w-[130px]"
+          />
+          <TextField
+            required
+            id="lname"
+            label="Last Name"
+            size="small"
+            className="max-w-[130px]"
+          />
+        </div>
+        <div className="flex gap-2">
+          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
+            <InputLabel id="country">Country</InputLabel>
+            <Select
+              required
+              labelId="country"
+              id="country"
+              // value={age}
+              // onChange={handleChange}
+              label="Country"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cairo</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
+            <InputLabel id="city">City</InputLabel>
+            <Select
+              required
+              labelId="city"
+              id="city"
+              // value={age}
+              // onChange={handleChange}
+              label="City"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cairo</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+
+          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
+            <InputLabel id="district">District</InputLabel>
+            <Select
+              required
+              labelId="district"
+              id="district"
+              // value={age}
+              // onChange={handleChange}
+              label="district"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cairo</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+        <div className="w-full">
+          <TextField
+            required
+            id="phonenumber"
+            label="Phone Number"
+            size="small"
+            className="w-full"
+          />
+        </div>
+        <div>
+          <FormControl sx={{ minWidth: 220 }} className="w-full" size="small">
+            <InputLabel id="nationality">Nationality</InputLabel>
+            <Select
+              required
+              labelId="nationality"
+              id="nationality"
+              // value={age}
+              // onChange={handleChange}
+              label="nationality"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Cairo</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      </div>
+    </ThemeProvider>,
+
     <>
       <div className="mt-5 flex w-full max-w-[380px] flex-col items-center gap-3">
         <input type="text" placeholder="Email" className={styles.input} />
@@ -21,13 +189,24 @@ function SignupForm({ activeStep }) {
         />
       </div>
     </>,
-    "step 2",
-    "step 3",
+    <div className="flex flex-col">
+      <label htmlfor="cars">Choose a car</label>
+
+      <select
+        name="cars"
+        className="cursor-pointer rounded-lg bg-gray-200 px-3 py-1"
+      >
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+    </div>,
   ][activeStep];
 }
 
 function Signup() {
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
   const handleStepNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   const handleStepBack = () =>
@@ -65,15 +244,17 @@ function Signup() {
 
       {/* Student Signup */}
       <div className=" flex flex-[3] flex-col bg-white pb-10 md:pb-0">
-        <div className="flex flex-1 flex-col items-center justify-center gap-10">
-          <div className="flex flex-1 flex-col items-center justify-center ">
+        <div className="flex flex-1 flex-col items-center justify-center">
+          <div className="flex min-h-[25rem] flex-col items-center justify-between">
             <h1 className={styles.h1 + " mt-10 md:mt-0"}>
               Create Your Account {activeStep}
             </h1>
 
-            <SignupForm activeStep={activeStep} />
+            <div>
+              <SignupForm activeStep={activeStep} />
+            </div>
 
-            <div className="mt-10 flex w-full flex-row justify-around">
+            <div className="flex w-full flex-row justify-around">
               <button
                 className="w-fit rounded-lg bg-[#950003] px-10 py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
                 onClick={handleStepBack}
@@ -84,9 +265,11 @@ function Signup() {
 
               <button
                 className="w-fit rounded-lg bg-[#950003] px-10 py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
-                onClick={activeStep !== MAX_STEPS ? handleStepNext : submitForm}
+                onClick={
+                  activeStep !== STEP_COUNT - 1 ? handleStepNext : submitForm
+                }
               >
-                {activeStep === MAX_STEPS ? "Sign up" : "Next"}
+                {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
               </button>
             </div>
           </div>
