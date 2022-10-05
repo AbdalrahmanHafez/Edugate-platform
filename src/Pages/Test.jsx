@@ -1,3 +1,4 @@
+import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
 import Carousel from "Components/Carousel";
 import SearchUnis from "Components/SearchUnis";
 import React from "react";
@@ -6,10 +7,19 @@ import React from "react";
 
 function Test() {
   return (
-    <div className="w-full h-full bg-gray-200">
-      <div className="relative mx-auto bg-blue-300 top-14 min-w-9/12 h-3/6">
-        <SearchUnis />
-      </div>
+    <div className="bg-gray-200 w-full h-full">
+      <ButtonsWithDesc
+        data={[
+          {
+            name: "Computer Science and Engineering",
+            description: "here is the description",
+          },
+          {
+            name: "Mechatronics",
+            description: "desc 2 whoo",
+          },
+        ]}
+      />
     </div>
   );
 }

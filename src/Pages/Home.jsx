@@ -16,9 +16,7 @@ function Home() {
     <div className="w-full h-full bg-white bg-cover">
       <Navbar />
 
-      <br />
-      <br />
-      <br />
+
 
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
@@ -62,6 +60,7 @@ const styles = {
   container: "/bg-red-400 w-full flex flex-col md:flex-row",
   adContainer:
     "/bg-green-400 hidden mt-3 md:flex md:h-auto flex-col w-2/12 items-start justify-start mr-3 gap-5",
+
   adImage: "sticky top-0 w-full",
 
   mccontent:

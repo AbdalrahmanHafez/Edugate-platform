@@ -173,7 +173,7 @@ export default function SearchUnis({ inHomePage }) {
   if (inHomePage) return <SearchBar />;
 
   return (
-    <div className="w-full h-full bg-red-400">
+    <div className="w-full h-full ">
       {/* Search bar */}
       <SearchBar />
 
@@ -217,23 +217,20 @@ export default function SearchUnis({ inHomePage }) {
 
       {/* Search Results */}
       <div className="w-full h-full p-5 bg-[#FDFDFD] rounded-[11px] flex justify-center flex-wrap shadow-md">
-        <div className={styles.searchresultcard}>
-          <img
-            className="object-contain w-full h-2/6 rounded-lg "
-            src="Edugate-logo.png"
-            alt=""
-          />
-          <label>German University in Cairo</label>
-        </div>
-
-        <div className={styles.searchresultcard}>
-          <img
-            className="object-contain w-full h-2/6 rounded-lg "
-            src="Edugate-logo.png"
-            alt=""
-          />
-          <label>German University in Cairo</label>
-        </div>
+        {Array(20)
+          .fill()
+          .map((_, i) => (
+            <div className={styles.searchresultcard}>
+              <img
+                className="object-contain w-full rounded-lg"
+                src={`uni_logos/${(i % 14) + 1}.png`}
+                alt=""
+              />
+              <div className="leading-4 text-sm">
+                German University in Cairo {i}
+              </div>
+            </div>
+          ))}
       </div>
     </div>
   );
@@ -245,5 +242,5 @@ const styles = {
   filteritemlabel:
     "rounded-full min-w-fit flex items-center gap-1 bg-[#ea2427] px-2 py-1 text-white cursor-pointer",
   searchresultcard:
-    "w-32 min-h-[8rem] h-fit rounded-lg mr-5 bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer",
+    "m-3 w-48 min-h-[8rem] h-fit rounded-lg bg-white p-3 text-black drop-shadow-[0_0_8px_rgba(0,0,0,0.10)] cursor-pointer hover:outline-[#950003] hover:outline hover:outline-2",
 };
