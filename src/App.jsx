@@ -1,3 +1,4 @@
+import  Login  from "Pages/Login";
 import Test from "Pages/Test";
 import UniversityPage from "Pages/UniversityPage";
 import { useEffect, useState } from "react";
@@ -9,6 +10,8 @@ const App = () => {
       return <Test />;
     case "/university":
       return <UniversityPage />;
+    case "/login":
+      return <Login />;   
     default:
       return <Home />;
   }
