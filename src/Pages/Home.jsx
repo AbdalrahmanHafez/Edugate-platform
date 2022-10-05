@@ -14,10 +14,6 @@ import FeaturedPrograms from "Components/FeaturedPrograms";
 function Home() {
   return (
     <div className="w-full h-full bg-white bg-cover">
-      <Navbar />
-
-
-
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
         <h1 className="text-5xl text-white mb-5 select-none drop-shadow-[2px_2px_0px_#000000]">
@@ -50,8 +46,6 @@ function Home() {
           <img className={styles.adImage} src="ad3.jpg" alt="" />
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
