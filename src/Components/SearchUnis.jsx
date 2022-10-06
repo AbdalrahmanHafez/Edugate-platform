@@ -223,7 +223,7 @@ export default function SearchUnis({ inHomePage }) {
             <div className={styles.searchresultcard}>
               <img
                 className="object-contain w-full rounded-lg"
-                src={`uni_logos/${(i % 14) + 1}.png`}
+                src={`/uni_logos/${(i % 14) + 1}.png`}
                 alt=""
               />
               <div className="leading-4 text-sm">

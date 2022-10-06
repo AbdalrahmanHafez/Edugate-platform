@@ -1,3 +1,4 @@
+import PageNotFound from "Components/PageNotFound";
 import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import Test from "Pages/Test";
@@ -24,13 +25,7 @@ const App = () => {
           <Route path="UniversitiesInEgypt" element={<UniversitiesInEgypt />} />
           <Route path="University/:universityid" element={<UniversityPage />} />
 
-          {/* <Route path="about" element={<About />} /> */}
-          {/* <Route path="dashboard" element={<Dashboard />} /> */}
-          {/* Using path="*"" means "match anything", so this route
-            acts like a catch-all for URLs that we don't have explicit
-            routes for. */}
-
-          <Route path="*" element={<h1>404 Not found</h1>} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

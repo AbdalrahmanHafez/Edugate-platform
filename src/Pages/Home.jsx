@@ -1,7 +1,7 @@
 import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
@@ -42,8 +42,8 @@ function Home() {
 
         {/* Ads */}
         <div className={styles.adContainer}>
-          <img className={styles.adImage} src="ad1.png" alt="" />
-          <img className={styles.adImage} src="ad3.jpg" alt="" />
+          <img className={styles.adImage} src="/ad1.png" alt="" />
+          <img className={styles.adImage} src="/ad3.jpg" alt="" />
         </div>
       </div>
     </div>
