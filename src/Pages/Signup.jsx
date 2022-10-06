@@ -68,10 +68,11 @@ const theme = createTheme({
 
 const STEP_COUNT = 3;
 
-function SignupForm({ activeStep }) {
+function SignupForm({ activeStep, data, updateData }) {
+  const [errorConfirmpassword, seterrorConfirmpassword] = useState(false);
+
   return [
     // STEP 1
-
     <div className="flex flex-col gap-5 ">
       <div className="flex gap-2">
         <TextField
@@ -80,6 +81,8 @@ function SignupForm({ activeStep }) {
           label="First Name"
           size="small"
           className="max-w-[130px]"
+          value={data.firstname}
+          onChange={(e) => updateData({ firstname: e.target.value })}
         />
         <TextField
           required
@@ -87,6 +90,8 @@ function SignupForm({ activeStep }) {
           label="Middle Name"
           size="small"
           className="max-w-[130px]"
+          value={data.middlename}
+          onChange={(e) => updateData({ middlename: e.target.value })}
         />
         <TextField
           required
@@ -94,6 +99,8 @@ function SignupForm({ activeStep }) {
           label="Last Name"
           size="small"
           className="max-w-[130px]"
+          value={data.lastname}
+          onChange={(e) => updateData({ lastname: e.target.value })}
         />
       </div>
       <div className="flex gap-2">
@@ -103,13 +110,13 @@ function SignupForm({ activeStep }) {
             required
             labelId="country"
             id="country"
-            // value={age}
-            // onChange={handleChange}
+            value={data.country}
+            onChange={(e) => updateData({ country: e.target.value })}
             label="Country"
           >
-            <MenuItem value="">
+            {/* <MenuItem value="">
               <em>None</em>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem>
@@ -122,13 +129,10 @@ function SignupForm({ activeStep }) {
             required
             labelId="city"
             id="city"
-            // value={age}
-            // onChange={handleChange}
             label="City"
+            value={data.city}
+            onChange={(e) => updateData({ city: e.target.value })}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem>
@@ -141,13 +145,10 @@ function SignupForm({ activeStep }) {
             required
             labelId="district"
             id="district"
-            // value={age}
-            // onChange={handleChange}
             label="district"
+            value={data.district}
+            onChange={(e) => updateData({ district: e.target.value })}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem>
@@ -161,6 +162,8 @@ function SignupForm({ activeStep }) {
           label="Phone Number"
           size="small"
           className="w-full"
+          value={data.phonenumber}
+          onChange={(e) => updateData({ phonenumber: e.target.value })}
         />
       </div>
       <div>
@@ -170,13 +173,10 @@ function SignupForm({ activeStep }) {
             required
             labelId="nationality"
             id="nationality"
-            // value={age}
-            // onChange={handleChange}
             label="nationality"
+            value={data.nationality}
+            onChange={(e) => updateData({ nationality: e.target.value })}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem>
@@ -184,15 +184,17 @@ function SignupForm({ activeStep }) {
         </FormControl>
       </div>
     </div>,
-    // STEP 2
 
+    // STEP 2
     <div className="flex flex-col gap-y-5 pt-5">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label="Date of Birth"
           inputFormat="MM/DD/YYYY"
-          // value={value}
-          // onChange={handleChange}
+          value={data.dateofbirth}
+          onChange={(newValue) => {
+            updateData({ dateofbirth: newValue });
+          }}
           renderInput={(params) => <TextField {...params} />}
         />
       </LocalizationProvider>
@@ -202,15 +204,17 @@ function SignupForm({ activeStep }) {
           <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
+            defaultValue="male"
             name="radio-buttons-group"
+            value={data.gender}
+            onChange={(e) => updateData({ gender: e.target.value })}
           >
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
             <FormControlLabel
               value="female"
               control={<Radio />}
               label="Female"
             />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
           </RadioGroup>
         </div>
         <div>
@@ -219,8 +223,9 @@ function SignupForm({ activeStep }) {
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
             name="radio-buttons-group"
+            value={data.studenttype}
+            onChange={(e) => updateData({ studenttype: e.target.value })}
           >
             <FormControlLabel
               value="schoolstudent"
@@ -236,83 +241,78 @@ function SignupForm({ activeStep }) {
         </div>
       </div>
 
-      <div className="flex gap-2 ">
-        <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-          <InputLabel id="Grade">Grade</InputLabel>
-          <Select
-            required
-            labelId="Grade"
-            id="Grade"
-            label="Grade"
-            // value={age}
-            // onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Test 0</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-          <InputLabel id="CertificateType">Certificate Type</InputLabel>
-          <Select
-            required
-            labelId="CertificateType"
-            id="CertificateType"
-            label="CertificateType"
-            // value={age}
-            // onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Test 0</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      {data.studenttype === "schoolstudent" && (
+        <div className="flex gap-2 ">
+          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
+            <InputLabel id="Grade">Grade</InputLabel>
+            <Select
+              required
+              labelId="Grade"
+              id="Grade"
+              label="Grade"
+              value={data.grade}
+              onChange={(e) => updateData({ grade: e.target.value })}
+            >
+              <MenuItem value={10}>Test 0</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
+            <InputLabel id="CertificateType">Certificate Type</InputLabel>
+            <Select
+              required
+              labelId="CertificateType"
+              id="CertificateType"
+              label="CertificateType"
+              value={data.certificatetype}
+              onChange={(e) => updateData({ certificatetype: e.target.value })}
+            >
+              <MenuItem value={10}>Test 0</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      )}
 
-      <div className="flex gap-2 ">
-        <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-          <InputLabel id="Major">Major</InputLabel>
-          <Select
-            required
-            labelId="Major"
-            id="Major"
-            label="Major"
-            // value={age}
-            // onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Test 0</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-          <InputLabel id="Degree">Degree</InputLabel>
-          <Select
-            required
-            labelId="Degree"
-            id="Degree"
-            label="Degree"
-            // value={age}
-            // onChange={handleChange}
-          >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
-            <MenuItem value={10}>Test 0</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      {data.studenttype === "universitystudent" && (
+        <div className="flex gap-2 ">
+          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
+            <InputLabel id="Major">Major</InputLabel>
+            <Select
+              required
+              labelId="Major"
+              id="Major"
+              label="Major"
+              value={data.major}
+              onChange={(e) => updateData({ major: e.target.value })}
+            >
+              <MenuItem value={10}>Test 0</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
+            <InputLabel id="Degree">Degree</InputLabel>
+            <Select
+              required
+              labelId="Degree"
+              id="Degree"
+              label="Degree"
+              value={data.degree}
+              onChange={(e) => updateData({ degree: e.target.value })}
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              <MenuItem value={10}>Test 0</MenuItem>
+              <MenuItem value={20}>Test 1</MenuItem>
+              <MenuItem value={30}>Test 2</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
+      )}
     </div>,
 
     // STEP 3
@@ -321,22 +321,34 @@ function SignupForm({ activeStep }) {
         required
         id="email"
         label="Email"
+        type="email"
         size="small"
         className="w-full"
+        value={data.email}
+        onChange={(e) => updateData({ email: e.target.value })}
       />
       <TextField
         required
         id="password"
         label="Password"
+        type="password"
         size="small"
         className="w-full"
+        value={data.password}
+        onChange={(e) => updateData({ password: e.target.value })}
       />
       <TextField
         required
+        error={errorConfirmpassword}
+        helperText="Please match"
         id="cpassword"
         label="Confirm Password"
         size="small"
         className="w-full"
+        type="password"
+        onChange={(e) =>
+          seterrorConfirmpassword(e.target.value !== data.password)
+        }
       />
     </div>,
   ][activeStep];
@@ -349,8 +361,48 @@ function Signup() {
   const handleStepBack = () =>
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
-  const submitForm = () => {
-    console.log("TODO:Submitting the form");
+  const [formdata, setformdata] = useState({
+    firstname: "ahmed",
+    middlename: "hkhaled",
+    lastname: "joec",
+    country: 20,
+    city: 20,
+    district: 20,
+    phonenumber: "01554342754",
+    nationality: 20,
+
+    dateofbirth: "1/1/2001",
+    gender: "male",
+    studenttype: "schoolstudent",
+    grade: 20,
+    certificatetype: 20,
+    major: 20,
+    degree: 20,
+
+    email: "ahmed@khalid.com",
+    password: "mohamed",
+  });
+  const updateData = (feilds) => {
+    console.log("data is ", formdata);
+    setformdata((prevdata) => ({
+      ...prevdata,
+      ...feilds,
+    }));
+  };
+
+  const sendFormData = () => {
+    console.log("TODO:Sending the data");
+  };
+
+  const formonSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+
+    if (activeStep !== STEP_COUNT - 1) {
+      handleStepNext();
+    } else {
+      sendFormData();
+    }
   };
 
   return (
@@ -382,38 +434,41 @@ function Signup() {
       {/* Student Signup */}
       <div className=" flex flex-[3] flex-col bg-white pb-10 md:pb-0">
         <div className="flex flex-1 flex-col items-center justify-center">
-          <div className="flex min-h-[35rem] flex-col items-center justify-between">
-            <h1 className={styles.h1 + " mt-10 md:mt-0"}>
-              Create Your Account
-            </h1>
+          <form onSubmit={formonSubmit}>
+            <div className="flex min-h-[35rem] flex-col items-center justify-between">
+              <h1 className={styles.h1 + " mt-10 md:mt-0"}>
+                Create Your Account
+              </h1>
+              <ThemeProvider theme={theme}>
+                <SignupForm
+                  activeStep={activeStep}
+                  data={formdata}
+                  updateData={updateData}
+                />
+              </ThemeProvider>
 
-            <ThemeProvider theme={theme}>
-              <SignupForm activeStep={activeStep} />
-            </ThemeProvider>
+              <div className="mt-5 flex w-full flex-row items-center justify-around">
+                <button
+                  className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
+                  onClick={handleStepBack}
+                  disabled={activeStep === 0}
+                >
+                  Back
+                </button>
 
-            <div className="mt-5 flex w-full flex-row items-center justify-around">
-              <button
-                className="w-[100px] rounded-lg bg-[#950003]  py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
-                onClick={handleStepBack}
-                disabled={activeStep === 0}
-              >
-                Back
-              </button>
+                <h5>
+                  {activeStep + 1} / {STEP_COUNT}
+                </h5>
 
-              <h5>
-                {activeStep + 1} / {STEP_COUNT}
-              </h5>
-
-              <button
-                className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
-                onClick={
-                  activeStep !== STEP_COUNT - 1 ? handleStepNext : submitForm
-                }
-              >
-                {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
-              </button>
+                <button
+                  type="submit"
+                  className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
+                >
+                  {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
