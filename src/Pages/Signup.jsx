@@ -443,7 +443,7 @@ function Signup() {
         }}
       >
         {/* Logo */}
-        <a href="/" className="m-6 mb-0 h-auto max-w-[250px]">
+        <a href="/" className="m-6 mb-0 hidden h-auto max-w-[250px] md:block">
           <img src="/Edugate-logo-white-min.png" alt="Edugate Logo" />
         </a>
 
@@ -461,6 +461,10 @@ function Signup() {
 
       {/* Student Signup */}
       <div className=" flex flex-[3] flex-col bg-white pb-10 md:pb-0">
+        <a href="/" className="mt-6 ml-6 block h-auto max-w-[250px] md:hidden">
+          <img src="/Edugate-logo-min.png" alt="Edugate Logo" />
+        </a>
+
         <div className="flex flex-1 flex-col items-center justify-center">
           <form onSubmit={formonSubmit}>
             <div className="flex min-h-[35rem] flex-col items-center justify-between">
