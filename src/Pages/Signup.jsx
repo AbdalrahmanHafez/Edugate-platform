@@ -68,20 +68,43 @@ const theme = createTheme({
 
 const STEP_COUNT = 3;
 
-function SignupForm({ activeStep, data, updateData }) {
-  const refconfirmpassword = useRef(null);
-  const [errorConfirmpassword, seterrorConfirmpassword] = useState(false);
+const TextFieldConfirmPass = ({ password, ...props }) => {
+  // This is applies a customValidity when the input is rendered, this to prevent the on submit to fire
+
+  // Why in a new component, this is needed because the input is not rendered when the step is not active
+  // making it into a component makes it renders when the active step changes
+  const reftest = useRef(null);
+  const errorText = "Passwords do not match";
 
   useEffect(() => {
-    console.log("WHAT", refconfirmpassword);
-    if (!refconfirmpassword.current) return;
+    if (!reftest.current) return;
+    reftest.current.setCustomValidity(errorText);
+  }, [reftest]);
 
-    console.log("INJECTING SETCUSTOM VALUDATITY");
+  // return <input type="text" placeholder="inputTest" ref={reftest} />;
+  return (
+    <TextField
+      // required
+      // error={errorConfirmpassword}
+      // helperText="Please match"
+      {...props}
+      inputRef={reftest}
+      onChange={(e) => {
+        const error = e.target.value !== password;
+        const elm = e.target;
+        if (error) {
+          elm.setCustomValidity(errorText);
+        } else {
+          elm.setCustomValidity("");
+        }
+      }}
+    />
+  );
+};
 
-    refconfirmpassword.current.setCustomValidity(
-      "I am expecting an e-mail address!"
-    );
-  }, [refconfirmpassword]);
+function SignupForm({ activeStep, data, updateData }) {
+  const refconfirmpassword = useRef(null);
+
   return [
     // STEP 1
     <div className="flex flex-col gap-5 ">
@@ -314,9 +337,6 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.degree}
               onChange={(e) => updateData({ degree: e.target.value })}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value={10}>Test 0</MenuItem>
               <MenuItem value={20}>Test 1</MenuItem>
               <MenuItem value={30}>Test 2</MenuItem>
@@ -325,68 +345,40 @@ function SignupForm({ activeStep, data, updateData }) {
         </div>
       )}
     </div>,
-    () => {
-      // STEP 3
-      return (
-        <div className="flex w-[70%] flex-col gap-y-5">
-          <TextField
-            required
-            id="email"
-            label="Email"
-            type="email"
-            size="small"
-            className="w-full"
-            value={data.email}
-            onChange={(e) => updateData({ email: e.target.value })}
-          />
-          <TextField
-            required
-            id="password"
-            label="Password"
-            type="password"
-            size="small"
-            className="w-full"
-            value={data.password}
-            onChange={(e) => updateData({ password: e.target.value })}
-          />
-          <TextField
-            // required
-            // error={errorConfirmpassword}
-            helperText="Please match"
-            id="cpassword"
-            label="Confirm Password"
-            size="small"
-            className="w-full"
-            type="password"
-            inputRef={refconfirmpassword}
-            // onInput={(e) => {
-            //   const error = e.target.value !== data.password;
-            //   const elm = e.target;
-            //   if (error) {
-            //     elm.setCustomValidity("I am expecting an e-mail address!");
-            //     elm.reportValidity();
-            //   } else {
-            //     elm.setCustomValidity("");
-            //   }
-            // }}
-            // onChange={(e) => {
-            //   const error = e.target.value !== data.password;
-            //   seterrorConfirmpassword(error);
 
-            //   if (!error) {
-            //     e.target.setCustomValidity("");
-            //     // elm.reportValidity();
-            //   }
-            // }}
-            // onChange={(e) => {
-            //   const elm = e.target;
-            //   elm.setCustomValidity("I am expecting an e-mail address!");
-            //   elm.reportValidity();
-            // }}
-          />
-        </div>
-      );
-    },
+    // STEP 3
+
+    <div className="flex w-[70%] flex-col gap-y-5">
+      <TextField
+        required
+        id="email"
+        label="Email"
+        type="email"
+        size="small"
+        className="w-full"
+        value={data.email}
+        onChange={(e) => updateData({ email: e.target.value })}
+      />
+      <TextField
+        required
+        id="password"
+        label="Password"
+        type="password"
+        size="small"
+        className="w-full"
+        value={data.password}
+        onChange={(e) => updateData({ password: e.target.value })}
+      />
+
+      <TextFieldConfirmPass
+        id="cpassword"
+        label="Confirm Password"
+        size="small"
+        className="w-full"
+        type="password"
+        password={data.password}
+      />
+    </div>,
   ][activeStep];
 }
 
@@ -398,7 +390,7 @@ function Signup() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const [formdata, setformdata] = useState({
-    firstname: "ahmed",
+    firstname: "a",
     middlename: "hkhaled",
     lastname: "joec",
     country: 20,
