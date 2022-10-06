@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -68,8 +68,42 @@ const theme = createTheme({
 
 const STEP_COUNT = 3;
 
+const TextFieldConfirmPass = ({ password, ...props }) => {
+  // This is applies a customValidity when the input is rendered, this to prevent the on submit to fire
+
+  // Why in a new component, this is needed because the input is not rendered when the step is not active
+  // making it into a component makes it renders when the active step changes
+  const reftest = useRef(null);
+  const errorText = "Passwords do not match";
+
+  useEffect(() => {
+    if (!reftest.current) return;
+    reftest.current.setCustomValidity(errorText);
+  }, [reftest]);
+
+  // return <input type="text" placeholder="inputTest" ref={reftest} />;
+  return (
+    <TextField
+      // required
+      // error={errorConfirmpassword}
+      // helperText="Please match"
+      {...props}
+      inputRef={reftest}
+      onChange={(e) => {
+        const error = e.target.value !== password;
+        const elm = e.target;
+        if (error) {
+          elm.setCustomValidity(errorText);
+        } else {
+          elm.setCustomValidity("");
+        }
+      }}
+    />
+  );
+};
+
 function SignupForm({ activeStep, data, updateData }) {
-  const [errorConfirmpassword, seterrorConfirmpassword] = useState(false);
+  const refconfirmpassword = useRef(null);
 
   return [
     // STEP 1
@@ -303,9 +337,6 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.degree}
               onChange={(e) => updateData({ degree: e.target.value })}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value={10}>Test 0</MenuItem>
               <MenuItem value={20}>Test 1</MenuItem>
               <MenuItem value={30}>Test 2</MenuItem>
@@ -316,6 +347,7 @@ function SignupForm({ activeStep, data, updateData }) {
     </div>,
 
     // STEP 3
+
     <div className="flex w-[70%] flex-col gap-y-5">
       <TextField
         required
@@ -337,18 +369,14 @@ function SignupForm({ activeStep, data, updateData }) {
         value={data.password}
         onChange={(e) => updateData({ password: e.target.value })}
       />
-      <TextField
-        required
-        error={errorConfirmpassword}
-        helperText="Please match"
+
+      <TextFieldConfirmPass
         id="cpassword"
         label="Confirm Password"
         size="small"
         className="w-full"
         type="password"
-        onChange={(e) =>
-          seterrorConfirmpassword(e.target.value !== data.password)
-        }
+        password={data.password}
       />
     </div>,
   ][activeStep];
@@ -362,7 +390,7 @@ function Signup() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const [formdata, setformdata] = useState({
-    firstname: "ahmed",
+    firstname: "a",
     middlename: "hkhaled",
     lastname: "joec",
     country: 20,
@@ -452,6 +480,7 @@ function Signup() {
                   className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
                   onClick={handleStepBack}
                   disabled={activeStep === 0}
+                  type="button"
                 >
                   Back
                 </button>
