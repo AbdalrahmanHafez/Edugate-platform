@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import InputLabel from "@mui/material/InputLabel";
 import Input from "@mui/material/Input";
@@ -69,8 +69,19 @@ const theme = createTheme({
 const STEP_COUNT = 3;
 
 function SignupForm({ activeStep, data, updateData }) {
+  const refconfirmpassword = useRef(null);
   const [errorConfirmpassword, seterrorConfirmpassword] = useState(false);
 
+  useEffect(() => {
+    console.log("WHAT", refconfirmpassword);
+    if (!refconfirmpassword.current) return;
+
+    console.log("INJECTING SETCUSTOM VALUDATITY");
+
+    refconfirmpassword.current.setCustomValidity(
+      "I am expecting an e-mail address!"
+    );
+  }, [refconfirmpassword]);
   return [
     // STEP 1
     <div className="flex flex-col gap-5 ">
@@ -314,43 +325,68 @@ function SignupForm({ activeStep, data, updateData }) {
         </div>
       )}
     </div>,
+    () => {
+      // STEP 3
+      return (
+        <div className="flex w-[70%] flex-col gap-y-5">
+          <TextField
+            required
+            id="email"
+            label="Email"
+            type="email"
+            size="small"
+            className="w-full"
+            value={data.email}
+            onChange={(e) => updateData({ email: e.target.value })}
+          />
+          <TextField
+            required
+            id="password"
+            label="Password"
+            type="password"
+            size="small"
+            className="w-full"
+            value={data.password}
+            onChange={(e) => updateData({ password: e.target.value })}
+          />
+          <TextField
+            // required
+            // error={errorConfirmpassword}
+            helperText="Please match"
+            id="cpassword"
+            label="Confirm Password"
+            size="small"
+            className="w-full"
+            type="password"
+            inputRef={refconfirmpassword}
+            // onInput={(e) => {
+            //   const error = e.target.value !== data.password;
+            //   const elm = e.target;
+            //   if (error) {
+            //     elm.setCustomValidity("I am expecting an e-mail address!");
+            //     elm.reportValidity();
+            //   } else {
+            //     elm.setCustomValidity("");
+            //   }
+            // }}
+            // onChange={(e) => {
+            //   const error = e.target.value !== data.password;
+            //   seterrorConfirmpassword(error);
 
-    // STEP 3
-    <div className="flex w-[70%] flex-col gap-y-5">
-      <TextField
-        required
-        id="email"
-        label="Email"
-        type="email"
-        size="small"
-        className="w-full"
-        value={data.email}
-        onChange={(e) => updateData({ email: e.target.value })}
-      />
-      <TextField
-        required
-        id="password"
-        label="Password"
-        type="password"
-        size="small"
-        className="w-full"
-        value={data.password}
-        onChange={(e) => updateData({ password: e.target.value })}
-      />
-      <TextField
-        required
-        error={errorConfirmpassword}
-        helperText="Please match"
-        id="cpassword"
-        label="Confirm Password"
-        size="small"
-        className="w-full"
-        type="password"
-        onChange={(e) =>
-          seterrorConfirmpassword(e.target.value !== data.password)
-        }
-      />
-    </div>,
+            //   if (!error) {
+            //     e.target.setCustomValidity("");
+            //     // elm.reportValidity();
+            //   }
+            // }}
+            // onChange={(e) => {
+            //   const elm = e.target;
+            //   elm.setCustomValidity("I am expecting an e-mail address!");
+            //   elm.reportValidity();
+            // }}
+          />
+        </div>
+      );
+    },
   ][activeStep];
 }
 
@@ -452,6 +488,7 @@ function Signup() {
                   className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
                   onClick={handleStepBack}
                   disabled={activeStep === 0}
+                  type="button"
                 >
                   Back
                 </button>
