@@ -1,7 +1,7 @@
 import Footer from "Components/Footer";
 import Navbar from "Components/Navbar";
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import Carousel from "Components/Carousel";
 import FeaturedArticles from "Components/FeaturedArticles";
 import FeaturedUniversities from "Components/FeaturedUniversities";
@@ -13,11 +13,7 @@ import FeaturedPrograms from "Components/FeaturedPrograms";
 
 function Home() {
   return (
-    <div className="w-full h-full bg-white bg-cover">
-      <Navbar />
-
-
-
+    <div className="w-full h-fit bg-cover mb-5">
       {/* Search Box */}
       <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
         <h1 className="text-5xl text-white mb-5 select-none drop-shadow-[2px_2px_0px_#000000]">
@@ -46,12 +42,10 @@ function Home() {
 
         {/* Ads */}
         <div className={styles.adContainer}>
-          <img className={styles.adImage} src="ad1.png" alt="" />
-          <img className={styles.adImage} src="ad3.jpg" alt="" />
+          <img className={styles.adImage} src="/ad1.png" alt="" />
+          <img className={styles.adImage} src="/ad3.jpg" alt="" />
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

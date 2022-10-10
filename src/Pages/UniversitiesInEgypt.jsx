@@ -13,21 +13,17 @@ import FeaturedPrograms from "Components/FeaturedPrograms";
 
 function UniversitiesInEgypt() {
   return (
-    <div className="w-full h-fit bg-gray-200">
-      <Navbar />
-
+    <div className="h-fit w-full bg-gray-200">
       {/* Search Box */}
-      <section className="min-h-[24rem] mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col items-center rounded-br-lg">
-        <h1 className="mt-20 text-5xl text-white mb-5 select-none drop-shadow-[2px_2px_0px_#000000]">
+      <section className="mt-[20px] flex min-h-[24rem] flex-col items-center rounded-br-lg bg-[rgba(0,0,0,.4)] bg-[url('../public/Banner3.jpg')] bg-cover bg-center bg-blend-multiply">
+        <h1 className="mt-20 mb-5 select-none text-5xl text-white drop-shadow-[2px_2px_0px_#000000]">
           Create The Future
         </h1>
       </section>
 
-      <div className="md:w-8/12 w-full h-fit mx-auto relative top-[-14rem]">
+      <div className="relative top-[-14rem] mx-auto h-fit w-full md:w-8/12">
         <SearchUnis inHomePage={false} />
       </div>
-
-      <Footer />
     </div>
   );
 }

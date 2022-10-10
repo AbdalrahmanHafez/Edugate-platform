@@ -22,6 +22,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
+import { Link } from "react-router-dom";
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -453,9 +454,11 @@ function Signup() {
           <h2 className={styles.h2}>
             If you already have an account, just sign in. We've missed you!
           </h2>
-          <button className="w-44 rounded-full bg-white py-3 font-bold text-black hover:bg-gray-100">
-            Sign in
-          </button>
+          <Link to="/login">
+            <button className="w-44 rounded-full bg-white py-3 font-bold text-black hover:bg-gray-100">
+              Sign in
+            </button>
+          </Link>
         </div>
       </div>
 

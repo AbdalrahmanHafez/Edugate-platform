@@ -78,67 +78,65 @@ function UniversityPage() {
   ];
 
   return (
-    <div className="w-full h-full bg-white bg-cover">
-      <Navbar />
-
+    <div className="mb-5 h-fit w-full bg-white bg-cover">
       <br />
 
-      <div className="h-fit m-5 p-4 shadow rounded bg-[#950003] flex lg:flex-row flex-col justify-between text-white gap-3">
+      <div className="m-5 flex h-fit flex-col justify-between gap-3 rounded bg-[#950003] p-4 text-white shadow lg:flex-row">
         {/* Logo */}
-        <div className="bg-white max-w-[8rem] max-h-[8rem] p-2 rounded flex justify-center items-center mx-auto">
-          <img src="uni_logos/guc_logo.png" alt="" />
+        <div className="mx-auto flex max-h-[8rem] max-w-[8rem] items-center justify-center rounded bg-white p-2">
+          <img src="/uni_logos/guc_logo.png" alt="" />
         </div>
 
         {/* Uni Information */}
-        <div className="flex flex-col /bg-blue-300 flex-1 ">
-          <div className="text-xl lg:mx-0 mx-auto">{uniObject.name}</div>
+        <div className="/bg-blue-300 flex flex-1 flex-col ">
+          <div className="mx-auto text-xl lg:mx-0">{uniObject.name}</div>
 
-          <div className="ml-5 flex flex-col gap-3 mt-3">
-            <div className="lg:mx-0 mx-auto">City: {uniObject.city}</div>
-            <div className="text-[#EDEDED] text-justify">
+          <div className="ml-5 mt-3 flex flex-col gap-3">
+            <div className="mx-auto lg:mx-0">City: {uniObject.city}</div>
+            <div className="text-justify text-[#EDEDED]">
               {uniObject.description}
             </div>
           </div>
         </div>
 
-        <div className="flex lg:flex-col flex-row justify-start items-start gap-3 mx-auto">
+        <div className="mx-auto flex flex-row items-start justify-start gap-3 lg:flex-col">
           {/* Rank item */}
           <div className="w-24">
-            <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
+            <div className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]">
               {uniObject.qsRank}
             </div>
-            <div className="bg-black h-6 rounded-b-lg text-center flex justify-center items-center">
+            <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center">
               QS
             </div>
           </div>
 
           {/* Rank item */}
           <div className="w-24">
-            <div className="bg-white text-[#5D5D5D] h-16 rounded-t-lg flex justify-center items-center text-2xl">
+            <div className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]">
               {uniObject.thRank}
             </div>
-            <div className="bg-black h-6 rounded-b-lg text-xs text-center flex justify-center items-center">
+            <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center text-xs">
               Times Higher
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-2 lg:hidden mb-5 mx-5">
+      <div className="mx-5 mb-5 flex flex-col gap-2 lg:hidden">
         {/* Apply Now */}
-        <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
+        <button className="w-full rounded bg-[#950003] py-2 text-white hover:bg-[#ac1013]">
           Apply Now
         </button>
         {/* Add to Compare */}
-        <button className="bg-[#DFDFDF] text-slate-800 hover:bg-gray-200 w-full py-2 rounded">
+        <button className="w-full rounded bg-[#DFDFDF] py-2 text-slate-800 hover:bg-gray-200">
           Add to Compare
         </button>
       </div>
-      <div className="w-full flex gap-0 lg:gap-20">
+      <div className="flex w-full gap-0 lg:gap-20">
         {/* Left Content */}
-        <div className="rounded-r-lg border-[#950003] border-2 border-l-0 bg-[#ECECEC] flex-1 p-7">
+        <div className="flex-1 rounded-r-lg border-2 border-l-0 border-[#950003] bg-[#ECECEC] p-7">
           {/* Media Carousel */}
 
-          <div className="w-full h-72 mb-5">
+          <div className="mb-5 h-72 w-full">
             <Carousel
               showArrows
               showStatus
@@ -166,7 +164,7 @@ function UniversityPage() {
             </Carousel>
           </div>
           {/* Faculties */}
-          <div className="w-full flex flex-col">
+          <div className="flex w-full flex-col">
             {/* This is a fake anchor to avoid the navbar */}
             <div
               id="Faculties"
@@ -177,10 +175,10 @@ function UniversityPage() {
                 visibility: "hidden",
               }}
             />
-            <h1 className="text-2xl mb-3">Faculties</h1>
+            <h1 className="mb-3 text-2xl">Faculties</h1>
             {/* Card */}
             {uniFaculties.map((faculty, idx) => (
-              <div key={idx} className="bg-white rounded shadow-md p-4 mb-8">
+              <div key={idx} className="mb-8 rounded bg-white p-4 shadow-md">
                 <div
                   id={faculty.name}
                   style={{
@@ -190,15 +188,15 @@ function UniversityPage() {
                     visibility: "hidden",
                   }}
                 />
-                <h1 className="text-xl mb-1">{faculty.name}</h1>
+                <h1 className="mb-1 text-xl">{faculty.name}</h1>
 
-                <div className="text-base ml-3 mb-1">{faculty.description}</div>
+                <div className="ml-3 mb-1 text-base">{faculty.description}</div>
 
-                <div className="ml-auto text-white w-fit rounded-full bg-[#950003] px-3 py-1">
+                <div className="ml-auto w-fit rounded-full bg-[#950003] px-3 py-1 text-white">
                   {faculty.price} EGP / year
                 </div>
 
-                <h1 className="text-xl mb-1">Majors</h1>
+                <h1 className="mb-1 text-xl">Majors</h1>
                 <ButtonsWithDesc data={faculty.majors} />
 
                 <BasicAccordion
@@ -210,7 +208,7 @@ function UniversityPage() {
           </div>
 
           {/* Accommodation */}
-          <div className="w-full flex flex-col ">
+          <div className="flex w-full flex-col ">
             <div
               id="Accommodation"
               style={{
@@ -220,16 +218,16 @@ function UniversityPage() {
                 visibility: "hidden",
               }}
             />
-            <h1 className="text-2xl mb-3">Accommodation</h1>
+            <h1 className="mb-3 text-2xl">Accommodation</h1>
 
             {/* Card */}
-            <div className="bg-white rounded shadow-md p-4 mb-8">
+            <div className="mb-8 rounded bg-white p-4 shadow-md">
               <ButtonsWithDesc
                 data={[
                   {
                     name: "Hostel",
                     description: (
-                      <div className="bg-[#EBEBEB] text-sm flex-1 px-3 py-1 rounded-lg flex gap-3 lg:flex-row flex-col">
+                      <div className="flex flex-1 flex-col gap-3 rounded-lg bg-[#EBEBEB] px-3 py-1 text-sm lg:flex-row">
                         <div className="flex-1 text-justify">
                           GUC Hostel in Cairo - “Rehab City” In Cairo, GUC
                           housing is located in AL Rehab compound which is 10
@@ -239,7 +237,7 @@ function UniversityPage() {
                           in an adequate environment that support and facilitate
                           their stay. Click here fo
                         </div>
-                        <div className="max-w-[15rem] h-60 w-full flex-1 lg:ml-auto mx-auto">
+                        <div className="mx-auto h-60 w-full max-w-[15rem] flex-1 lg:ml-auto">
                           {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
 
                           <Carousel
@@ -290,8 +288,8 @@ function UniversityPage() {
             }}
           />
 
-          <div className="bg-[#950003] rounded shadow flex p-5 text-white lg:flex-row flex-col">
-            <div className=" flex flex-col gap-5 flex-1 lg:mx-0 ml-0 lg:mb-0 mb-5 ">
+          <div className="flex flex-col rounded bg-[#950003] p-5 text-white shadow lg:flex-row">
+            <div className=" ml-0 mb-5 flex flex-1 flex-col gap-5 lg:mx-0 lg:mb-0 ">
               <div className="flex items-center gap-3">
                 <GoLocation className="text-3xl" />
                 <div>
@@ -306,7 +304,7 @@ function UniversityPage() {
                     href="https://guc.edu.eg/"
                     rel="noreferrer"
                     target="_blank"
-                    className="ml-5 hover:underline hover:text-slate-300"
+                    className="ml-5 hover:text-slate-300 hover:underline"
                   >
                     https://guc.edu.eg
                   </a>
@@ -320,7 +318,7 @@ function UniversityPage() {
                     href="tel:01100000"
                     rel="noreferrer"
                     target="_blank"
-                    className="ml-5 hover:underline hover:text-slate-300"
+                    className="ml-5 hover:text-slate-300 hover:underline"
                   >
                     01100000
                   </a>
@@ -334,7 +332,7 @@ function UniversityPage() {
                     href="mail:guc@guc.edu.eg"
                     rel="noreferrer"
                     target="_blank"
-                    className="ml-5 hover:underline hover:text-slate-300"
+                    className="ml-5 hover:text-slate-300 hover:underline"
                   >
                     guc@guc.edu.eg
                   </a>
@@ -342,7 +340,7 @@ function UniversityPage() {
               </div>
 
               {/* Socials */}
-              <div className="w-fit flex gap-3">
+              <div className="flex w-fit gap-3">
                 <a
                   href="https://www.facebook.com/edugate.eg/"
                   className="text-blue-600"
@@ -398,7 +396,7 @@ function UniversityPage() {
 
             {/* Google Map */}
             {/* //https://maps.google.com/maps?q=37.771008,+-122.41175+(You+can+insert+your+text+here)&amp;hl=en&amp;t=v&amp;vpsrc=0&amp;ie=UTF8&amp;z=14&amp;iwloc=A&amp;ll=38.287602,-122.036186&amp;output=embed */}
-            <div className="lg:w-96 lg:flex-none w-auto flex-1 lg:ml-auto mr-auto">
+            <div className="mr-auto w-auto flex-1 lg:ml-auto lg:w-96 lg:flex-none">
               <iframe
                 title="GMAP "
                 className="rounded-lg"
@@ -415,26 +413,26 @@ function UniversityPage() {
         </div>
 
         {/* Right Side Nav */}
-        <div className="/bg-green-400 w-52 lg:block hidden">
+        <div className="/bg-green-400 hidden w-52 lg:block">
           {/* Side Nav */}
-          <div className="/bg-red-200 p-3 border-[#950003] border-2 border-r-0 rounded-l-lg sticky top-32">
-            <div className="flex flex-col gap-2 mb-5">
+          <div className="/bg-red-200 sticky top-32 rounded-l-lg border-2 border-r-0 border-[#950003] p-3">
+            <div className="mb-5 flex flex-col gap-2">
               <div className="flex flex-col">
                 <a
                   href="#Faculties"
-                  className="hover:underline  hover:text-[#950003]"
+                  className="hover:text-[#950003]  hover:underline"
                 >
                   Faculties
                 </a>
                 <a
                   href="#Engineering"
-                  className="ml-5 hover:underline  hover:text-[#950003]"
+                  className="ml-5 hover:text-[#950003]  hover:underline"
                 >
                   Engineering
                 </a>
                 <a
                   href="#NOTIMPLEMENTED"
-                  className="ml-5 hover:underline  hover:text-[#950003]"
+                  className="ml-5 hover:text-[#950003]  hover:underline"
                 >
                   Pharmacy
                 </a>
@@ -442,28 +440,28 @@ function UniversityPage() {
 
               <a
                 href="#Accommodation"
-                className="hover:underline  hover:text-[#950003]"
+                className="hover:text-[#950003]  hover:underline"
               >
                 Accommodation
               </a>
 
               <a
                 href="#NOTIMPLEMENTED"
-                className="hover:underline  hover:text-[#950003]"
+                className="hover:text-[#950003]  hover:underline"
               >
                 Transportation
               </a>
 
               <a
                 href="#NOTIMPLEMENTED"
-                className="hover:underline  hover:text-[#950003]"
+                className="hover:text-[#950003]  hover:underline"
               >
                 Activities
               </a>
 
               <a
                 href="#Contacts"
-                className="hover:underline  hover:text-[#950003]"
+                className="hover:text-[#950003]  hover:underline"
               >
                 Contacts
               </a>
@@ -471,19 +469,17 @@ function UniversityPage() {
 
             <div className="flex flex-col gap-2">
               {/* Apply Now */}
-              <button className="bg-[#950003] hover:bg-[#ac1013] text-white w-full py-2 rounded">
+              <button className="w-full rounded bg-[#950003] py-2 text-white hover:bg-[#ac1013]">
                 Apply Now
               </button>
               {/* Add to Compare */}
-              <button className="bg-[#DFDFDF] text-slate-800 hover:bg-gray-200 w-full py-2 rounded">
+              <button className="w-full rounded bg-[#DFDFDF] py-2 text-slate-800 hover:bg-gray-200">
                 Add to Compare
               </button>
             </div>
           </div>
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }
