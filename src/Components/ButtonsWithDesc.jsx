@@ -7,15 +7,24 @@ export function ButtonsWithDesc(props) {
   const { editable, onAdd, onDelete, onEdit } = props;
 
   useEffect(() => {
-    // console.log("[RENDER] BUTTONS WITH DESC");
-    // console.log(props.data.length);
-    // setIndex(props.data.length - 1);
+    // console.log("[RENDER] ButtonWithDesc", props.data.length);
   });
 
-  // useEffect(() => {
-  //   console.log("USEFFECT CALLED");
-  //   // setIndex(Math.min(index, props.data.length - 1));
-  // }, [index, props.data]);
+  if (index > props.data.length - 1) {
+    // TODO: REACT WTF?
+
+    /**
+ * 
+   		t		remov
+	  	0		1		2
+sel		2		2		1
+len		3		2		2
+ * 
+ */
+
+    setIndex(props.data.length - 1);
+    return null;
+  }
 
   return (
     <>
@@ -63,15 +72,14 @@ export function ButtonsWithDesc(props) {
 
         {/* Description */}
         <div className="flex flex-1 rounded-lg bg-[#EBEBEB] px-3 py-1 text-justify text-sm">
-          {/* {props.data[index].description} */}
-          {/* TODO: REACT WTF? */}
-          {props.data[Math.min(index, props.data.length - 1)].description}
+          {props.data[index].description}
+
           {editable && (
             <button
               className="ml-auto"
               onClick={() => {
                 onDelete(index);
-                // console.log("LENGTH OF DATA ", props.data.length);
+                // console.log("data", props.data.length);
               }}
             >
               <MdDelete />

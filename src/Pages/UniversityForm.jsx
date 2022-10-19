@@ -1,5 +1,5 @@
 import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "Components/Navbar";
 import { AiOutlineDown } from "react-icons/ai";
 import Footer from "Components/Footer";
@@ -29,6 +29,10 @@ const Logo = () => {
 };
 
 function UniversityPage() {
+  useEffect(() => {
+    // console.log("[RENDER] University Page", data.faculties[0].majors.length);
+  });
+
   const [data, setData] = React.useState({
     name: "University Name",
     city: "University City",
