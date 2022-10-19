@@ -12,7 +12,7 @@ function Login() {
         </a>
 
         <div className="flex flex-1 flex-col items-center justify-center gap-10">
-          <h1 className={styles.h1 + " mt-10 md:mt-0"}>
+          <h1 className={styles.h1 + " mt-10 text-[#950003] md:mt-0"}>
             Login to Your Account
           </h1>
           <div className="flex w-full max-w-[380px] flex-col items-center gap-3">

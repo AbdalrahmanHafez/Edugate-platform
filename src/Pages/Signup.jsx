@@ -471,7 +471,7 @@ function Signup() {
         <div className="flex flex-1 flex-col items-center justify-center">
           <form onSubmit={formonSubmit}>
             <div className="flex min-h-[35rem] flex-col items-center justify-between">
-              <h1 className={styles.h1 + " mt-10 md:mt-0"}>
+              <h1 className={styles.h1 + " mt-10 text-[#950003] md:mt-0"}>
                 Create Your Account
               </h1>
               <ThemeProvider theme={theme}>

@@ -6,6 +6,7 @@ import Navbar from "Components/Navbar";
 import Test from "Pages/Test";
 import UniversitiesInEgypt from "Pages/UniversitiesInEgypt";
 import UniversityPage from "Pages/UniversityPage";
+import UniversityForm from "Pages/UniversityForm";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -29,6 +30,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="UniversitiesInEgypt" element={<UniversitiesInEgypt />} />
           <Route path="University/:universityid" element={<UniversityPage />} />
+          <Route path="UniversityForm" element={<UniversityForm />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Route>

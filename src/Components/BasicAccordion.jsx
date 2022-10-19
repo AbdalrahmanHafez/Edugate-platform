@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function BasicAccordion({ name, description }) {
   return (
-    <div className="hidden">
+    <div>
       <Accordion
         style={{
           backgroundColor: "#EBEBEB",
@@ -28,14 +28,8 @@ export default function BasicAccordion({ name, description }) {
             {name}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails className="bg-[#EBEBEB] rounded">
-          <Typography
-            style={{
-              fontSize: "0.875rem",
-            }}
-          >
-            {description}
-          </Typography>
+        <AccordionDetails className="rounded bg-[#EBEBEB]">
+          {description}
         </AccordionDetails>
       </Accordion>
     </div>

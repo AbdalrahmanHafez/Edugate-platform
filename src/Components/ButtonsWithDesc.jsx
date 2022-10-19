@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { GrAddCircle, GrFormAdd } from "react-icons/gr";
+import EditableDiv from "Components/EditableDiv";
 export function ButtonsWithDesc(props) {
   const [index, setIndex] = useState(0);
+  const { editable, onAdd, onDelete, onEdit } = props;
+
+  useEffect(() => {
+    // console.log("[RENDER] BUTTONS WITH DESC");
+    // console.log(props.data.length);
+    // setIndex(props.data.length - 1);
+  });
+
+  // useEffect(() => {
+  //   console.log("USEFFECT CALLED");
+  //   // setIndex(Math.min(index, props.data.length - 1));
+  // }, [index, props.data]);
 
   return (
     <>
-      <div className="/bg-blue-200 flex lg:flex-row flex-col gap-3 mb-3">
+      <div className="/bg-blue-200 mb-3 flex flex-col gap-3 lg:flex-row">
         {/* Items */}
 
         <div className="/bg-blue-200 flex flex-col gap-3">
@@ -12,19 +27,19 @@ export function ButtonsWithDesc(props) {
             <div key={idx} className="flex items-center">
               <button
                 className={
-                  "w-full px-10 px-10 py-3  rounded-lg lg:font-base " +
+                  "lg:font-base w-full rounded-lg px-10 py-3 " +
                   (idx === index
-                    ? "font-bold bg-[#950003] text-white"
-                    : "text-black bg-white border-2 border-[#950003] ")
+                    ? "bg-[#950003] font-bold text-white"
+                    : "border-2 border-[#950003] bg-white text-black ")
                 }
                 onClick={() => {
                   setIndex(idx);
                 }}
               >
-                {button.name}
+                <EditableDiv variant="inline">{button.name}</EditableDiv>
               </button>
               <div
-                className="lg:block hidden"
+                className="hidden lg:block"
                 style={{
                   opacity: idx === index ? 100 : 0,
                   width: 0,
@@ -36,11 +51,32 @@ export function ButtonsWithDesc(props) {
               />
             </div>
           ))}
+
+          {editable && (
+            <div className="flex justify-center">
+              <button onClick={() => onAdd()}>
+                <GrAddCircle />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Description */}
-        <div className="bg-[#EBEBEB] text-sm flex flex-1 px-3 py-1 rounded-lg text-justify">
-          {props.data[index].description}
+        <div className="flex flex-1 rounded-lg bg-[#EBEBEB] px-3 py-1 text-justify text-sm">
+          {/* {props.data[index].description} */}
+          {/* TODO: REACT WTF? */}
+          {props.data[Math.min(index, props.data.length - 1)].description}
+          {editable && (
+            <button
+              className="ml-auto"
+              onClick={() => {
+                onDelete(index);
+                // console.log("LENGTH OF DATA ", props.data.length);
+              }}
+            >
+              <MdDelete />
+            </button>
+          )}
         </div>
       </div>
     </>

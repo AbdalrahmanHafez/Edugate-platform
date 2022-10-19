@@ -12,15 +12,16 @@ function RequirementTabs({ data }) {
       {/* Item Names */}
       <div
         className={
-          "w-fit flex flex-col py-3 pr-0 gap-1 border-r-2 border-[#950003]"
+          "flex w-fit flex-col gap-1 border-r-2 border-[#950003] py-3 pr-0"
         }
       >
         {data.map(({ name }, idx) => {
           const isSelected = idx === selectedIdx;
           return (
             <label
+              key={idx}
               className={
-                "lg:px-5 px-1 py-1 cursor-pointer text-center rounded-l-md hover:text-white select-none " +
+                "cursor-pointer select-none rounded-l-md px-1 py-1 text-center hover:text-white lg:px-5 " +
                 (isSelected
                   ? "bg-[#950003] text-white"
                   : "text-black hover:bg-[#bb0003]")
