@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 
 function RequirementTabs({ data }) {
+  // data = {name, description}
+
   const [selectedIdx, setSelectedIdx] = useState(0);
 
   const handleClick = (idx) => {
@@ -12,7 +14,7 @@ function RequirementTabs({ data }) {
       {/* Item Names */}
       <div
         className={
-          "flex w-fit flex-col gap-1 border-r-2 border-[#950003] py-3 pr-0"
+          "flex w-fit flex-col gap-y-1 border-r-2 border-[#950003] py-3 pr-0"
         }
       >
         {data.map(({ name }, idx) => {

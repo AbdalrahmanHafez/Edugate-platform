@@ -79,6 +79,23 @@ function UniversityPage() {
     setIsDirty(true);
   };
 
+  const updateRequirement = (facultyIndex, reqIdx, feilds) => {
+    setData((prevdata) => ({
+      ...prevdata,
+      faculties: prevdata.faculties.map((faculty, i) =>
+        i === facultyIndex
+          ? {
+              ...faculty,
+              requirements: faculty.requirements.map((req, j) =>
+                j === reqIdx ? { ...req, ...feilds } : req
+              ),
+            }
+          : faculty
+      ),
+    }));
+    setIsDirty(true);
+  };
+
   const [isDirty, setIsDirty] = React.useState(false);
 
   return (
@@ -276,7 +293,24 @@ function UniversityPage() {
                 />
                 <BasicAccordion
                   name="Requirements"
-                  description=<RequirementTabs data={faculty.requirements} />
+                  description={
+                    <RequirementTabs
+                      data={faculty.requirements.map((req, reqIdx) => ({
+                        name: req.name,
+                        description: (
+                          <EditableText
+                            text={req.description}
+                            variant="inline"
+                            onBlur={(newdesc) =>
+                              updateRequirement(fidx, reqIdx, {
+                                description: newdesc,
+                              })
+                            }
+                          />
+                        ),
+                      }))}
+                    />
+                  }
                 />
               </div>
             ))}

@@ -29,12 +29,14 @@ const EditableText = ({ text, className, onBlur, variant, ...rest }) => {
       {text}
 
       {!isEditing && (
-        <button
-          className={varInline ? "" : "absolute top-1 right-1 text-xl"}
+        <FiEdit2
+          className={
+            varInline
+              ? "inline-block"
+              : "absolute top-1 right-1 inline-block text-xl"
+          }
           onClick={(e) => setIsEditing(true)}
-        >
-          <FiEdit2 />
-        </button>
+        />
       )}
     </p>
   );
