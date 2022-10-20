@@ -12,17 +12,37 @@ import EditableText from "Components/EditableText";
 import UniversityObject from "json/UniversityObject";
 import TextWithCarousel from "Components/TextWithCarousel";
 
-const Logo = () => {
-  const handleUpload = () => {};
+const Logo = ({ src, onEdit }) => {
+  const handleChange = () => {
+    // TODO: implement uploading to server
+    const fileInput = document.createElement("input");
+    fileInput.type = "file";
+    fileInput.accept = "image/*";
+    fileInput.onchange = (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        onEdit(reader.result);
+      };
+    };
+    fileInput.click();
+  };
+
   return (
     <div className="relative mx-auto flex max-h-[8rem] max-w-[8rem] items-center justify-center rounded bg-white p-2">
-      <img src="/uni_logos/guc_logo.png" alt="" />
+      <img src={src} alt="" />
 
-      <div className="absolute flex  h-full w-full items-center justify-center text-4xl  text-black opacity-0 hover:bg-red-200 hover:opacity-100">
-        <button className="flex h-full w-full items-center justify-center">
-          <FiUpload />
-        </button>
-      </div>
+      {onEdit && (
+        <div className="absolute flex  h-full w-full items-center justify-center text-4xl  text-black opacity-0 hover:bg-red-200 hover:opacity-100">
+          <button
+            className="flex h-full w-full items-center justify-center"
+            onClick={handleChange}
+          >
+            <FiUpload />
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -104,7 +124,12 @@ function UniversityPage() {
 
       <div className="m-5 flex h-fit flex-col justify-between gap-3 rounded bg-[#950003] p-4 text-white shadow lg:flex-row">
         {/* Logo */}
-        <Logo />
+        <Logo
+          src={data.logoSrc}
+          onEdit={(url) =>
+            setData((prevdata) => ({ ...prevdata, logoSrc: url }))
+          }
+        />
 
         {/* Uni Information */}
         <div className="/bg-blue-300 flex flex-1 flex-col ">
@@ -132,7 +157,6 @@ function UniversityPage() {
             />
           </div>
         </div>
-
         <div className="mx-auto flex flex-row items-start justify-start gap-3 lg:flex-col">
           {/* Rank item */}
           <div className="w-24">

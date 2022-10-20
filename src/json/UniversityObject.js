@@ -2,6 +2,7 @@
 
 const UniversityObject = {
   name: "University Name",
+  logoSrc: "/uni_logos/guc_logo.png",
   city: "University City",
   description: "University Descripioon",
   qsRank: 0,
