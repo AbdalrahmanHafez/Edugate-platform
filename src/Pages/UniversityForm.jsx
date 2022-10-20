@@ -1,6 +1,5 @@
 import ButtonsWithContent from "Components/ButtonsWithContent";
 import React, { useEffect } from "react";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { GoLocation } from "react-icons/go";
 import { BsGlobe, BsTelephone } from "react-icons/bs";
@@ -10,7 +9,6 @@ import RequirementTabs from "Components/RequirementTabs";
 import { FiUpload } from "react-icons/fi";
 import EditableText from "Components/EditableText";
 import UniversityObject from "json/UniversityObject";
-import TextWithCarousel from "Components/TextWithCarousel";
 import EditableCarousel from "Components/EditableCarousel";
 
 const Logo = ({ src, onEdit }) => {
@@ -203,6 +201,7 @@ function UniversityPage() {
           <div className="mb-5 h-fit w-full">
             <EditableCarousel
               editable
+              className="h-72 bg-contain bg-center bg-no-repeat"
               onAdd={() => {
                 setData((prevdata) => ({
                   ...prevdata,
@@ -228,7 +227,7 @@ function UniversityPage() {
                   ),
                 }));
               }}
-              imageSrcs={data.mainCarouselUrls}
+              imageUrls={data.mainCarouselUrls}
             />
           </div>
           {/* Faculties */}
@@ -372,8 +371,8 @@ function UniversityPage() {
                     />
                   ),
                   description: (
-                    <TextWithCarousel
-                      text={
+                    <div className="flex flex-1 flex-col gap-3 rounded-lg bg-[#EBEBEB] px-3 py-1 text-sm lg:flex-row">
+                      <div className="flex-1 text-justify">
                         <EditableText
                           variant="inline"
                           text={item.description}
@@ -381,9 +380,35 @@ function UniversityPage() {
                             updateAccommodation(aidx, { description: newdesc })
                           }
                         />
-                      }
-                      imageUrls={item.imageUrls}
-                    />
+                      </div>
+                      <div className="mx-auto h-60 w-full max-w-[15rem] flex-1 lg:ml-auto">
+                        {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
+                        <EditableCarousel
+                          editable
+                          className="h-44 bg-contain bg-center bg-no-repeat"
+                          imageUrls={item.imageUrls}
+                          onAdd={() =>
+                            updateAccommodation(aidx, {
+                              imageUrls: [...item.imageUrls, "/600x400.png"],
+                            })
+                          }
+                          onRemove={(index) =>
+                            updateAccommodation(aidx, {
+                              imageUrls: item.imageUrls.filter(
+                                (_, idx) => idx !== index
+                              ),
+                            })
+                          }
+                          onUpdate={(index, newurl) =>
+                            updateAccommodation(aidx, {
+                              imageUrls: item.imageUrls.map((url, idx) =>
+                                idx === index ? newurl : url
+                              ),
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
                   ),
                 }))}
               />
