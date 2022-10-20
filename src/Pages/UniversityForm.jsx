@@ -11,6 +11,7 @@ import { FiUpload } from "react-icons/fi";
 import EditableText from "Components/EditableText";
 import UniversityObject from "json/UniversityObject";
 import TextWithCarousel from "Components/TextWithCarousel";
+import EditableCarousel from "Components/EditableCarousel";
 
 const Logo = ({ src, onEdit }) => {
   const handleChange = () => {
@@ -199,32 +200,36 @@ function UniversityPage() {
         <div className="flex-1 rounded-r-lg border-2 border-l-0 border-[#950003] bg-[#ECECEC] p-7">
           {/* Media Carousel */}
 
-          <div className="mb-5 h-72 w-full">
-            <Carousel
-              showArrows
-              showStatus
-              infiniteLoop
-              autoPlay
-              stopOnHover
-              emulateTouch
-              swipeable
-              dynamicHeight
-              onChange={() => {}}
-              onClickItem={() => {}}
-              onClickThumb={() => {}}
-              showThumbs={false}
-              interval={5000}
-            >
-              {["29", "33", "48", "01"].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="h-72 bg-contain bg-center bg-no-repeat"
-                  style={{
-                    backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
-                  }}
-                />
-              ))}
-            </Carousel>
+          <div className="mb-5 h-fit w-full">
+            <EditableCarousel
+              editable
+              onAdd={() => {
+                setData((prevdata) => ({
+                  ...prevdata,
+                  mainCarouselUrls: [
+                    ...prevdata.mainCarouselUrls,
+                    "/600x400.png",
+                  ],
+                }));
+              }}
+              onRemove={(index) => {
+                setData((prevdata) => ({
+                  ...prevdata,
+                  mainCarouselUrls: prevdata.mainCarouselUrls.filter(
+                    (url, i) => i !== index
+                  ),
+                }));
+              }}
+              onUpdate={(index, newurl) => {
+                setData((prevdata) => ({
+                  ...prevdata,
+                  mainCarouselUrls: prevdata.mainCarouselUrls.map((url, i) =>
+                    i === index ? newurl : url
+                  ),
+                }));
+              }}
+              imageSrcs={data.mainCarouselUrls}
+            />
           </div>
           {/* Faculties */}
           <div className="flex w-full flex-col">

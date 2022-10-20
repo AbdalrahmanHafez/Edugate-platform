@@ -8,6 +8,13 @@ const UniversityObject = {
   qsRank: 0,
   thRank: 0,
 
+  mainCarouselUrls: [
+    "https://www.guc.edu.eg//img/content/about_guc/29.jpg",
+    "https://www.guc.edu.eg//img/content/about_guc/33.jpg",
+    "https://www.guc.edu.eg//img/content/about_guc/48.jpg",
+    "https://www.guc.edu.eg//img/content/about_guc/01.jpg",
+  ],
+
   faculties: [
     {
       name: "Faculty Name",
