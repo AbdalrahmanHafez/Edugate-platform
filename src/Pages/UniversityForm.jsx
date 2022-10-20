@@ -150,9 +150,7 @@ function UniversityPage() {
         {/* Logo */}
         <Logo
           src={data.logoSrc}
-          onEdit={(url) =>
-            setData((prevdata) => ({ ...prevdata, logoSrc: url }))
-          }
+          onEdit={(url) => updateData({ logoSrc: url })}
         />
 
         {/* Uni Information */}
@@ -228,29 +226,23 @@ function UniversityPage() {
               editable
               className="h-72 bg-contain bg-center bg-no-repeat"
               onAdd={() => {
-                setData((prevdata) => ({
-                  ...prevdata,
-                  mainCarouselUrls: [
-                    ...prevdata.mainCarouselUrls,
-                    "/600x400.png",
-                  ],
-                }));
+                updateData({
+                  mainCarouselUrls: [...data.mainCarouselUrls, "/600x400.png"],
+                });
               }}
               onRemove={(index) => {
-                setData((prevdata) => ({
-                  ...prevdata,
-                  mainCarouselUrls: prevdata.mainCarouselUrls.filter(
+                updateData({
+                  mainCarouselUrls: data.mainCarouselUrls.filter(
                     (url, i) => i !== index
                   ),
-                }));
+                });
               }}
               onUpdate={(index, newurl) => {
-                setData((prevdata) => ({
-                  ...prevdata,
-                  mainCarouselUrls: prevdata.mainCarouselUrls.map((url, i) =>
+                updateData({
+                  mainCarouselUrls: data.mainCarouselUrls.map((url, i) =>
                     i === index ? newurl : url
                   ),
-                }));
+                });
               }}
               imageUrls={data.mainCarouselUrls}
             />
@@ -654,12 +646,22 @@ function UniversityPage() {
                 className="rounded-lg"
                 width="100%"
                 height="100%"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4199.614744735209!2d31.44060538650522!3d29.986056094456515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583cb2bfafbe73%3A0x6e7220116094726d!2sGerman%20University%20in%20Cairo!5e0!3m2!1sen!2seg!4v1664302560297!5m2!1sen!2seg"
+                src={data.gmapUrl}
                 frameBorder="0"
                 scrolling="no"
                 marginHeight="0"
                 marginWidth="0"
               ></iframe>
+
+              <FiEdit2
+                onClick={() =>
+                  updateData({
+                    gmapUrl:
+                      prompt("Please enter the new gmap url", data.gmapUrl) ??
+                      data.gmapUrl,
+                  })
+                }
+              />
             </div>
           </div>
         </div>
