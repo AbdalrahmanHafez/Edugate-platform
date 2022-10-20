@@ -56,5 +56,19 @@ const UniversityObject = {
       ],
     },
   ],
+
+  contactInformation: {
+    location: "University Location",
+    website: "https://example.website.edu.eg",
+    phone: "0123456789",
+    email: "example@email.com",
+
+    socialMedia: {
+      facebook: "https://www.facebook.com/example",
+      linkedin: "https://www.linkedin.com/example",
+      instagram: "https://www.instagram.com/example",
+      youtube: "https://www.youtube.com/example",
+    },
+  },
 };
 export default UniversityObject;

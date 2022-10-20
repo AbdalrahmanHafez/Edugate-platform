@@ -6,7 +6,7 @@ import { BsGlobe, BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import BasicAccordion from "Components/BasicAccordion";
 import RequirementTabs from "Components/RequirementTabs";
-import { FiUpload } from "react-icons/fi";
+import { FiEdit2, FiUpload } from "react-icons/fi";
 import EditableText from "Components/EditableText";
 import UniversityObject from "json/UniversityObject";
 import EditableCarousel from "Components/EditableCarousel";
@@ -111,6 +111,31 @@ function UniversityPage() {
             }
           : faculty
       ),
+    }));
+    setIsDirty(true);
+  };
+
+  const updateContactInformation = (feilds) => {
+    setData((prevdata) => ({
+      ...prevdata,
+      contactInformation: {
+        ...prevdata.contactInformation,
+        ...feilds,
+      },
+    }));
+    setIsDirty(true);
+  };
+
+  const updateSocialMedia = (feilds) => {
+    setData((prevdata) => ({
+      ...prevdata,
+      contactInformation: {
+        ...prevdata.contactInformation,
+        socialMedia: {
+          ...prevdata.contactInformation.socialMedia,
+          ...feilds,
+        },
+      },
     }));
     setIsDirty(true);
   };
@@ -434,104 +459,190 @@ function UniversityPage() {
               <div className="flex items-center gap-3">
                 <GoLocation className="text-3xl" />
                 <div>
-                  <div className="ml-5">Somewhere</div>
+                  <EditableText
+                    text={data.contactInformation.location}
+                    variant="inline"
+                    onBlur={(newvalue) =>
+                      updateContactInformation({ location: newvalue })
+                    }
+                    className="ml-5"
+                  />
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <BsGlobe className="text-3xl" />
                 <div>
-                  <a
-                    href="https://guc.edu.eg/"
-                    rel="noreferrer"
-                    target="_blank"
-                    className="ml-5 hover:text-slate-300 hover:underline"
-                  >
-                    https://guc.edu.eg
-                  </a>
+                  <EditableText
+                    text={
+                      <a
+                        href="https://guc.edu.eg/"
+                        rel="noreferrer"
+                        target="_blank"
+                        className="hover:text-slate-300 hover:underline"
+                      >
+                        {data.contactInformation.website}
+                      </a>
+                    }
+                    variant="inline"
+                    onBlur={(newvalue) =>
+                      updateContactInformation({ website: newvalue })
+                    }
+                    className="ml-5"
+                  />
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <BsTelephone className="text-3xl" />
                 <div>
-                  <a
-                    href="tel:01100000"
-                    rel="noreferrer"
-                    target="_blank"
-                    className="ml-5 hover:text-slate-300 hover:underline"
-                  >
-                    01100000
-                  </a>
+                  <EditableText
+                    text={
+                      <a
+                        href={"tel:" + data.contactInformation.phone}
+                        rel="noreferrer"
+                        target="_blank"
+                        className=" hover:text-slate-300 hover:underline"
+                      >
+                        {data.contactInformation.phone}
+                      </a>
+                    }
+                    variant="inline"
+                    onBlur={(newvalue) =>
+                      updateContactInformation({ phone: newvalue })
+                    }
+                    className="ml-5"
+                  />
                 </div>
               </div>
 
               <div className="flex items-center gap-3">
                 <HiOutlineMail className="text-3xl" />
                 <div>
-                  <a
-                    href="mail:guc@guc.edu.eg"
-                    rel="noreferrer"
-                    target="_blank"
-                    className="ml-5 hover:text-slate-300 hover:underline"
-                  >
-                    guc@guc.edu.eg
-                  </a>
+                  <EditableText
+                    text={
+                      <a
+                        href={"mail:" + data.contactInformation.email}
+                        rel="noreferrer"
+                        target="_blank"
+                        className="hover:text-slate-300 hover:underline"
+                      >
+                        {data.contactInformation.email}
+                      </a>
+                    }
+                    variant="inline"
+                    onBlur={(newvalue) =>
+                      updateContactInformation({ email: newvalue })
+                    }
+                    className="ml-5"
+                  />
                 </div>
               </div>
 
               {/* Socials */}
               <div className="flex w-fit gap-3">
-                <a
-                  href="https://www.facebook.com/edugate.eg/"
-                  className="text-blue-600"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="h-7 w-auto"
-                    src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
-                    alt=""
+                <div>
+                  <a
+                    href={data.contactInformation.socialMedia.facebook}
+                    className="text-blue-600"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="h-7 w-auto"
+                      src="https://cdn-icons-png.flaticon.com/512/733/733547.png"
+                      alt=""
+                    />
+                  </a>
+                  <FiEdit2
+                    onClick={() =>
+                      updateSocialMedia({
+                        facebook:
+                          prompt(
+                            "Please enter the new facebook link",
+                            data.contactInformation.socialMedia.facebook
+                          ) ?? data.contactInformation.socialMedia.facebook,
+                      })
+                    }
                   />
-                </a>
+                </div>
 
-                <a
-                  href="https://www.linkedin.com/company/edugate-eg/"
-                  className="text-blue-400"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="h-7 w-auto"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png"
-                    alt=""
+                <div>
+                  <a
+                    href={data.contactInformation.socialMedia.linkedin}
+                    className="text-blue-400"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="h-7 w-auto"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/240px-LinkedIn_logo_initials.png"
+                      alt=""
+                    />
+                  </a>
+                  <FiEdit2
+                    onClick={() =>
+                      updateSocialMedia({
+                        linkedin:
+                          prompt(
+                            "Please enter the new linkedin link",
+                            data.contactInformation.socialMedia.linkedin
+                          ) ?? data.contactInformation.socialMedia.linkedin,
+                      })
+                    }
                   />
-                </a>
+                </div>
 
-                <a
-                  href="https://www.instagram.com/edugate.eg/"
-                  className="text-pink-500"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="h-7 w-auto"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
-                    alt=""
+                <div>
+                  <a
+                    href={data.contactInformation.socialMedia.instagram}
+                    className="text-pink-500"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="h-7 w-auto"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
+                      alt=""
+                    />
+                  </a>
+                  <FiEdit2
+                    onClick={() =>
+                      updateSocialMedia({
+                        instagram:
+                          prompt(
+                            "Please enter the new instagram link",
+                            data.contactInformation.socialMedia.instagram
+                          ) ?? data.contactInformation.socialMedia.instagram,
+                      })
+                    }
                   />
-                </a>
+                </div>
 
-                <a
-                  href="https://www.youtube.com/channel/UCLfOlhOWdyhemOWbcWn0YHw"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img
-                    className="h-7 w-auto"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
-                    alt=""
+                <div>
+                  <a
+                    href={data.contactInformation.socialMedia.youtube}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <img
+                      className="h-7 w-auto"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/2560px-YouTube_full-color_icon_%282017%29.svg.png"
+                      alt=""
+                    />
+                  </a>
+                  <FiEdit2
+                    onClick={() =>
+                      updateSocialMedia({
+                        youtube:
+                          prompt(
+                            "Please enter the new youtube link",
+                            data.contactInformation.socialMedia.youtube
+                          ) ?? data.contactInformation.socialMedia.youtube,
+                      })
+                    }
                   />
-                </a>
+                </div>
               </div>
             </div>
 
