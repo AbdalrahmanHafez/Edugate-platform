@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { GrAddCircle, GrFormAdd } from "react-icons/gr";
 import EditableDiv from "Components/EditableDiv";
-export function ButtonsWithDesc(props) {
+export function ButtonsWithDesc({ data, editable, onAdd, onDelete, onEdit }) {
   const [index, setIndex] = useState(0);
-  const { editable, onAdd, onDelete, onEdit } = props;
 
   useEffect(() => {
     // console.log("[RENDER] ButtonWithDesc", props.data.length);
@@ -16,7 +15,7 @@ export function ButtonsWithDesc(props) {
         {/* Items */}
 
         <div className="/bg-blue-200 flex flex-col gap-3">
-          {props.data.map((button, idx) => (
+          {data.map((button, idx) => (
             <div key={idx} className="flex items-center">
               <button
                 className={
@@ -56,14 +55,13 @@ export function ButtonsWithDesc(props) {
 
         {/* Description */}
         <div className="flex flex-1 rounded-lg bg-[#EBEBEB] px-3 py-1 text-justify text-sm">
-          {props.data[index].description}
+          {data[index].description}
 
           {editable && (
             <button
               className="ml-auto"
               onClick={() => {
                 onDelete(index);
-                // console.log("data", props.data.length);
                 setIndex(index ? index - 1 : 0);
               }}
             >

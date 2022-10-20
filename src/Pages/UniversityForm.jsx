@@ -12,6 +12,8 @@ import BasicAccordion from "Components/BasicAccordion";
 import RequirementTabs from "Components/RequirementTabs";
 import { FiUpload } from "react-icons/fi";
 import EditableDiv from "Components/EditableDiv";
+import UniversityObject from "json/UniversityObject";
+import TextWithCarousel from "Components/TextWithCarousel";
 
 const Logo = () => {
   const handleUpload = () => {};
@@ -33,42 +35,8 @@ function UniversityPage() {
     // console.log("[RENDER] University Page", data.faculties[0].majors.length);
   });
 
-  const [data, setData] = React.useState({
-    name: "University Name",
-    city: "University City",
-    description: "University Descripioon",
-    qsRank: 0,
-    thRank: 0,
+  const [data, setData] = React.useState(UniversityObject);
 
-    faculties: [
-      {
-        name: "Faculty Name",
-        description: "Faculty Description",
-        price: "123,123",
-        majors: [
-          {
-            name: "Major Name",
-            description: "MajoDescription",
-          },
-        ],
-        requirements: [
-          {
-            name: "IG",
-            description:
-              "8 olevels, 2 AS levels or 1 A-Levels, with minimum score of 97%",
-          },
-          {
-            name: "American",
-            description: "score of 950 in SAT",
-          },
-          {
-            name: "Thanawya",
-            description: "score joierwhripewh",
-          },
-        ],
-      },
-    ],
-  });
   const updateData = (feilds) => {
     setData((prevdata) => ({
       ...prevdata,
@@ -290,58 +258,20 @@ function UniversityPage() {
             {/* Card */}
             <div className="mb-8 rounded bg-white p-4 shadow-md">
               <ButtonsWithDesc
-                data={[
-                  {
-                    name: "Hostel",
-                    description: (
-                      <div className="flex flex-1 flex-col gap-3 rounded-lg bg-[#EBEBEB] px-3 py-1 text-sm lg:flex-row">
-                        <div className="flex-1 text-justify">
-                          GUC Hostel in Cairo - “Rehab City” In Cairo, GUC
-                          housing is located in AL Rehab compound which is 10
-                          minutes by shuttle bus from the Campus. This housing
-                          service is equipped with internet, entertainment, food
-                          court, and safety facilities which make the students
-                          in an adequate environment that support and facilitate
-                          their stay. Click here fo
-                        </div>
-                        <div className="mx-auto h-60 w-full max-w-[15rem] flex-1 lg:ml-auto">
-                          {/* <img src="https://via.placeholder.com/500x400" alt="" /> */}
-
-                          <Carousel
-                            showArrows
-                            showStatus
-                            infiniteLoop
-                            autoPlay
-                            stopOnHover
-                            emulateTouch
-                            swipeable
-                            dynamicHeight
-                            onChange={() => {}}
-                            onClickItem={() => {}}
-                            onClickThumb={() => {}}
-                            showThumbs={false}
-                            interval={5000}
-                          >
-                            {["29", "33", "48", "01"].map((item, idx) => (
-                              <div
-                                key={idx}
-                                className="h-44 bg-contain bg-center bg-no-repeat"
-                                style={{
-                                  backgroundImage: `url(https://www.guc.edu.eg//img/content/about_guc/${item}.jpg)`,
-                                }}
-                              />
-                            ))}
-                          </Carousel>
-                        </div>
-                      </div>
-                    ),
-                  },
-                ]}
+                data={data.accommodation.map((item, idx) => ({
+                  name: item.name,
+                  description: (
+                    <TextWithCarousel
+                      text={item.description}
+                      imageUrls={item.imageUrls}
+                    />
+                  ),
+                }))}
               />
             </div>
           </div>
 
-          <div>TODO: Transportation </div>
+          <div>TODO: Transportation</div>
           <div>TODO: Activites</div>
 
           {/* Contacts */}
