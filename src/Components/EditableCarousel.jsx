@@ -12,7 +12,7 @@ function EditableCarousel({
   onUpdate,
   className,
 }) {
-  const currentIndex = React.useRef(null);
+  const currentIndex = React.useRef(0);
 
   return (
     <div className="">
@@ -85,7 +85,8 @@ function EditableCarousel({
 }
 
 const styles = {
-  editButton: "rounded-full bg-white p-3 text-black",
+  editButton:
+    "rounded-full bg-white p-3 text-black hover:bg-gray-100 hover:shadow-md",
 };
 
 export default EditableCarousel;
