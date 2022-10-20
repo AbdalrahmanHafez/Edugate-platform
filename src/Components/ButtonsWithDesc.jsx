@@ -10,22 +10,6 @@ export function ButtonsWithDesc(props) {
     // console.log("[RENDER] ButtonWithDesc", props.data.length);
   });
 
-  if (index > props.data.length - 1) {
-    // TODO: REACT WTF?
-
-    /**
- * 
-   		t		remov
-	  	0		1		2
-sel		2		2		1
-len		3		2		2
- * 
- */
-
-    setIndex(props.data.length - 1);
-    return null;
-  }
-
   return (
     <>
       <div className="/bg-blue-200 mb-3 flex flex-col gap-3 lg:flex-row">
@@ -80,6 +64,7 @@ len		3		2		2
               onClick={() => {
                 onDelete(index);
                 // console.log("data", props.data.length);
+                setIndex(index ? index - 1 : 0);
               }}
             >
               <MdDelete />
