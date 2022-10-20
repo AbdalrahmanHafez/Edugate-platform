@@ -1,4 +1,4 @@
-import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
+import ButtonsWithContent from "Components/ButtonsWithContent";
 import React from "react";
 import Navbar from "Components/Navbar";
 import { AiOutlineDown } from "react-icons/ai";
@@ -197,7 +197,7 @@ function UniversityPage() {
                 </div>
 
                 <h1 className="mb-1 text-xl">Majors</h1>
-                <ButtonsWithDesc data={faculty.majors} />
+                <ButtonsWithContent data={faculty.majors} />
 
                 <BasicAccordion
                   name="Requirements"
@@ -222,7 +222,7 @@ function UniversityPage() {
 
             {/* Card */}
             <div className="mb-8 rounded bg-white p-4 shadow-md">
-              <ButtonsWithDesc
+              <ButtonsWithContent
                 data={[
                   {
                     name: "Hostel",

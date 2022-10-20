@@ -1,4 +1,4 @@
-import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
+import ButtonsWithContent from "Components/ButtonsWithContent";
 import Carousel from "Components/Carousel";
 import SearchUnis from "Components/SearchUnis";
 import React from "react";
@@ -8,7 +8,7 @@ import React from "react";
 function Test() {
   return (
     <div className="h-full w-full bg-gray-200">
-      <ButtonsWithDesc
+      <ButtonsWithContent
         data={[
           {
             name: "Computer Science and Engineering",

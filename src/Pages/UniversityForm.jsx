@@ -1,12 +1,9 @@
-import { ButtonsWithDesc } from "Components/ButtonsWithDesc";
+import ButtonsWithContent from "Components/ButtonsWithContent";
 import React, { useEffect } from "react";
-import Navbar from "Components/Navbar";
-import { AiOutlineDown } from "react-icons/ai";
-import Footer from "Components/Footer";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { GoLocation } from "react-icons/go";
-import { BsGlobe, BsTelephone, BsPhone } from "react-icons/bs";
+import { BsGlobe, BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import BasicAccordion from "Components/BasicAccordion";
 import RequirementTabs from "Components/RequirementTabs";
@@ -50,6 +47,33 @@ function UniversityPage() {
       ...prevdata,
       faculties: prevdata.faculties.map((faculty, i) =>
         i === index ? { ...faculty, ...feilds } : faculty
+      ),
+    }));
+    setIsDirty(true);
+  };
+
+  const updateMajor = (facultyIndex, majorIndex, feilds) => {
+    setData((prevdata) => ({
+      ...prevdata,
+      faculties: prevdata.faculties.map((faculty, i) =>
+        i === facultyIndex
+          ? {
+              ...faculty,
+              majors: faculty.majors.map((major, j) =>
+                j === majorIndex ? { ...major, ...feilds } : major
+              ),
+            }
+          : faculty
+      ),
+    }));
+    setIsDirty(true);
+  };
+
+  const updateAccommodation = (index, feilds) => {
+    setData((prevdata) => ({
+      ...prevdata,
+      accommodation: prevdata.accommodation.map((acc, i) =>
+        i === index ? { ...acc, ...feilds } : acc
       ),
     }));
     setIsDirty(true);
@@ -175,8 +199,8 @@ function UniversityPage() {
             />
             <h1 className="mb-3 text-2xl">Faculties</h1>
             {/* Card */}
-            {data.faculties.map((faculty, idx) => (
-              <div key={idx} className="mb-8 rounded bg-white p-4 shadow-md">
+            {data.faculties.map((faculty, fidx) => (
+              <div key={fidx} className="mb-8 rounded bg-white p-4 shadow-md">
                 <div
                   id={faculty.name}
                   style={{
@@ -189,21 +213,21 @@ function UniversityPage() {
                 <EditableText
                   className="mb-1 text-xl"
                   onBlur={(newFacultyName) => {
-                    updateFaculty(idx, { name: newFacultyName });
+                    updateFaculty(fidx, { name: newFacultyName });
                   }}
                   text={faculty.name}
                 />
                 <EditableText
                   className="ml-3 mb-1 text-base"
                   onBlur={(newFacultyDescription) => {
-                    updateFaculty(idx, { description: newFacultyDescription });
+                    updateFaculty(fidx, { description: newFacultyDescription });
                   }}
                   text={faculty.description}
                 />
                 <div className="ml-auto flex w-fit gap-2 rounded-full bg-[#950003] px-3 py-1 text-white">
                   <EditableText
                     onBlur={(newprice) => {
-                      updateFaculty(idx, { price: newprice });
+                      updateFaculty(fidx, { price: newprice });
                     }}
                     text={faculty.price}
                     variant="inline"
@@ -212,10 +236,10 @@ function UniversityPage() {
                 </div>
 
                 <h1 className="mb-1 text-xl">Majors</h1>
-                <ButtonsWithDesc
+                <ButtonsWithContent
                   editable={true}
                   onAdd={() => {
-                    updateFaculty(idx, {
+                    updateFaculty(fidx, {
                       majors: [
                         ...faculty.majors,
                         { name: "New Major", description: "New Description" },
@@ -223,13 +247,32 @@ function UniversityPage() {
                     });
                   }}
                   onDelete={(majorIdx) => {
-                    updateFaculty(idx, {
+                    updateFaculty(fidx, {
                       majors: faculty.majors.filter(
                         (major, idx) => idx !== majorIdx
                       ),
                     });
                   }}
-                  data={faculty.majors}
+                  data={faculty.majors.map((major, midx) => ({
+                    name: (
+                      <EditableText
+                        variant="inline"
+                        text={major.name}
+                        onBlur={(newname) =>
+                          updateMajor(fidx, midx, { name: newname })
+                        }
+                      />
+                    ),
+                    description: (
+                      <EditableText
+                        text={major.description}
+                        variant="inline"
+                        onBlur={(newdesc) =>
+                          updateMajor(fidx, midx, { description: newdesc })
+                        }
+                      />
+                    ),
+                  }))}
                 />
                 <BasicAccordion
                   name="Requirements"
@@ -254,12 +297,28 @@ function UniversityPage() {
 
             {/* Card */}
             <div className="mb-8 rounded bg-white p-4 shadow-md">
-              <ButtonsWithDesc
-                data={data.accommodation.map((item, idx) => ({
-                  name: item.name,
+              <ButtonsWithContent
+                data={data.accommodation.map((item, aidx) => ({
+                  name: (
+                    <EditableText
+                      variant="inline"
+                      text={item.name}
+                      onBlur={(newname) =>
+                        updateAccommodation(aidx, { name: newname })
+                      }
+                    />
+                  ),
                   description: (
                     <TextWithCarousel
-                      text={item.description}
+                      text={
+                        <EditableText
+                          variant="inline"
+                          text={item.description}
+                          onBlur={(newdesc) =>
+                            updateAccommodation(aidx, { description: newdesc })
+                          }
+                        />
+                      }
                       imageUrls={item.imageUrls}
                     />
                   ),

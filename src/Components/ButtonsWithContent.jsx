@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { GrAddCircle, GrFormAdd } from "react-icons/gr";
 import EditableText from "Components/EditableText";
-export function ButtonsWithDesc({ data, editable, onAdd, onDelete, onEdit }) {
+
+export default function ButtonsWithContent({
+  data,
+  editable = false,
+  onAdd,
+  onDelete,
+}) {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     // console.log("[RENDER] ButtonWithDesc", data.length);
   });
 
-  // Nothing is rendered if no data
   if (data.length === 0)
     return (
       <div className="mb-3 flex">
@@ -36,8 +41,9 @@ export function ButtonsWithDesc({ data, editable, onAdd, onDelete, onEdit }) {
                 setIndex(idx);
               }}
             >
-              <EditableText variant="inline" text={button.name} />
+              {button.name}
             </button>
+
             <div
               className="hidden lg:block"
               style={{
