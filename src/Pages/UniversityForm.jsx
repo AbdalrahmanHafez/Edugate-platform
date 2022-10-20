@@ -11,7 +11,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import BasicAccordion from "Components/BasicAccordion";
 import RequirementTabs from "Components/RequirementTabs";
 import { FiUpload } from "react-icons/fi";
-import EditableDiv from "Components/EditableDiv";
+import EditableText from "Components/EditableText";
 import UniversityObject from "json/UniversityObject";
 import TextWithCarousel from "Components/TextWithCarousel";
 
@@ -67,39 +67,40 @@ function UniversityPage() {
 
         {/* Uni Information */}
         <div className="/bg-blue-300 flex flex-1 flex-col ">
-          <EditableDiv
+          <EditableText
             onBlur={(newname) => updateData({ name: newname })}
             className="mx-auto text-xl lg:mx-0"
-          >
-            {data.name}
-          </EditableDiv>
+            text={data.name}
+          />
+
           {/* <div className="mx-auto text-xl lg:mx-0">{data.name}</div> */}
 
           <div className="ml-5 mt-3 flex flex-col gap-3">
-            <EditableDiv
-              className="mx-auto lg:mx-0"
-              onBlur={(newcity) => updateData({ city: newcity })}
-            >
-              City: {data.city}
-            </EditableDiv>
-            <EditableDiv
+            <div className="flex gap-2">
+              City:
+              <EditableText
+                className="mx-auto flex-1 lg:mx-0"
+                onBlur={(newcity) => updateData({ city: newcity })}
+                text={data.city}
+              />
+            </div>
+            <EditableText
               onBlur={(newdes) => updateData({ description: newdes })}
               className="text-justify text-[#EDEDED]"
-            >
-              {data.description}
-            </EditableDiv>
+              text={data.description}
+            />
           </div>
         </div>
 
         <div className="mx-auto flex flex-row items-start justify-start gap-3 lg:flex-col">
           {/* Rank item */}
           <div className="w-24">
-            <EditableDiv
+            <EditableText
               onBlur={(newrank) => updateData({ qsRank: newrank })}
               className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]"
-            >
-              {data.qsRank}
-            </EditableDiv>
+              text={data.qsRank}
+            />
+
             <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center">
               QS
             </div>
@@ -107,12 +108,12 @@ function UniversityPage() {
 
           {/* Rank item */}
           <div className="w-24">
-            <EditableDiv
+            <EditableText
               onBlur={(newrank) => updateData({ thRank: newrank })}
               className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]"
-            >
-              {data.thRank}
-            </EditableDiv>
+              text={data.thRank}
+            />
+
             <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center text-xs">
               Times Higher
             </div>
@@ -185,35 +186,32 @@ function UniversityPage() {
                     visibility: "hidden",
                   }}
                 />
-                <EditableDiv
+                <EditableText
                   className="mb-1 text-xl"
                   onBlur={(newFacultyName) => {
                     updateFaculty(idx, { name: newFacultyName });
                   }}
-                >
-                  {faculty.name}
-                </EditableDiv>
-
-                <EditableDiv
+                  text={faculty.name}
+                />
+                <EditableText
                   className="ml-3 mb-1 text-base"
                   onBlur={(newFacultyDescription) => {
                     updateFaculty(idx, { description: newFacultyDescription });
                   }}
-                >
-                  {faculty.description}
-                </EditableDiv>
-
-                <EditableDiv
-                  onBlur={(newprice) => {
-                    updateFaculty(idx, { price: newprice });
-                  }}
-                  className="ml-auto w-fit rounded-full bg-[#950003] px-3 py-1 text-white"
-                >
-                  {faculty.price} EGP / year
-                </EditableDiv>
+                  text={faculty.description}
+                />
+                <div className="ml-auto flex w-fit gap-2 rounded-full bg-[#950003] px-3 py-1 text-white">
+                  <EditableText
+                    onBlur={(newprice) => {
+                      updateFaculty(idx, { price: newprice });
+                    }}
+                    text={faculty.price}
+                    variant="inline"
+                  />
+                  EGP / year
+                </div>
 
                 <h1 className="mb-1 text-xl">Majors</h1>
-
                 <ButtonsWithDesc
                   editable={true}
                   onAdd={() => {
@@ -233,7 +231,6 @@ function UniversityPage() {
                   }}
                   data={faculty.majors}
                 />
-
                 <BasicAccordion
                   name="Requirements"
                   description=<RequirementTabs data={faculty.requirements} />

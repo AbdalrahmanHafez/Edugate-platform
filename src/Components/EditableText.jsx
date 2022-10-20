@@ -2,9 +2,9 @@ import React from "react";
 import { FiEdit2 } from "react-icons/fi";
 
 // By default the edit icon is positioned top right absolutly
-// if variant is inline, the edit icon is next to the children
+// if variant is "inline", the edit icon is next to the children
 
-const EditableDiv = ({ children, className, onBlur, variant, ...rest }) => {
+const EditableText = ({ text, className, onBlur, variant, ...rest }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const refDiv = React.useRef(null);
 
@@ -15,7 +15,7 @@ const EditableDiv = ({ children, className, onBlur, variant, ...rest }) => {
   }, [refDiv, isEditing]);
 
   return (
-    <div
+    <p
       contentEditable={isEditing}
       className={className + " relative"}
       onBlur={() => {
@@ -26,7 +26,8 @@ const EditableDiv = ({ children, className, onBlur, variant, ...rest }) => {
       suppressContentEditableWarning={true}
       {...rest}
     >
-      {children}
+      {text}
+
       {!isEditing && (
         <button
           className={varInline ? "" : "absolute top-1 right-1 text-xl"}
@@ -35,8 +36,8 @@ const EditableDiv = ({ children, className, onBlur, variant, ...rest }) => {
           <FiEdit2 />
         </button>
       )}
-    </div>
+    </p>
   );
 };
 
-export default EditableDiv;
+export default EditableText;
