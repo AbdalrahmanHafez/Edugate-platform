@@ -159,6 +159,7 @@ function ManageUniversity() {
             onBlur={(newname) => updateData({ name: newname })}
             className="mx-auto text-xl lg:mx-0"
             text={data.name}
+            validators="required|min:1|alpha_num_space"
           />
 
           {/* <div className="mx-auto text-xl lg:mx-0">{data.name}</div> */}
@@ -276,7 +277,7 @@ function ManageUniversity() {
                   });
                 }}
               >
-                New Faculty
+                Add Faculty
               </button>
             </div>
 
