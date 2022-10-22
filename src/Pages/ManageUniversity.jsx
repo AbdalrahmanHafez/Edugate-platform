@@ -46,7 +46,7 @@ const Logo = ({ src, onEdit }) => {
   );
 };
 
-function UniversityPage() {
+function ManageUniversity() {
   useEffect(() => {
     // console.log("[RENDER] University Page", data.faculties[0].majors.length);
   });
@@ -757,4 +757,4 @@ function UniversityPage() {
   );
 }
 
-export default UniversityPage;
+export default ManageUniversity;
