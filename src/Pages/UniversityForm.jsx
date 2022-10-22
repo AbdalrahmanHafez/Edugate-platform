@@ -259,7 +259,27 @@ function UniversityPage() {
                 visibility: "hidden",
               }}
             />
-            <h1 className="mb-3 text-2xl">Faculties</h1>
+
+            <div className="flex">
+              <h1 className="mb-3 text-2xl">Faculties</h1>
+              <button
+                className="ml-auto self-start rounded bg-white py-1 px-2 hover:bg-gray-100 hover:shadow"
+                onClick={() => {
+                  setData((prevdata) => {
+                    return {
+                      ...prevdata,
+                      faculties: [
+                        ...prevdata.faculties,
+                        { ...UniversityObject.faculties[0] },
+                      ],
+                    };
+                  });
+                }}
+              >
+                New Faculty
+              </button>
+            </div>
+
             {/* Card */}
             {data.faculties.map((faculty, fidx) => (
               <div key={fidx} className="mb-8 rounded bg-white p-4 shadow-md">
