@@ -23,6 +23,84 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link } from "react-router-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
+import axios from "axios";
+
+const getCountries = async () => {
+  // return axios({
+  //   method: "GET",
+  //   withCredentials: false,
+  //   url: "https://api.edugate-eg.com/api/EduGate/Countries",
+  // }).then((res) => res.data)
+  // fetch("https://api.edugate-eg.com/api/EduGate/Countries").then((res) =>
+  //   res.json()
+  // )
+
+  return new Promise((resolve, reject) => {
+    resolve([
+      {
+        value: 1,
+        name: "Egypt",
+      },
+      {
+        value: 2,
+        name: "Afghanistan",
+      },
+      {
+        value: 3,
+        name: "Albania",
+      },
+      {
+        value: 4,
+        name: "Algeria",
+      },
+    ]);
+  });
+};
+
+const getCities = async (param) => {
+  // console.log("[OARAM is]", param.queryKey);
+  const value = param.queryKey[1];
+  if (value === 1) {
+    return [
+      {
+        value: 1,
+        name: "Cairo",
+      },
+      {
+        value: 2,
+        name: "Alexandria",
+      },
+      {
+        value: 3,
+        name: "Giza",
+      },
+    ];
+  }
+
+  if (value === 2) {
+    return [
+      {
+        value: 86,
+        name: "Kabul",
+      },
+      {
+        value: 87,
+        name: "Kandahar",
+      },
+      {
+        value: 88,
+        name: "Herat",
+      },
+    ];
+  }
+
+  return [];
+};
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -104,7 +182,23 @@ const TextFieldConfirmPass = ({ password, ...props }) => {
 };
 
 function SignupForm({ activeStep, data, updateData }) {
-  const refconfirmpassword = useRef(null);
+  const {
+    // isLoading,
+    error,
+    data: countries,
+    isFetching,
+  } = useQuery(["countries"], getCountries);
+
+  const { isLoading, data: cities } = useQuery(
+    ["cities", data.country],
+    getCities
+  );
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+
+  console.log("CITIES is ", cities);
 
   return [
     // STEP 1
@@ -152,9 +246,14 @@ function SignupForm({ activeStep, data, updateData }) {
             {/* <MenuItem value="">
               <em>None</em>
             </MenuItem> */}
-            <MenuItem value={10}>Cairo</MenuItem>
+            {/* <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
+            <MenuItem value={30}>Test 2</MenuItem> */}
+            {countries.map((country, index) => (
+              <MenuItem value={country.value} key={index}>
+                {country.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -165,12 +264,15 @@ function SignupForm({ activeStep, data, updateData }) {
             labelId="city"
             id="city"
             label="City"
-            value={data.city}
+            // value={data.city}
             onChange={(e) => updateData({ city: e.target.value })}
           >
-            <MenuItem value={10}>Cairo</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
+            {/* <MenuItem value={10}>Cairo</MenuItem> */}
+            {cities.map((city, index) => (
+              <MenuItem value={city.value} key={index}>
+                {city.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
 
@@ -394,7 +496,7 @@ function Signup() {
     firstname: "a",
     middlename: "hkhaled",
     lastname: "joec",
-    country: 20,
+    country: 1,
     city: 20,
     district: 20,
     phonenumber: "01554342754",
@@ -411,6 +513,7 @@ function Signup() {
     email: "ahmed@khalid.com",
     password: "mohamed",
   });
+
   const updateData = (feilds) => {
     console.log("data is ", formdata);
     setformdata((prevdata) => ({

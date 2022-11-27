@@ -314,6 +314,7 @@ function ManageUniversity() {
                     }}
                     text={faculty.price}
                     variant="inline"
+                    validators="numeric|min:1,num"
                   />
                   EGP / year
                 </div>

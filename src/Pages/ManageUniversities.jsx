@@ -24,6 +24,7 @@ function ManageUniversities() {
           "Tanta University",
         ].map((item, index) => (
           <Link
+            key={index}
             to="/ManageUniversities/UniversityId"
             className="rounded bg-[#950003] p-3 text-white hover:bg-[#aa0003]"
           >
