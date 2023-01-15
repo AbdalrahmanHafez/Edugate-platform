@@ -2,101 +2,18 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 
-export default function PositionedSnackbar() {
-  const [state, setState] = React.useState({
-    open: false,
-    vertical: "top",
-    horizontal: "center",
-  });
-
-  const { vertical, horizontal, open } = state;
-
-  const handleClick = (newState) => () => {
-    setState({ open: true, ...newState });
+export default function Test() {
+  const btnClick = () => {
+    fetch("https://api.edugate-eg.com/api/EduGate/Countries")
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   };
-
-  const handleClose = () => {
-    setState({ ...state, open: false });
-  };
-
-  const buttons = (
-    <React.Fragment>
-      <Button
-        onClick={handleClick({
-          vertical: "top",
-          horizontal: "center",
-        })}
-      >
-        Top-Center
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: "top",
-          horizontal: "right",
-        })}
-      >
-        Top-Right
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: "bottom",
-          horizontal: "right",
-        })}
-      >
-        Bottom-Right
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: "bottom",
-          horizontal: "center",
-        })}
-      >
-        Bottom-Center
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: "bottom",
-          horizontal: "left",
-        })}
-      >
-        Bottom-Left
-      </Button>
-      <Button
-        onClick={handleClick({
-          vertical: "top",
-          horizontal: "left",
-        })}
-      >
-        Top-Left
-      </Button>
-    </React.Fragment>
-  );
-
   return (
-    <div>
-      {buttons}
-      <button
-        onClick={() => {
-          console.log("click");
-          // handleClick({
-          //   vertical: "top",
-          //   horizontal: "center",
-          // });
-
-          setState({ open: true, vertical: "top", horizontal: "center" });
-
-          // return;
-        }}
-      >
-        CLICKME
+    <>
+      <h1>https://api.edugate-eg.com/api/EduGate/Countries</h1>
+      <button className="rounded bg-blue-700 p-2 text-white" onClick={btnClick}>
+        GET
       </button>
-      <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        open={open}
-        onClose={handleClose}
-        message="I love snacks"
-        key={vertical + horizontal}
-      />
-    </div>
+    </>
   );
 }
