@@ -16,7 +16,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import {
   getCountries,
@@ -25,6 +25,7 @@ import {
   getHscertificates,
   getMajors,
   getDegrees,
+  postRegisterStudent,
 } from "./apis/Signup.js";
 import { toast } from "react-toastify";
 
@@ -469,6 +470,7 @@ function SignupForm({ activeStep, data, updateData }) {
 }
 
 function Signup() {
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const handleStepNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -476,16 +478,16 @@ function Signup() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
 
   const [formdata, setformdata] = useState({
-    firstname: "a",
-    middlename: "hkhaled",
-    lastname: "joec",
+    firstname: undefined,
+    middlename: undefined,
+    lastname: undefined,
     country: undefined,
     city: undefined,
     district: undefined,
-    phonenumber: "01554342754",
+    phonenumber: undefined,
     nationality: undefined,
 
-    dateofbirth: "1/1/2001",
+    dateofbirth: undefined,
     gender: "male",
     studenttype: "schoolstudent",
     grade: undefined,
@@ -493,8 +495,8 @@ function Signup() {
     major: undefined,
     degree: undefined,
 
-    email: "ahmed@khalid.com",
-    password: "mohamed",
+    email: undefined,
+    password: undefined,
   });
 
   const updateData = (feilds) => {
@@ -507,6 +509,16 @@ function Signup() {
 
   const sendFormData = () => {
     console.log("TODO:Sending the data");
+    console.log("FORM SUBMIT", formdata);
+    postRegisterStudent()
+      .then((res) => {
+        console.log(res);
+        toast.success("Successfully registered");
+        navigate("/login");
+      })
+      .catch((err) => {
+        toast.error("Error while sending data");
+      });
   };
 
   const formonSubmit = (e) => {
@@ -523,6 +535,7 @@ function Signup() {
   //   TODO: signup styling jumps around
   return (
     <div className="flex flex-col-reverse md:h-full md:flex-row">
+      <button onClick={sendFormData}>test</button>
       <div
         className="flex flex-1 flex-col"
         style={{
