@@ -26,50 +26,50 @@ const EditableText = ({
 
   const [errorPopup, setErrorPopup] = React.useState(false);
   const [errormsg, setErrormsg] = React.useState("");
-  
+
   React.useEffect(() => {
-	  console.log(`EDT: ${text} rendered`)
-  })
-  
+    console.log(`EDT: ${text} rendered`);
+  });
 
   return (
     <>
-      <p
-        contentEditable={isEditing}
-        className={className + " relative"}
-        onBlur={() => {
-          const value = refDiv.current.innerText;
+      <div className={className + " relative"}>
+        <p
+          contentEditable={isEditing}
+          //   className={}
+          onBlur={() => {
+            const value = refDiv.current.innerText;
 
-          // console.log("VALUE IS ", value);
-          // const validator = new SimpleReactValidator();
-          refValidator.current.message("text", value, validators);
-          // check if value contains a new line
-          if (value.includes("\n")) {
-            // alert("Please don't use new lines");
-            refDiv.current.innerText = text;
-            console.log("Please don't use new lines");
-            setErrormsg("Please don't use new lines");
-            setErrorPopup(true);
-          }
+            // console.log("VALUE IS ", value);
+            // const validator = new SimpleReactValidator();
+            refValidator.current.message("text", value, validators);
+            // check if value contains a new line
+            if (value.includes("\n")) {
+              // alert("Please don't use new lines");
+              refDiv.current.innerText = text;
+              console.log("Please don't use new lines");
+              setErrormsg("Please don't use new lines");
+              setErrorPopup(true);
+            }
 
-          if (!refValidator.current.check(value, validators)) {
-            refDiv.current.innerText = text;
-            const msg = refValidator.current.getErrorMessages().text;
-            console.log(msg);
-            setErrormsg(msg);
-            setErrorPopup(true);
-            // console.log(validator.showMessageFor("text"));
-          }
+            if (!refValidator.current.check(value, validators)) {
+              refDiv.current.innerText = text;
+              const msg = refValidator.current.getErrorMessages().text;
+              console.log(msg);
+              setErrormsg(msg);
+              setErrorPopup(true);
+              // console.log(validator.showMessageFor("text"));
+            }
 
-          setIsEditing(false);
-          onBlur?.(refDiv.current.innerText);
-        }}
-        ref={refDiv}
-        suppressContentEditableWarning={true}
-        {...rest}
-      >
-        {text}
-
+            setIsEditing(false);
+            onBlur?.(refDiv.current.innerText);
+          }}
+          ref={refDiv}
+          suppressContentEditableWarning={true}
+          {...rest}
+        >
+          {text}
+        </p>
         {!isEditing && (
           <FiEdit2
             className={
@@ -80,7 +80,7 @@ const EditableText = ({
             onClick={(e) => setIsEditing(true)}
           />
         )}
-      </p>
+      </div>
 
       <Snackbar
         ContentProps={{
