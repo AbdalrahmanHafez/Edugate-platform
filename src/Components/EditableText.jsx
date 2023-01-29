@@ -26,6 +26,11 @@ const EditableText = ({
 
   const [errorPopup, setErrorPopup] = React.useState(false);
   const [errormsg, setErrormsg] = React.useState("");
+  
+  React.useEffect(() => {
+	  console.log(`EDT: ${text} rendered`)
+  })
+  
 
   return (
     <>
@@ -41,14 +46,14 @@ const EditableText = ({
           // check if value contains a new line
           if (value.includes("\n")) {
             // alert("Please don't use new lines");
-            //refDiv.current.innerText = text;
+            refDiv.current.innerText = text;
             console.log("Please don't use new lines");
             setErrormsg("Please don't use new lines");
             setErrorPopup(true);
           }
 
           if (!refValidator.current.check(value, validators)) {
-            //refDiv.current.innerText = text;
+            refDiv.current.innerText = text;
             const msg = refValidator.current.getErrorMessages().text;
             console.log(msg);
             setErrormsg(msg);

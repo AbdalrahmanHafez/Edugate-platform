@@ -26,81 +26,11 @@ import { Link } from "react-router-dom";
 import {
   QueryClient,
   QueryClientProvider,
+  useQueryClient,
   useQuery,
 } from "@tanstack/react-query";
 import axios from "axios";
-
-const getCountries = async () => {
-  // return axios({
-  //   method: "GET",
-  //   withCredentials: false,
-  //   url: "https://api.edugate-eg.com/api/EduGate/Countries",
-  // }).then((res) => res.data)
-  // fetch("https://api.edugate-eg.com/api/EduGate/Countries").then((res) =>
-  //   res.json()
-  // )
-
-  return new Promise((resolve, reject) => {
-    resolve([
-      {
-        value: 1,
-        name: "Egypt",
-      },
-      {
-        value: 2,
-        name: "Afghanistan",
-      },
-      {
-        value: 3,
-        name: "Albania",
-      },
-      {
-        value: 4,
-        name: "Algeria",
-      },
-    ]);
-  });
-};
-
-const getCities = async (param) => {
-  // console.log("[OARAM is]", param.queryKey);
-  const value = param.queryKey[1];
-  if (value === 1) {
-    return [
-      {
-        value: 1,
-        name: "Cairo",
-      },
-      {
-        value: 2,
-        name: "Alexandria",
-      },
-      {
-        value: 3,
-        name: "Giza",
-      },
-    ];
-  }
-
-  if (value === 2) {
-    return [
-      {
-        value: 86,
-        name: "Kabul",
-      },
-      {
-        value: 87,
-        name: "Kandahar",
-      },
-      {
-        value: 88,
-        name: "Herat",
-      },
-    ];
-  }
-
-  return [];
-};
+import { getCountries, getCities, getDistricts } from "./apis/Signup.js";
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -182,24 +112,28 @@ const TextFieldConfirmPass = ({ password, ...props }) => {
 };
 
 function SignupForm({ activeStep, data, updateData }) {
-  const {
-    // isLoading,
-    error,
-    data: countries,
-    isFetching,
-  } = useQuery(["countries"], getCountries);
+  //  TODO: Error handling
+  const { data: countries } = useQuery(["countries"], getCountries, {
+    staleTime: Infinity,
+  });
 
-  const { isLoading, data: cities } = useQuery(
+  const { data: cities } = useQuery(
     ["cities", data.country],
-    getCities
+    () => getCities(data.country),
+    {
+      enabled: !!data.country && !!countries?.length,
+      staleTime: Infinity,
+    }
   );
 
-  if (isLoading) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-
-  console.log("CITIES is ", cities);
-
+  const { data: districts } = useQuery(
+    ["districts", data.city],
+    () => getDistricts(data.city),
+    {
+      enabled: !!data.city && !!cities?.length,
+      staleTime: Infinity,
+    }
+  );
   return [
     // STEP 1
     <div className="flex flex-col gap-5 ">
@@ -239,7 +173,8 @@ function SignupForm({ activeStep, data, updateData }) {
             required
             labelId="country"
             id="country"
-            value={data.country}
+            value={data.country || ""}
+            // empty string means no value selected
             onChange={(e) => updateData({ country: e.target.value })}
             label="Country"
           >
@@ -249,7 +184,7 @@ function SignupForm({ activeStep, data, updateData }) {
             {/* <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem> */}
-            {countries.map((country, index) => (
+            {countries?.map((country, index) => (
               <MenuItem value={country.value} key={index}>
                 {country.name}
               </MenuItem>
@@ -264,11 +199,11 @@ function SignupForm({ activeStep, data, updateData }) {
             labelId="city"
             id="city"
             label="City"
-            // value={data.city}
+            value={data.city || ""}
             onChange={(e) => updateData({ city: e.target.value })}
           >
             {/* <MenuItem value={10}>Cairo</MenuItem> */}
-            {cities.map((city, index) => (
+            {cities?.map((city, index) => (
               <MenuItem value={city.value} key={index}>
                 {city.name}
               </MenuItem>
@@ -283,12 +218,14 @@ function SignupForm({ activeStep, data, updateData }) {
             labelId="district"
             id="district"
             label="district"
-            value={data.district}
+            value={data.district || ""}
             onChange={(e) => updateData({ district: e.target.value })}
           >
-            <MenuItem value={10}>Cairo</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
+            {districts?.map((district, index) => (
+              <MenuItem value={district.value} key={index}>
+                {district.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
@@ -496,9 +433,9 @@ function Signup() {
     firstname: "a",
     middlename: "hkhaled",
     lastname: "joec",
-    country: 1,
-    city: 20,
-    district: 20,
+    // country: 0,
+    // city: 0,
+    // district: 0,
     phonenumber: "01554342754",
     nationality: 20,
 
