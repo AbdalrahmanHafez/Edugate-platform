@@ -7,29 +7,17 @@ import FormHelperText from "@mui/material/FormHelperText";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import Checkbox from "@mui/material/Checkbox";
+import Select from "@mui/material/Select";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import {
-  createTheme,
-  Styled,
-  Theme,
-  ThemeProvider,
-} from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link } from "react-router-dom";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQueryClient,
-  useQuery,
-} from "@tanstack/react-query";
-import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 import {
   getCountries,
   getCities,
@@ -38,6 +26,7 @@ import {
   getMajors,
   getDegrees,
 } from "./apis/Signup.js";
+import { toast } from "react-toastify";
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -119,26 +108,22 @@ const TextFieldConfirmPass = ({ password, ...props }) => {
 };
 
 function SignupForm({ activeStep, data, updateData }) {
-  //  TODO: Error handling
-
-  const queryLocationOps = {
+  const queryOps = {
     staleTime: Infinity,
     placeholderData: [],
     // keepPreviousData: true,
+    retry: 1,
+    onError: (error) => toast.error(`Something went wrong: ${error.message}`),
   };
 
-  const { data: countries } = useQuery(
-    ["countries"],
-    getCountries,
-    queryLocationOps
-  );
+  const { data: countries } = useQuery(["countries"], getCountries, queryOps);
 
   const { data: cities } = useQuery(
     ["cities", data.country],
     () => getCities(data.country),
     {
       enabled: !!data.country,
-      ...queryLocationOps,
+      ...queryOps,
     }
   );
 
@@ -147,24 +132,24 @@ function SignupForm({ activeStep, data, updateData }) {
     () => getDistricts(data.city),
     {
       enabled: !!data.city,
-      ...queryLocationOps,
+      ...queryOps,
     }
   );
 
   const { data: hscertificates } = useQuery(
     ["hscertificates"],
     getHscertificates,
-    queryLocationOps
+    queryOps
   );
 
-  const { data: majors } = useQuery(["majors"], getMajors, queryLocationOps);
+  const { data: majors } = useQuery(["majors"], getMajors, queryOps);
 
   const { data: degrees } = useQuery(
     ["degrees", data.major],
     () => getDegrees(data.major),
     {
       enabled: !!data.major,
-      ...queryLocationOps,
+      ...queryOps,
     }
   );
 
@@ -226,7 +211,7 @@ function SignupForm({ activeStep, data, updateData }) {
             {/* <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem> */}
-            {countries.map((country, index) => (
+            {countries?.map((country, index) => (
               <MenuItem value={country.value} key={index}>
                 {country.name}
               </MenuItem>
@@ -248,7 +233,7 @@ function SignupForm({ activeStep, data, updateData }) {
               }
             >
               {/* <MenuItem value={10}>Cairo</MenuItem> */}
-              {cities.map((city, index) => (
+              {cities?.map((city, index) => (
                 <MenuItem value={city.value} key={index}>
                   {city.name}
                 </MenuItem>
@@ -268,7 +253,7 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.district || ""}
               onChange={(e) => updateData({ district: e.target.value })}
             >
-              {districts.map((district, index) => (
+              {districts?.map((district, index) => (
                 <MenuItem value={district.value} key={index}>
                   {district.name}
                 </MenuItem>
@@ -299,7 +284,7 @@ function SignupForm({ activeStep, data, updateData }) {
             value={data.nationality || ""}
             onChange={(e) => updateData({ nationality: e.target.value })}
           >
-            {countries.map((country, index) => (
+            {countries?.map((country, index) => (
               <MenuItem value={country.value} key={index}>
                 {country.name}
               </MenuItem>
@@ -392,7 +377,7 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.certificatetype || ""}
               onChange={(e) => updateData({ certificatetype: e.target.value })}
             >
-              {hscertificates.map((cert, index) => (
+              {hscertificates?.map((cert, index) => (
                 <MenuItem value={cert.value} key={index}>
                   {cert.name}
                 </MenuItem>
@@ -416,7 +401,7 @@ function SignupForm({ activeStep, data, updateData }) {
                 updateData({ major: e.target.value, degree: "" })
               }
             >
-              {majors.map((major, index) => (
+              {majors?.map((major, index) => (
                 <MenuItem value={major.value} key={index}>
                   {major.name}
                 </MenuItem>
@@ -435,7 +420,7 @@ function SignupForm({ activeStep, data, updateData }) {
                 value={data.degree || ""}
                 onChange={(e) => updateData({ degree: e.target.value })}
               >
-                {degrees.map((degree, index) => (
+                {degrees?.map((degree, index) => (
                   <MenuItem value={degree.value} key={index}>
                     {degree.name}
                   </MenuItem>
@@ -494,19 +479,19 @@ function Signup() {
     firstname: "a",
     middlename: "hkhaled",
     lastname: "joec",
-    // country: 0,
-    // city: 0,
-    // district: 0,
+    country: undefined,
+    city: undefined,
+    district: undefined,
     phonenumber: "01554342754",
-    // nationality: 20,
+    nationality: undefined,
 
     dateofbirth: "1/1/2001",
     gender: "male",
     studenttype: "schoolstudent",
-    // grade: 20,
-    // certificatetype: 20,
-    // major: 20,
-    // degree: 20,
+    grade: undefined,
+    certificatetype: undefined,
+    major: undefined,
+    degree: undefined,
 
     email: "ahmed@khalid.com",
     password: "mohamed",
@@ -535,6 +520,7 @@ function Signup() {
     }
   };
 
+  //   TODO: signup styling jumps around
   return (
     <div className="flex flex-col-reverse md:h-full md:flex-row">
       <div
@@ -569,7 +555,7 @@ function Signup() {
           <img src="/Edugate-logo-min.png" alt="Edugate Logo" />
         </a>
 
-        <div className="flex flex-1 flex-col items-center justify-center">
+        <div className="flex flex-1 items-center justify-center">
           <form onSubmit={formonSubmit}>
             <div className="flex min-h-[35rem] flex-col items-center justify-between">
               <h1 className={styles.h1 + " mt-10 text-[#950003] md:mt-0"}>

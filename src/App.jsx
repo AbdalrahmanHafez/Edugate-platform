@@ -17,6 +17,8 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -29,6 +31,8 @@ const NavFooterLayout = () => (
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
+      <ToastContainer />
+
       <BrowserRouter>
         <Routes>
           <Route path="test" element={<Test />} />
