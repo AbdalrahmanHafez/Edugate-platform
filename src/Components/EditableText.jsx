@@ -41,20 +41,19 @@ const EditableText = ({
           // check if value contains a new line
           if (value.includes("\n")) {
             // alert("Please don't use new lines");
+            //refDiv.current.innerText = text;
             console.log("Please don't use new lines");
             setErrormsg("Please don't use new lines");
             setErrorPopup(true);
-
-            return;
           }
 
           if (!refValidator.current.check(value, validators)) {
+            //refDiv.current.innerText = text;
             const msg = refValidator.current.getErrorMessages().text;
             console.log(msg);
             setErrormsg(msg);
             setErrorPopup(true);
             // console.log(validator.showMessageFor("text"));
-            return; //early exit
           }
 
           setIsEditing(false);
@@ -89,6 +88,7 @@ const EditableText = ({
         open={errorPopup}
         onClose={() => setErrorPopup(false)}
         message={errormsg}
+        ClickAwayListenerProps={{ onClickAway: () => null }}
         key={{ vertical: "top" } + { horizontal: "center" }}
       />
     </>

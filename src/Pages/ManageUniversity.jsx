@@ -171,12 +171,14 @@ function ManageUniversity() {
                 className="mx-auto flex-1 lg:mx-0"
                 onBlur={(newcity) => updateData({ city: newcity })}
                 text={data.city}
+                validators="required|min:1|alpha_num_space"
               />
             </div>
             <EditableText
               onBlur={(newdes) => updateData({ description: newdes })}
               className="text-justify text-[#EDEDED]"
               text={data.description}
+              validators="required|min:1|alpha_num_space"
             />
           </div>
         </div>
@@ -187,6 +189,7 @@ function ManageUniversity() {
               onBlur={(newrank) => updateData({ qsRank: newrank })}
               className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]"
               text={data.qsRank}
+              validators="required|min:1,num|max:1000,num|numeric"
             />
 
             <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center">
@@ -200,6 +203,7 @@ function ManageUniversity() {
               onBlur={(newrank) => updateData({ thRank: newrank })}
               className="flex h-16 items-center justify-center rounded-t-lg bg-white text-2xl text-[#5D5D5D]"
               text={data.thRank}
+              validators="required|min:1,num|max:2000,num|numeric"
             />
 
             <div className="flex h-6 items-center justify-center rounded-b-lg bg-black text-center text-xs">
@@ -299,6 +303,7 @@ function ManageUniversity() {
                     updateFaculty(fidx, { name: newFacultyName });
                   }}
                   text={faculty.name}
+                  validators="required|min:1|alpha_num_space"
                 />
                 <EditableText
                   className="ml-3 mb-1 text-base"
@@ -306,6 +311,7 @@ function ManageUniversity() {
                     updateFaculty(fidx, { description: newFacultyDescription });
                   }}
                   text={faculty.description}
+                  validators="required|min:1|alpha_num_dash_space"
                 />
                 <div className="ml-auto flex w-fit gap-2 rounded-full bg-[#950003] px-3 py-1 text-white">
                   <EditableText
@@ -314,7 +320,7 @@ function ManageUniversity() {
                     }}
                     text={faculty.price}
                     variant="inline"
-                    validators="numeric|min:1,num"
+                    validators="required|numeric|min:1,num"
                   />
                   EGP / year
                 </div>
@@ -345,6 +351,7 @@ function ManageUniversity() {
                         onBlur={(newname) =>
                           updateMajor(fidx, midx, { name: newname })
                         }
+                        validators="required|min:1|alpha_num_space"
                       />
                     ),
                     description: (
@@ -354,6 +361,7 @@ function ManageUniversity() {
                         onBlur={(newdesc) =>
                           updateMajor(fidx, midx, { description: newdesc })
                         }
+                        validators="required|min:1|alpha_num_dash_space"
                       />
                     ),
                   }))}
@@ -373,6 +381,7 @@ function ManageUniversity() {
                                 description: newdesc,
                               })
                             }
+                            validators="required|min:1|alpha_num_dash_space"
                           />
                         ),
                       }))}
@@ -407,6 +416,7 @@ function ManageUniversity() {
                       onBlur={(newname) =>
                         updateAccommodation(aidx, { name: newname })
                       }
+                      validators="required|min:1|alpha_num_space"
                     />
                   ),
                   description: (
@@ -418,6 +428,7 @@ function ManageUniversity() {
                           onBlur={(newdesc) =>
                             updateAccommodation(aidx, { description: newdesc })
                           }
+                          validators="required|min:1|alpha_num_dash_space"
                         />
                       </div>
                       <div className="mx-auto h-60 w-full max-w-[15rem] flex-1 lg:ml-auto">
@@ -479,6 +490,7 @@ function ManageUniversity() {
                     onBlur={(newvalue) =>
                       updateContactInformation({ location: newvalue })
                     }
+                    validators="required|min:1|alpha_num_dash_space"
                     className="ml-5"
                   />
                 </div>
@@ -494,6 +506,7 @@ function ManageUniversity() {
                         rel="noreferrer"
                         target="_blank"
                         className="hover:text-slate-300 hover:underline"
+                        validators="required|min:1|alpha_num_dash_space"
                       >
                         {data.contactInformation.website}
                       </a>
@@ -517,6 +530,7 @@ function ManageUniversity() {
                         rel="noreferrer"
                         target="_blank"
                         className=" hover:text-slate-300 hover:underline"
+                        validators="required|min:1|alpha_num_dash_space"
                       >
                         {data.contactInformation.phone}
                       </a>
@@ -540,6 +554,7 @@ function ManageUniversity() {
                         rel="noreferrer"
                         target="_blank"
                         className="hover:text-slate-300 hover:underline"
+                        validators="required|min:1|alpha_num_dash_space"
                       >
                         {data.contactInformation.email}
                       </a>
