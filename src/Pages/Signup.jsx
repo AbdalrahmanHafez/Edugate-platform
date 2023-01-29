@@ -30,7 +30,14 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import axios from "axios";
-import { getCountries, getCities, getDistricts } from "./apis/Signup.js";
+import {
+  getCountries,
+  getCities,
+  getDistricts,
+  getHscertificates,
+  getMajors,
+  getDegrees,
+} from "./apis/Signup.js";
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -137,11 +144,26 @@ function SignupForm({ activeStep, data, updateData }) {
   const { data: districts } = useQuery(
     ["districts", data.city],
     () => getDistricts(data.city),
+    queryLocationOps
+  );
+
+  const { data: hscertificates } = useQuery(
+    ["hscertificates"],
+    getHscertificates,
+    queryLocationOps
+  );
+
+  const { data: majors } = useQuery(["majors"], getMajors, queryLocationOps);
+
+  const { data: degrees } = useQuery(
+    ["degrees", data.major],
+    () => getDegrees(data.major),
     {
-      enabled: !!data.city,
+      enabled: !!data.major,
       ...queryLocationOps,
     }
   );
+
   return [
     // STEP 1
     <div className="flex flex-col gap-5 ">
@@ -262,9 +284,11 @@ function SignupForm({ activeStep, data, updateData }) {
             value={data.nationality}
             onChange={(e) => updateData({ nationality: e.target.value })}
           >
-            <MenuItem value={10}>Cairo</MenuItem>
-            <MenuItem value={20}>Test 1</MenuItem>
-            <MenuItem value={30}>Test 2</MenuItem>
+            {countries.map((country, index) => (
+              <MenuItem value={country.value} key={index}>
+                {country.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </div>
@@ -338,9 +362,9 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.grade}
               onChange={(e) => updateData({ grade: e.target.value })}
             >
-              <MenuItem value={10}>Test 0</MenuItem>
-              <MenuItem value={20}>Test 1</MenuItem>
-              <MenuItem value={30}>Test 2</MenuItem>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={11}>11</MenuItem>
+              <MenuItem value={12}>12</MenuItem>
             </Select>
           </FormControl>
           <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
@@ -353,9 +377,11 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.certificatetype}
               onChange={(e) => updateData({ certificatetype: e.target.value })}
             >
-              <MenuItem value={10}>Test 0</MenuItem>
-              <MenuItem value={20}>Test 1</MenuItem>
-              <MenuItem value={30}>Test 2</MenuItem>
+              {hscertificates.map((cert, index) => (
+                <MenuItem value={cert.value} key={index}>
+                  {cert.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
@@ -371,11 +397,15 @@ function SignupForm({ activeStep, data, updateData }) {
               id="Major"
               label="Major"
               value={data.major}
-              onChange={(e) => updateData({ major: e.target.value })}
+              onChange={(e) =>
+                updateData({ major: e.target.value, degree: "" })
+              }
             >
-              <MenuItem value={10}>Test 0</MenuItem>
-              <MenuItem value={20}>Test 1</MenuItem>
-              <MenuItem value={30}>Test 2</MenuItem>
+              {majors.map((major, index) => (
+                <MenuItem value={major.value} key={index}>
+                  {major.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
@@ -388,9 +418,11 @@ function SignupForm({ activeStep, data, updateData }) {
               value={data.degree}
               onChange={(e) => updateData({ degree: e.target.value })}
             >
-              <MenuItem value={10}>Test 0</MenuItem>
-              <MenuItem value={20}>Test 1</MenuItem>
-              <MenuItem value={30}>Test 2</MenuItem>
+              {degrees.map((degree, index) => (
+                <MenuItem value={degree.value} key={index}>
+                  {degree.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
         </div>
@@ -448,15 +480,15 @@ function Signup() {
     // city: 0,
     // district: 0,
     phonenumber: "01554342754",
-    nationality: 20,
+    // nationality: 20,
 
     dateofbirth: "1/1/2001",
     gender: "male",
     studenttype: "schoolstudent",
-    grade: 20,
-    certificatetype: 20,
-    major: 20,
-    degree: 20,
+    // grade: 20,
+    // certificatetype: 20,
+    // major: 20,
+    // degree: 20,
 
     email: "ahmed@khalid.com",
     password: "mohamed",

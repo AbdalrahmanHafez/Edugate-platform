@@ -134,4 +134,99 @@ const getDistricts = async (value) => {
   return [];
 };
 
-export { getCountries, getCities, getDistricts };
+const getHscertificates = async (value) => {
+  return [
+    {
+      value: 1,
+      name: "cert 1",
+    },
+    {
+      value: 2,
+      name: "cert 2",
+    },
+    {
+      value: 3,
+      name: "cert 3",
+    },
+  ];
+};
+
+const getMajors = async () => {
+  return [
+    {
+      value: 1,
+      name: "Major 1",
+    },
+    {
+      value: 2,
+      name: "Major 2",
+    },
+    {
+      value: 3,
+      name: "Major 3",
+    },
+  ];
+};
+
+const getDegrees = async (value) => {
+  if (value === 1) {
+    return [
+      {
+        value: 1,
+        name: "D 1",
+      },
+      {
+        value: 2,
+        name: "D 2",
+      },
+      {
+        value: 3,
+        name: "D 3",
+      },
+    ];
+  }
+
+  if (value === 2) {
+    return [
+      {
+        value: 4,
+        name: "D 4",
+      },
+      {
+        value: 5,
+        name: "D 5",
+      },
+      {
+        value: 6,
+        name: "D 6",
+      },
+    ];
+  }
+
+  if (value === 3) {
+    return [
+      {
+        value: 7,
+        name: "D 6",
+      },
+      {
+        value: 8,
+        name: "D 7",
+      },
+      {
+        value: 9,
+        name: "D 8",
+      },
+    ];
+  }
+  return [];
+};
+
+export {
+  getCountries,
+  getCities,
+  getDistricts,
+  getHscertificates,
+  getMajors,
+  getDegrees,
+};
