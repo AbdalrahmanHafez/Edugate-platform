@@ -124,6 +124,7 @@ function SignupForm({ activeStep, data, updateData }) {
   const queryLocationOps = {
     staleTime: Infinity,
     placeholderData: [],
+    // keepPreviousData: true,
   };
 
   const { data: countries } = useQuery(
@@ -144,7 +145,10 @@ function SignupForm({ activeStep, data, updateData }) {
   const { data: districts } = useQuery(
     ["districts", data.city],
     () => getDistricts(data.city),
-    queryLocationOps
+    {
+      enabled: !!data.city,
+      ...queryLocationOps,
+    }
   );
 
   const { data: hscertificates } = useQuery(
@@ -207,7 +211,12 @@ function SignupForm({ activeStep, data, updateData }) {
             // empty string means no value selected
 
             onChange={(e) =>
-              updateData({ country: e.target.value, city: "", district: "" })
+              updateData({
+                country: e.target.value,
+                city: "",
+                district: "",
+                nationality: e.target.value,
+              })
             }
             label="Country"
           >
@@ -225,42 +234,48 @@ function SignupForm({ activeStep, data, updateData }) {
           </Select>
         </FormControl>
 
-        <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
-          <InputLabel id="city">City</InputLabel>
-          <Select
-            required
-            labelId="city"
-            id="city"
-            label="City"
-            value={data.city || ""}
-            onChange={(e) => updateData({ city: e.target.value, district: "" })}
-          >
-            {/* <MenuItem value={10}>Cairo</MenuItem> */}
-            {cities.map((city, index) => (
-              <MenuItem value={city.value} key={index}>
-                {city.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        {!!cities.length && (
+          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
+            <InputLabel id="city">City</InputLabel>
+            <Select
+              required
+              labelId="city"
+              id="city"
+              label="City"
+              value={data.city || ""}
+              onChange={(e) =>
+                updateData({ city: e.target.value, district: "" })
+              }
+            >
+              {/* <MenuItem value={10}>Cairo</MenuItem> */}
+              {cities.map((city, index) => (
+                <MenuItem value={city.value} key={index}>
+                  {city.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
 
-        <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
-          <InputLabel id="district">District</InputLabel>
-          <Select
-            required
-            labelId="district"
-            id="district"
-            label="district"
-            value={data.district || ""}
-            onChange={(e) => updateData({ district: e.target.value })}
-          >
-            {districts.map((district, index) => (
-              <MenuItem value={district.value} key={index}>
-                {district.name}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        {!!districts.length && (
+          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
+            <InputLabel id="district">District</InputLabel>
+            <Select
+              required
+              labelId="district"
+              id="district"
+              label="district"
+              value={data.district || ""}
+              onChange={(e) => updateData({ district: e.target.value })}
+            >
+              {districts.map((district, index) => (
+                <MenuItem value={district.value} key={index}>
+                  {district.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        )}
       </div>
       <div className="w-full">
         <TextField
@@ -281,7 +296,7 @@ function SignupForm({ activeStep, data, updateData }) {
             labelId="nationality"
             id="nationality"
             label="nationality"
-            value={data.nationality}
+            value={data.nationality || ""}
             onChange={(e) => updateData({ nationality: e.target.value })}
           >
             {countries.map((country, index) => (
@@ -359,7 +374,7 @@ function SignupForm({ activeStep, data, updateData }) {
               labelId="Grade"
               id="Grade"
               label="Grade"
-              value={data.grade}
+              value={data.grade || ""}
               onChange={(e) => updateData({ grade: e.target.value })}
             >
               <MenuItem value={10}>10</MenuItem>
@@ -374,7 +389,7 @@ function SignupForm({ activeStep, data, updateData }) {
               labelId="CertificateType"
               id="CertificateType"
               label="CertificateType"
-              value={data.certificatetype}
+              value={data.certificatetype || ""}
               onChange={(e) => updateData({ certificatetype: e.target.value })}
             >
               {hscertificates.map((cert, index) => (
@@ -396,7 +411,7 @@ function SignupForm({ activeStep, data, updateData }) {
               labelId="Major"
               id="Major"
               label="Major"
-              value={data.major}
+              value={data.major || ""}
               onChange={(e) =>
                 updateData({ major: e.target.value, degree: "" })
               }
@@ -408,23 +423,26 @@ function SignupForm({ activeStep, data, updateData }) {
               ))}
             </Select>
           </FormControl>
-          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-            <InputLabel id="Degree">Degree</InputLabel>
-            <Select
-              required
-              labelId="Degree"
-              id="Degree"
-              label="Degree"
-              value={data.degree}
-              onChange={(e) => updateData({ degree: e.target.value })}
-            >
-              {degrees.map((degree, index) => (
-                <MenuItem value={degree.value} key={index}>
-                  {degree.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+
+          {!!degrees.length && (
+            <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
+              <InputLabel id="Degree">Degree</InputLabel>
+              <Select
+                required
+                labelId="Degree"
+                id="Degree"
+                label="Degree"
+                value={data.degree || ""}
+                onChange={(e) => updateData({ degree: e.target.value })}
+              >
+                {degrees.map((degree, index) => (
+                  <MenuItem value={degree.value} key={index}>
+                    {degree.name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
         </div>
       )}
     </div>,
