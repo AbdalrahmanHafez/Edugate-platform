@@ -113,7 +113,6 @@ const TextFieldConfirmPass = ({ password, ...props }) => {
 
 function SignupForm({ activeStep, data, updateData }) {
   //  TODO: Error handling
-  //   TODO: changin country should invalidate districts
 
   const queryLocationOps = {
     staleTime: Infinity,
@@ -184,7 +183,10 @@ function SignupForm({ activeStep, data, updateData }) {
             id="country"
             value={data.country || ""}
             // empty string means no value selected
-            onChange={(e) => updateData({ country: e.target.value })}
+
+            onChange={(e) =>
+              updateData({ country: e.target.value, city: "", district: "" })
+            }
             label="Country"
           >
             {/* <MenuItem value="">
@@ -209,7 +211,7 @@ function SignupForm({ activeStep, data, updateData }) {
             id="city"
             label="City"
             value={data.city || ""}
-            onChange={(e) => updateData({ city: e.target.value })}
+            onChange={(e) => updateData({ city: e.target.value, district: "" })}
           >
             {/* <MenuItem value={10}>Cairo</MenuItem> */}
             {cities.map((city, index) => (
