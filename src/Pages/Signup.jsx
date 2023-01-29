@@ -113,16 +113,25 @@ const TextFieldConfirmPass = ({ password, ...props }) => {
 
 function SignupForm({ activeStep, data, updateData }) {
   //  TODO: Error handling
-  const { data: countries } = useQuery(["countries"], getCountries, {
+  //   TODO: changin country should invalidate districts
+
+  const queryLocationOps = {
     staleTime: Infinity,
-  });
+    placeholderData: [],
+  };
+
+  const { data: countries } = useQuery(
+    ["countries"],
+    getCountries,
+    queryLocationOps
+  );
 
   const { data: cities } = useQuery(
     ["cities", data.country],
     () => getCities(data.country),
     {
-      enabled: !!data.country && !!countries?.length,
-      staleTime: Infinity,
+      enabled: !!data.country,
+      ...queryLocationOps,
     }
   );
 
@@ -130,8 +139,8 @@ function SignupForm({ activeStep, data, updateData }) {
     ["districts", data.city],
     () => getDistricts(data.city),
     {
-      enabled: !!data.city && !!cities?.length,
-      staleTime: Infinity,
+      enabled: !!data.city,
+      ...queryLocationOps,
     }
   );
   return [
@@ -184,7 +193,7 @@ function SignupForm({ activeStep, data, updateData }) {
             {/* <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
             <MenuItem value={30}>Test 2</MenuItem> */}
-            {countries?.map((country, index) => (
+            {countries.map((country, index) => (
               <MenuItem value={country.value} key={index}>
                 {country.name}
               </MenuItem>
@@ -203,7 +212,7 @@ function SignupForm({ activeStep, data, updateData }) {
             onChange={(e) => updateData({ city: e.target.value })}
           >
             {/* <MenuItem value={10}>Cairo</MenuItem> */}
-            {cities?.map((city, index) => (
+            {cities.map((city, index) => (
               <MenuItem value={city.value} key={index}>
                 {city.name}
               </MenuItem>
@@ -221,7 +230,7 @@ function SignupForm({ activeStep, data, updateData }) {
             value={data.district || ""}
             onChange={(e) => updateData({ district: e.target.value })}
           >
-            {districts?.map((district, index) => (
+            {districts.map((district, index) => (
               <MenuItem value={district.value} key={index}>
                 {district.name}
               </MenuItem>
