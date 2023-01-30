@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import login from "./apis/Login";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSignin() {
+    if (email === "" || password === "") return;
+    console.log("Sign in ", email, password);
+    login(email, password)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div className="flex h-full flex-col md:flex-row">
       {/* Login */}
@@ -16,13 +28,24 @@ function Login() {
             Login to Your Account
           </h1>
           <div className="flex w-full max-w-[380px] flex-col items-center gap-3">
-            <input type="text" placeholder="Email" className={styles.input} />
+            <input
+              type="text"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className={styles.input}
+            />
             <input
               type="text"
               placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
               className={styles.input}
             />
-            <button className="mb-10 w-44 rounded-full bg-[#950003] py-3 font-bold text-white hover:bg-[#bb0003] md:mb-0">
+            <button
+              onClick={handleSignin}
+              className="mb-10 w-44 rounded-full bg-[#950003] py-3 font-bold text-white hover:bg-[#bb0003] md:mb-0"
+            >
               Login
             </button>
           </div>

@@ -1,11 +1,4 @@
-import axios from "axios";
-const axClient = axios.create({
-  baseURL: "https://api.edugate-eg.com/api/EduGate",
-  withCredentials: false,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import axClient from "./AxiosClient";
 
 const mockData = true;
 
