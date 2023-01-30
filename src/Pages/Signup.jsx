@@ -17,7 +17,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getCountries,
   getCities,
@@ -25,7 +25,7 @@ import {
   getHscertificates,
   getMajors,
   getDegrees,
-  postRegisterStudent,
+  signupStudent,
 } from "./apis/Signup.js";
 import { toast } from "react-toastify";
 
@@ -199,8 +199,8 @@ function SignupForm({ activeStep, data, updateData }) {
             onChange={(e) =>
               updateData({
                 country: e.target.value,
-                city: "",
-                district: "",
+                city: undefined,
+                district: undefined,
                 nationality: e.target.value,
               })
             }
@@ -230,7 +230,7 @@ function SignupForm({ activeStep, data, updateData }) {
               label="City"
               value={data.city || ""}
               onChange={(e) =>
-                updateData({ city: e.target.value, district: "" })
+                updateData({ city: e.target.value, district: undefined })
               }
             >
               {/* <MenuItem value={10}>Cairo</MenuItem> */}
@@ -303,6 +303,7 @@ function SignupForm({ activeStep, data, updateData }) {
           inputFormat="MM/DD/YYYY"
           value={data.dateofbirth}
           onChange={(newValue) => {
+            console.log("DP", newValue);
             updateData({ dateofbirth: newValue });
           }}
           renderInput={(params) => <TextField {...params} />}
@@ -487,7 +488,7 @@ function Signup() {
     phonenumber: undefined,
     nationality: undefined,
 
-    dateofbirth: undefined,
+    dateofbirth: null,
     gender: "male",
     studenttype: "schoolstudent",
     grade: undefined,
@@ -507,14 +508,44 @@ function Signup() {
     }));
   };
 
+  const signupMutation = useMutation(signupStudent);
+
   const sendFormData = () => {
-    console.log("TODO:Sending the data");
     console.log("FORM SUBMIT", formdata);
-    postRegisterStudent()
+
+    const expectedData = {
+      userID: 0,
+      userName: `${formdata.firstname} ${formdata.middlename} ${formdata.lastname}`,
+      userEmail: formdata.email,
+      userPhone: formdata.phonenumber,
+      userPassword: formdata.password,
+      userGender: formdata.gender === "male",
+      userTypeID: 1, //student
+      isActive: true,
+      cDate: new Date().toISOString(),
+      birthDate: formdata.dateofbirth.$d.toISOString(),
+      nationalityID: formdata.nationality,
+      districtID: formdata.district,
+      isPostG: formdata.studenttype === "universitystudent",
+      hsCertificateID: formdata.certificatetype,
+      grade: formdata.grade,
+      degreeID: formdata.degree,
+    };
+
+    if (formdata.studenttype === "universitystudent") {
+      expectedData.grade = undefined;
+      expectedData.hsCertificateID = undefined;
+    } else {
+      expectedData.degreeID = undefined;
+      expectedData.majorID = undefined;
+    }
+
+    signupMutation
+      .mutateAsync(expectedData)
       .then((res) => {
         console.log(res);
         toast.success("Successfully registered");
-        navigate("/login");
+        // navigate("/login");
       })
       .catch((err) => {
         toast.error("Error while sending data");
@@ -599,6 +630,7 @@ function Signup() {
                 <button
                   type="submit"
                   className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
+                  disabled={signupMutation.isLoading}
                 >
                   {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
                 </button>
