@@ -8,7 +8,9 @@ function Login() {
 
   function handleSignin() {
     if (email === "" || password === "") return;
+
     console.log("Sign in ", email, password);
+
     login(email, password)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));

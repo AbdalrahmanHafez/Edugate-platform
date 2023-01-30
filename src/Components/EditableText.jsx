@@ -34,7 +34,7 @@ const EditableText = ({
   return (
     <>
       <div className={className + " relative"}>
-        <p
+        <span
           contentEditable={isEditing}
           //   className={}
           onBlur={() => {
@@ -69,16 +69,18 @@ const EditableText = ({
           {...rest}
         >
           {text}
-        </p>
+        </span>
         {!isEditing && (
-          <FiEdit2
-            className={
-              varInline
-                ? "inline-block"
-                : "absolute top-1 right-1 inline-block text-xl"
-            }
-            onClick={(e) => setIsEditing(true)}
-          />
+          <span>
+            <FiEdit2
+              className={
+                varInline
+                  ? "inline-block"
+                  : "absolute top-1 right-1 inline-block text-xl"
+              }
+              onClick={(e) => setIsEditing(true)}
+            />
+          </span>
         )}
       </div>
 
