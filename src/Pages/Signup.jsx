@@ -156,14 +156,14 @@ function SignupForm({ activeStep, data, updateData }) {
 
   return [
     // STEP 1
-    <div className="flex flex-col gap-5 ">
+    <div className="flex w-full flex-col gap-5">
       <div className="flex gap-2">
         <TextField
           required
           id="fname"
           label="First Name"
           size="small"
-          className="max-w-[130px]"
+          className="max-w-[151px]"
           value={data.firstname}
           onChange={(e) => updateData({ firstname: e.target.value })}
         />
@@ -172,7 +172,7 @@ function SignupForm({ activeStep, data, updateData }) {
           id="mname"
           label="Middle Name"
           size="small"
-          className="max-w-[130px]"
+          className="max-w-[151px]"
           value={data.middlename}
           onChange={(e) => updateData({ middlename: e.target.value })}
         />
@@ -181,7 +181,7 @@ function SignupForm({ activeStep, data, updateData }) {
           id="lname"
           label="Last Name"
           size="small"
-          className="max-w-[130px]"
+          className="max-w-[151px]"
           value={data.lastname}
           onChange={(e) => updateData({ lastname: e.target.value })}
         />
@@ -296,7 +296,7 @@ function SignupForm({ activeStep, data, updateData }) {
     </div>,
 
     // STEP 2
-    <div className="flex flex-col gap-y-5 pt-5">
+    <div className="flex w-full flex-col gap-y-5 pt-5">
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DesktopDatePicker
           label="Date of Birth"
@@ -436,7 +436,7 @@ function SignupForm({ activeStep, data, updateData }) {
 
     // STEP 3
 
-    <div className="flex w-[70%] flex-col gap-y-5">
+    <div className="flex w-full flex-col gap-y-5">
       <TextField
         required
         id="email"
