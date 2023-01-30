@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { GrAddCircle, GrFormAdd } from "react-icons/gr";
 import EditableText from "Components/EditableText";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export default function ButtonsWithContent({
   data,
@@ -10,6 +11,9 @@ export default function ButtonsWithContent({
   onDelete,
 }) {
   const [index, setIndex] = useState(0);
+  const [animref, enableAnimations] = useAutoAnimate({
+    disrespectUserMotionPreference: true,
+  });
 
   useEffect(() => {
     // console.log("[RENDER] ButtonWithDesc", data.length);
@@ -27,7 +31,7 @@ export default function ButtonsWithContent({
   return (
     <div className="/bg-blue-200 mb-3 flex flex-col gap-3 lg:flex-row">
       {/* Items */}
-      <div className="/bg-blue-200 flex flex-col gap-3">
+      <div className="/bg-blue-200 flex flex-col gap-3" ref={animref}>
         {data.map((button, idx) => (
           <div key={idx} className="flex items-center">
             <button
