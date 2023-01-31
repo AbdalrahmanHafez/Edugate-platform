@@ -19,6 +19,7 @@ import {
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import RepresentativeSignup from "Pages/RepresentativeSignup";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,10 @@ const App = () => {
 
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
+          <Route
+            path="RepresentativeSignup"
+            element={<RepresentativeSignup />}
+          />
 
           <Route path="/" element={<NavFooterLayout />}>
             <Route index element={<Home />} />

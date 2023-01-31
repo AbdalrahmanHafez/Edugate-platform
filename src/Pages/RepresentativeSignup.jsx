@@ -18,15 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  getCountries,
-  getCities,
-  getDistricts,
-  getHscertificates,
-  getMajors,
-  getDegrees,
-  signupStudent,
-} from "./apis/Signup.js";
+import { getCountries, signupStudent } from "./apis/Signup.js";
 import { toast } from "react-toastify";
 
 const CustomTextField = ({ ...params }) => (
@@ -119,41 +111,6 @@ function SignupForm({ activeStep, data, updateData }) {
 
   const { data: countries } = useQuery(["countries"], getCountries, queryOps);
 
-  const { data: cities } = useQuery(
-    ["cities", data.country],
-    () => getCities(data.country),
-    {
-      enabled: !!data.country,
-      ...queryOps,
-    }
-  );
-
-  const { data: districts } = useQuery(
-    ["districts", data.city],
-    () => getDistricts(data.city),
-    {
-      enabled: !!data.city,
-      ...queryOps,
-    }
-  );
-
-  const { data: hscertificates } = useQuery(
-    ["hscertificates"],
-    getHscertificates,
-    queryOps
-  );
-
-  const { data: majors } = useQuery(["majors"], getMajors, queryOps);
-
-  const { data: degrees } = useQuery(
-    ["degrees", data.major],
-    () => getDegrees(data.major),
-    {
-      enabled: !!data.major,
-      ...queryOps,
-    }
-  );
-
   return [
     // STEP 1
     <div className="flex w-full flex-col gap-5">
@@ -162,7 +119,7 @@ function SignupForm({ activeStep, data, updateData }) {
           required
           id="fname"
           label="First Name"
-          size="small"
+          size="medium"
           className="max-w-[151px]"
           value={data.firstname}
           onChange={(e) => updateData({ firstname: e.target.value })}
@@ -171,7 +128,7 @@ function SignupForm({ activeStep, data, updateData }) {
           required
           id="mname"
           label="Middle Name"
-          size="small"
+          size="medium"
           className="max-w-[151px]"
           value={data.middlename}
           onChange={(e) => updateData({ middlename: e.target.value })}
@@ -180,7 +137,7 @@ function SignupForm({ activeStep, data, updateData }) {
           required
           id="lname"
           label="Last Name"
-          size="small"
+          size="medium"
           className="max-w-[151px]"
           value={data.lastname}
           onChange={(e) => updateData({ lastname: e.target.value })}
@@ -193,14 +150,13 @@ function SignupForm({ activeStep, data, updateData }) {
             required
             labelId="country"
             id="country"
+            size="medium"
             value={data.country || ""}
             // empty string means no value selected
 
             onChange={(e) =>
               updateData({
                 country: e.target.value,
-                city: undefined,
-                district: undefined,
                 nationality: e.target.value,
               })
             }
@@ -219,61 +175,8 @@ function SignupForm({ activeStep, data, updateData }) {
             ))}
           </Select>
         </FormControl>
-
-        {!!cities.length && (
-          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
-            <InputLabel id="city">City</InputLabel>
-            <Select
-              required
-              labelId="city"
-              id="city"
-              label="City"
-              value={data.city || ""}
-              onChange={(e) =>
-                updateData({ city: e.target.value, district: undefined })
-              }
-            >
-              {/* <MenuItem value={10}>Cairo</MenuItem> */}
-              {cities?.map((city, index) => (
-                <MenuItem value={city.value} key={index}>
-                  {city.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
-
-        {!!districts.length && (
-          <FormControl sx={{ minWidth: 120 }} className="flex-1" size="small">
-            <InputLabel id="district">District</InputLabel>
-            <Select
-              required
-              labelId="district"
-              id="district"
-              label="district"
-              value={data.district || ""}
-              onChange={(e) => updateData({ district: e.target.value })}
-            >
-              {districts?.map((district, index) => (
-                <MenuItem value={district.value} key={index}>
-                  {district.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        )}
       </div>
-      <div className="w-full">
-        <TextField
-          required
-          id="phonenumber"
-          label="Phone Number"
-          size="small"
-          className="w-full"
-          value={data.phonenumber}
-          onChange={(e) => updateData({ phonenumber: e.target.value })}
-        />
-      </div>
+
       <div>
         <FormControl sx={{ minWidth: 220 }} className="w-full" size="small">
           <InputLabel id="nationality">Nationality</InputLabel>
@@ -281,6 +184,7 @@ function SignupForm({ activeStep, data, updateData }) {
             required
             labelId="nationality"
             id="nationality"
+            size="medium"
             label="nationality"
             value={data.nationality || ""}
             onChange={(e) => updateData({ nationality: e.target.value })}
@@ -310,6 +214,18 @@ function SignupForm({ activeStep, data, updateData }) {
         />
       </LocalizationProvider>
 
+      <div className=" w-full">
+        <TextField
+          required
+          id="phonenumber"
+          label="Phone Number"
+          size="medium"
+          className="w-full"
+          value={data.phonenumber}
+          onChange={(e) => updateData({ phonenumber: e.target.value })}
+        />
+      </div>
+
       <div className="flex justify-around gap-2">
         <div>
           <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
@@ -320,118 +236,17 @@ function SignupForm({ activeStep, data, updateData }) {
             value={data.gender}
             onChange={(e) => updateData({ gender: e.target.value })}
           >
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel
-              value="female"
-              control={<Radio />}
-              label="Female"
-            />
-          </RadioGroup>
-        </div>
-        <div>
-          <FormLabel id="demo-radio-buttons-group-label">
-            Student Type
-          </FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            name="radio-buttons-group"
-            value={data.studenttype}
-            onChange={(e) => updateData({ studenttype: e.target.value })}
-          >
-            <FormControlLabel
-              value="schoolstudent"
-              control={<Radio />}
-              label="School Student"
-            />
-            <FormControlLabel
-              value="universitystudent"
-              control={<Radio />}
-              label="University Student"
-            />
+            <div>
+              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel
+                value="female"
+                control={<Radio />}
+                label="Female"
+              />
+            </div>
           </RadioGroup>
         </div>
       </div>
-
-      {data.studenttype === "schoolstudent" && (
-        <div className="flex gap-2 ">
-          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-            <InputLabel id="Grade">Grade</InputLabel>
-            <Select
-              required
-              labelId="Grade"
-              id="Grade"
-              label="Grade"
-              value={data.grade || ""}
-              onChange={(e) => updateData({ grade: e.target.value })}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={11}>11</MenuItem>
-              <MenuItem value={12}>12</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-            <InputLabel id="CertificateType">Certificate Type</InputLabel>
-            <Select
-              required
-              labelId="CertificateType"
-              id="CertificateType"
-              label="CertificateType"
-              value={data.certificatetype || ""}
-              onChange={(e) => updateData({ certificatetype: e.target.value })}
-            >
-              {hscertificates?.map((cert, index) => (
-                <MenuItem value={cert.value} key={index}>
-                  {cert.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
-      )}
-
-      {data.studenttype === "universitystudent" && (
-        <div className="flex gap-2 ">
-          <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-            <InputLabel id="Major">Major</InputLabel>
-            <Select
-              required
-              labelId="Major"
-              id="Major"
-              label="Major"
-              value={data.major || ""}
-              onChange={(e) =>
-                updateData({ major: e.target.value, degree: "" })
-              }
-            >
-              {majors?.map((major, index) => (
-                <MenuItem value={major.value} key={index}>
-                  {major.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {!!degrees.length && (
-            <FormControl sx={{ minWidth: 220 }} className="flex-1" size="small">
-              <InputLabel id="Degree">Degree</InputLabel>
-              <Select
-                required
-                labelId="Degree"
-                id="Degree"
-                label="Degree"
-                value={data.degree || ""}
-                onChange={(e) => updateData({ degree: e.target.value })}
-              >
-                {degrees?.map((degree, index) => (
-                  <MenuItem value={degree.value} key={index}>
-                    {degree.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          )}
-        </div>
-      )}
     </div>,
 
     // STEP 3
@@ -442,7 +257,7 @@ function SignupForm({ activeStep, data, updateData }) {
         id="email"
         label="Email"
         type="email"
-        size="small"
+        size="medium"
         className="w-full"
         value={data.email}
         onChange={(e) => updateData({ email: e.target.value })}
@@ -452,7 +267,7 @@ function SignupForm({ activeStep, data, updateData }) {
         id="password"
         label="Password"
         type="password"
-        size="small"
+        size="medium"
         className="w-full"
         value={data.password}
         onChange={(e) => updateData({ password: e.target.value })}
@@ -461,7 +276,7 @@ function SignupForm({ activeStep, data, updateData }) {
       <TextFieldConfirmPass
         id="cpassword"
         label="Confirm Password"
-        size="small"
+        size="medium"
         className="w-full"
         type="password"
         password={data.password}
@@ -470,7 +285,7 @@ function SignupForm({ activeStep, data, updateData }) {
   ][activeStep];
 }
 
-function Signup() {
+function RepresentativeSignup() {
   const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const handleStepNext = () =>
@@ -483,18 +298,11 @@ function Signup() {
     middlename: undefined,
     lastname: undefined,
     country: undefined,
-    city: undefined,
-    district: undefined,
     phonenumber: undefined,
     nationality: undefined,
 
     dateofbirth: null,
     gender: "male",
-    studenttype: "schoolstudent",
-    grade: undefined,
-    certificatetype: undefined,
-    major: undefined,
-    degree: undefined,
 
     email: undefined,
     password: undefined,
@@ -520,25 +328,12 @@ function Signup() {
       userPhone: formdata.phonenumber,
       userPassword: formdata.password,
       userGender: formdata.gender === "male",
-      userTypeID: 2, //student
+      userTypeID: 3, //representative
       isActive: true,
       cDate: new Date().toISOString(),
       birthDate: formdata.dateofbirth.$d.toISOString(),
       nationalityID: formdata.nationality,
-      districtID: formdata.district,
-      isPostG: formdata.studenttype === "universitystudent",
-      hsCertificateID: formdata.certificatetype,
-      grade: formdata.grade,
-      degreeID: formdata.degree,
     };
-
-    if (formdata.studenttype === "universitystudent") {
-      expectedData.grade = undefined;
-      expectedData.hsCertificateID = undefined;
-    } else {
-      expectedData.degreeID = undefined;
-      expectedData.majorID = undefined;
-    }
 
     signupMutation
       .mutateAsync(expectedData)
@@ -593,7 +388,7 @@ function Signup() {
         </div>
       </div>
 
-      {/* Student Signup */}
+      {/* representative Signup */}
       <div className=" flex flex-[3] flex-col bg-white pb-10 md:pb-0">
         <a href="/" className="mt-6 ml-6 block h-auto max-w-[250px] md:hidden">
           <img src="/Edugate-logo-min.png" alt="Edugate Logo" />
@@ -650,4 +445,4 @@ const styles = {
     "bg-gray-300 placeholder:text-gray-600 px-4 py-3 rounded-full focus:bg-white focus:ring-2 focus:ring-gray-500 focus:outline-none w-full hover:bg-gray-200",
 };
 
-export default Signup;
+export default RepresentativeSignup;
