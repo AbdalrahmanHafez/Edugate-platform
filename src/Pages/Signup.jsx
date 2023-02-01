@@ -302,6 +302,7 @@ function SignupForm({ activeStep, data, updateData }) {
           label="Date of Birth"
           inputFormat="MM/DD/YYYY"
           value={data.dateofbirth}
+          disableFuture={true}
           onChange={(newValue) => {
             console.log("DP", newValue);
             updateData({ dateofbirth: newValue });
