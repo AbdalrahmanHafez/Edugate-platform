@@ -230,23 +230,9 @@ function ManageUniversity() {
             <EditableCarousel
               editable
               className="h-72 bg-contain bg-center bg-no-repeat"
-              onAdd={() => {
+              onUpdate={(newImageUrls) => {
                 updateData({
-                  mainCarouselUrls: [...data.mainCarouselUrls, "/600x400.png"],
-                });
-              }}
-              onRemove={(index) => {
-                updateData({
-                  mainCarouselUrls: data.mainCarouselUrls.filter(
-                    (url, i) => i !== index
-                  ),
-                });
-              }}
-              onUpdate={(index, newurl) => {
-                updateData({
-                  mainCarouselUrls: data.mainCarouselUrls.map((url, i) =>
-                    i === index ? newurl : url
-                  ),
+                  mainCarouselUrls: newImageUrls,
                 });
               }}
               imageUrls={data.mainCarouselUrls}
