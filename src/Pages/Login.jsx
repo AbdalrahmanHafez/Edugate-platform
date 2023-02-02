@@ -1,19 +1,34 @@
+import { useAuth } from "Context/AuthContext";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import login from "./apis/Login";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+// import { login, getUserType } from "./apis/Login";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useAuth();
 
   function handleSignin() {
     if (email === "" || password === "") return;
 
-    console.log("Sign in ", email, password);
+    console.log("Sign in data ", email, password);
 
-    login(email, password)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    // if user is logged in, its automatically redirected to home page
+    login.mutateAsync({ username: email, password }).catch((err) => {
+      let msg;
+      if (typeof err.response.data === "string") msg = err.response.data;
+      else if (typeof err.message === "string") msg = err.message;
+
+      toast.error(
+        `Error occured while signing in \n ${err.response.status} ${msg}`
+      );
+    });
+
+    // TODO: use react query to disable the button while the request is being made, onsuccess() navigate to home page
+    // TODO: user signed in indicator, profile pic
+    // TODO: logout
+    // TODO: registraion
   }
 
   return (
@@ -45,6 +60,7 @@ function Login() {
               className={styles.input}
             />
             <button
+              disabled={login.isLoading}
               onClick={handleSignin}
               className="mb-10 w-44 rounded-full bg-[#950003] py-3 font-bold text-white hover:bg-[#bb0003] md:mb-0"
             >

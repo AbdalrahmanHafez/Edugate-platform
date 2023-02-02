@@ -8,7 +8,14 @@ import UniversitiesInEgypt from "Pages/UniversitiesInEgypt";
 import UniversityPage from "Pages/UniversityPage";
 import ManageUniversity from "Pages/ManageUniversity";
 import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Link,
+  Navigate,
+} from "react-router-dom";
 import Home from "./Pages/Home";
 import ManageUniversities from "Pages/ManageUniversities";
 import {
@@ -20,6 +27,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import RepresentativeSignup from "Pages/RepresentativeSignup";
+import { AuthProvider } from "Context/AuthContext";
+import { useAuth } from "Context/AuthContext";
 
 const queryClient = new QueryClient();
 
@@ -29,42 +38,69 @@ const NavFooterLayout = () => (
   </>
 );
 
+const HandleLoggedIn = () => {
+  const { isLoggedIn } = useAuth();
+  if (isLoggedIn) return <Navigate to="/" />;
+
+  return <Outlet />;
+};
+
+const ProtectedRoute = ({ userType }) => {
+  const { user, isLoggedIn } = useAuth();
+
+  if (!isLoggedIn) return <Navigate to="/login" />;
+
+  if (user.userType !== userType) return <Navigate to="/" />;
+
+  return <Outlet />;
+};
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
 
       <BrowserRouter>
-        <Routes>
-          <Route path="test" element={<Test />} />
+        <AuthProvider>
+          <Routes>
+            <Route path="test" element={<Test />} />
 
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route
-            path="RepresentativeSignup"
-            element={<RepresentativeSignup />}
-          />
+            <Route element={<HandleLoggedIn />}>
+              <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+              <Route
+                path="RepresentativeSignup"
+                element={<RepresentativeSignup />}
+              />
+            </Route>
 
-          <Route path="/" element={<NavFooterLayout />}>
-            <Route index element={<Home />} />
-            <Route
-              path="UniversitiesInEgypt"
-              element={<UniversitiesInEgypt />}
-            />
-            <Route
-              path="University/:universityid"
-              element={<UniversityPage />}
-            />
+            <Route element={<NavFooterLayout />}>
+              <Route index element={<Home />} />
 
-            <Route path="ManageUniversities" element={<ManageUniversities />} />
-            <Route
-              path="ManageUniversities/:universityid"
-              element={<ManageUniversity />}
-            />
+              <Route
+                path="UniversitiesInEgypt"
+                element={<UniversitiesInEgypt />}
+              />
+              <Route
+                path="University/:universityid"
+                element={<UniversityPage />}
+              />
 
-            <Route path="*" element={<PageNotFound />} />
-          </Route>
-        </Routes>
+              <Route element={<ProtectedRoute userType={3} />}>
+                <Route
+                  path="ManageUniversities"
+                  element={<ManageUniversities />}
+                />
+                <Route
+                  path="ManageUniversities/:universityid"
+                  element={<ManageUniversity />}
+                />
+              </Route>
+
+              <Route path="*" element={<PageNotFound />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
 
       <ReactQueryDevtools initialIsOpen={false} />
