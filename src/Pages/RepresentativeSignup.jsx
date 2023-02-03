@@ -18,7 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getCountries } from "./apis/Signup.js";
+import { getCountries } from "./apis/Auth.js";
 import { toast } from "react-toastify";
 
 const CustomTextField = ({ ...params }) => (

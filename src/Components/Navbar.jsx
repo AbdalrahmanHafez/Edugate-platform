@@ -1,6 +1,120 @@
+import { useAuth } from "Context/AuthContext";
 import React, { useEffect } from "react";
-import { FaBeer, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import Popover from "@mui/material/Popover";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import PersonAdd from "@mui/icons-material/PersonAdd";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
+import Divider from "@mui/material/Divider";
+import { toast } from "react-toastify";
+
+const ProfilePic = ({ user, logout }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    setAnchorEl(null);
+    logout.mutateAsync().catch(() => {
+      toast.error("Error logging out");
+    });
+  };
+
+  return (
+    <div className="mr-5 flex flex-col items-center justify-center">
+      <Tooltip title="Account settings">
+        <IconButton
+          size="medium"
+          aria-controls={open ? "account-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          <Avatar
+            src="https://xsgames.co/randomusers/avatar.php?g=male"
+            sx={{ width: 32, height: 32 }}
+          ></Avatar>
+        </IconButton>
+      </Tooltip>
+      <h4 className="text-xs">{user.userEmail}</h4>
+
+      <Menu
+        anchorEl={anchorEl}
+        id="account-menu"
+        open={open}
+        onClose={handleClose}
+        onClick={handleClose}
+        PaperProps={{
+          elevation: 0,
+          sx: {
+            overflow: "visible",
+            filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+            mt: 1.5,
+            "& .MuiAvatar-root": {
+              width: 32,
+              height: 32,
+              ml: -0.5,
+              mr: 1,
+            },
+            "&:before": {
+              content: '""',
+              display: "block",
+              position: "absolute",
+              top: 0,
+              right: 14,
+              width: 10,
+              height: 10,
+              bgcolor: "background.paper",
+              transform: "translateY(-50%) rotate(45deg)",
+              zIndex: 0,
+            },
+          },
+        }}
+        transformOrigin={{ horizontal: "right", vertical: "top" }}
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+      >
+        <MenuItem onClick={handleClose} disabled>
+          <Avatar /> Profile
+        </MenuItem>
+        <MenuItem onClick={handleClose} disabled>
+          <Avatar /> My account
+        </MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose} disabled>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
+        </MenuItem>
+        <MenuItem onClick={handleClose} disabled>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={handleLogout}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
+      </Menu>
+    </div>
+  );
+};
 
 const NavItemLink = ({ to, children, className }) => {
   const { pathname } = useLocation();
@@ -21,7 +135,7 @@ const NavItemLink = ({ to, children, className }) => {
 };
 
 export default function Navbar() {
-  const location = useLocation();
+  const { user, isLoggedIn, logout } = useAuth();
 
   useEffect(() => {
     // console.log("location", location);
@@ -90,14 +204,18 @@ export default function Navbar() {
           {/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_dropdown_navbar */}
         </ul>
 
-        <div className={styles.loginSignupContainer}>
-          <Link to="/login" className={styles.login}>
-            login
-          </Link>
-          <Link to="/signup" className={styles.signup}>
-            signup
-          </Link>
-        </div>
+        {isLoggedIn ? (
+          <ProfilePic user={user} logout={logout} />
+        ) : (
+          <div className={styles.loginSignupContainer}>
+            <Link to="/login" className={styles.login}>
+              login
+            </Link>
+            <Link to="/signup" className={styles.signup}>
+              signup
+            </Link>
+          </div>
+        )}
       </nav>
       <div className="mt-24">
         {/* This Offsets the content to account for the navbar, This assumes that this component is at the top of any imported file */}

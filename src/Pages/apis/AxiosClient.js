@@ -30,6 +30,7 @@ axClient.interceptors.request.use((config) => {
   return config;
 });
 
+//  Log the user out if 401 status is recived
 // axClient.interceptors.response.use(
 //   (response) => response, // 2xx
 //   (error) => {
@@ -40,7 +41,6 @@ axClient.interceptors.request.use((config) => {
 
 //     //unauthorized
 //     if (status === 401) {
-//       // TODO: should we even log the user out?
 
 //       // for example logout is used here and in authContext
 //       localStorage.removeItem("user");

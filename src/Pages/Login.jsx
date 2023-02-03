@@ -25,10 +25,7 @@ function Login() {
       );
     });
 
-    // TODO: use react query to disable the button while the request is being made, onsuccess() navigate to home page
-    // TODO: user signed in indicator, profile pic
-    // TODO: logout
-    // TODO: registraion
+    // TODO: loading indicator
   }
 
   return (

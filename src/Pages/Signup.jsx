@@ -25,7 +25,7 @@ import {
   getHscertificates,
   getMajors,
   getDegrees,
-} from "./apis/Signup.js";
+} from "./apis/Auth.js";
 import { toast } from "react-toastify";
 import { useAuth } from "Context/AuthContext.js";
 
@@ -574,10 +574,9 @@ function Signup() {
     }
   };
 
-  //   TODO: signup styling jumps around
+  //   TODO: signup width jumps around when selecting from combos
   return (
     <div className="flex flex-col-reverse md:h-full md:flex-row">
-      <button onClick={sendFormData}>test</button>
       <div
         className="flex flex-1 flex-col"
         style={{
@@ -644,6 +643,7 @@ function Signup() {
                   disabled={signup.isLoading}
                 >
                   {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
+                  {/* TODO: loading indicator */}
                 </button>
               </div>
             </div>
