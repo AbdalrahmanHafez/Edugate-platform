@@ -18,18 +18,29 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [user, setUser] = useLocalStorage("user");
   const isLoggedIn = !!user;
 
-  //   const signup = useMutation({
-  //     mutationFn: (user) => {
-  //       return axClient.post(`${import.meta.env.VITE_SERVER_URL}/signup`, user);
-  //     },
-  //     onSuccess() {
-  //       navigate("/login");
-  //     },
-  //   });
+  const signup = useMutation({
+    mutationFn: async (data) => {
+      console.log("Signup data is ", data);
+
+      //   return new Promise((resolve, reject) => {
+      //     resolve({
+      //       status: 200,
+      //       data: {
+      //         message: "User registered successfully",
+      //       },
+      //     });
+      //   });
+
+      return axClient.post("https://api.edugate-eg.com/api/EduGate/Reg", data);
+    },
+    onSuccess() {
+      console.log("Signup success");
+    },
+  });
 
   const login = useMutation({
     mutationFn: ({ username, password }) => {
@@ -101,7 +112,7 @@ export function AuthProvider({ children }) {
   //   });
 
   return (
-    <Context.Provider value={{ login, user, isLoggedIn }}>
+    <Context.Provider value={{ login, signup, user, isLoggedIn }}>
       {children}
     </Context.Provider>
   );

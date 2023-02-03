@@ -18,7 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormLabel from "@mui/material/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { getCountries, signupStudent } from "./apis/Signup.js";
+import { getCountries } from "./apis/Signup.js";
 import { toast } from "react-toastify";
 
 const CustomTextField = ({ ...params }) => (
@@ -316,8 +316,6 @@ function RepresentativeSignup() {
     }));
   };
 
-  const signupMutation = useMutation(signupStudent);
-
   const sendFormData = () => {
     console.log("FORM SUBMIT", formdata);
 
@@ -335,16 +333,17 @@ function RepresentativeSignup() {
       nationalityID: formdata.nationality,
     };
 
-    signupMutation
-      .mutateAsync(expectedData)
-      .then((res) => {
-        console.log(res);
-        toast.success("Successfully registered");
-        // navigate("/login");
-      })
-      .catch((err) => {
-        toast.error("Error while sending data");
-      });
+    // TODO: signup Representative
+    // signupMutation
+    //   .mutateAsync(expectedData)
+    //   .then((res) => {
+    //     console.log(res);
+    //     toast.success("Successfully registered");
+    //     // navigate("/login");
+    //   })
+    //   .catch((err) => {
+    //     toast.error("Error while sending data");
+    //   });
   };
 
   const formonSubmit = (e) => {
@@ -425,7 +424,8 @@ function RepresentativeSignup() {
                 <button
                   type="submit"
                   className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
-                  disabled={signupMutation.isLoading}
+                  //   TODO: signup representative
+                  //   disabled={signupMutation.isLoading}
                 >
                   {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
                 </button>

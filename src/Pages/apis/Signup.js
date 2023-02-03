@@ -1,6 +1,6 @@
 import axClient from "./AxiosClient";
 
-const mockData = true;
+const mockData = false;
 
 const getCountries = async () => {
   if (!mockData)
@@ -256,40 +256,6 @@ const getDegrees = async (value) => {
   }
 };
 
-const signupStudent = async (data) => {
-  console.log("Signup data is ", data);
-
-  if (mockData) {
-    return axClient
-      .post("https://api.edugate-eg.com/api/EduGate/Reg", data)
-      .then((res) => res.json());
-    // same but using fetch
-    return fetch("https://api.edugate-eg.com/api/EduGate/Reg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).then((res) => res.json());
-  } else {
-    return new Promise((resolve, reject) => {
-      //   reject({
-      //     status: 400,
-      //     data: {
-      //       message: "User already exists",
-      //     },
-      //   });
-
-      resolve({
-        status: 200,
-        data: {
-          message: "User registered successfully",
-        },
-      });
-    });
-  }
-};
-
 export {
   getCountries,
   getCities,
@@ -297,5 +263,4 @@ export {
   getHscertificates,
   getMajors,
   getDegrees,
-  signupStudent,
 };

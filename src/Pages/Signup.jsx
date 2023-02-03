@@ -25,9 +25,9 @@ import {
   getHscertificates,
   getMajors,
   getDegrees,
-  signupStudent,
 } from "./apis/Signup.js";
 import { toast } from "react-toastify";
+import { useAuth } from "Context/AuthContext.js";
 
 const CustomTextField = ({ ...params }) => (
   <TextField
@@ -472,7 +472,9 @@ function SignupForm({ activeStep, data, updateData }) {
 }
 
 function Signup() {
+  const { signup } = useAuth();
   const navigate = useNavigate();
+
   const [activeStep, setActiveStep] = useState(0);
   const handleStepNext = () =>
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -509,8 +511,6 @@ function Signup() {
     }));
   };
 
-  const signupMutation = useMutation(signupStudent);
-
   const sendFormData = () => {
     console.log("FORM SUBMIT", formdata);
 
@@ -534,22 +534,32 @@ function Signup() {
     };
 
     if (formdata.studenttype === "universitystudent") {
-      expectedData.grade = undefined;
-      expectedData.hsCertificateID = undefined;
+      // zero in the backend counted as null
+      expectedData.grade = 0;
+      expectedData.hsCertificateID = 0;
     } else {
-      expectedData.degreeID = undefined;
-      expectedData.majorID = undefined;
+      expectedData.degreeID = 0;
+    }
+    // if any value is undefined, set it to 0. because axios or js ignore ignore undefined values
+    for (const key in expectedData) {
+      if (expectedData[key] === undefined) expectedData[key] = 0;
     }
 
-    signupMutation
+    signup
       .mutateAsync(expectedData)
       .then((res) => {
         console.log(res);
-        toast.success("Successfully registered");
-        // navigate("/login");
+        toast.success("Successfully registered, you can login now");
+        navigate("/login");
       })
       .catch((err) => {
-        toast.error("Error while sending data");
+        let msg;
+        if (typeof err.response.data === "string") msg = err.response.data;
+        else if (typeof err.message === "string") msg = err.message;
+
+        toast.error(
+          `Error occured while signup \n ${err.response.status} ${msg}`
+        );
       });
   };
 
@@ -631,7 +641,7 @@ function Signup() {
                 <button
                   type="submit"
                   className="w-[100px] rounded-lg bg-[#950003] py-3 text-white hover:bg-[#bb0003] focus:outline-none disabled:opacity-50"
-                  disabled={signupMutation.isLoading}
+                  disabled={signup.isLoading}
                 >
                   {activeStep === STEP_COUNT - 1 ? "Sign up" : "Next"}
                 </button>
