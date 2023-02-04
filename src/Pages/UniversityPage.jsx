@@ -275,6 +275,7 @@ function UniversityPage() {
           </div>
 
           <div>TODO: Transportation </div>
+
           <div>TODO: Activites</div>
 
           {/* Contacts */}
