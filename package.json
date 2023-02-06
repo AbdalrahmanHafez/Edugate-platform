@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "clsx": "^1.2.1",
+    "daisyui": "^2.50.0",
     "dayjs": "^1.11.5",
     "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
@@ -64,12 +65,10 @@
     "@mui/material": "^5.10.3",
     "autoprefixer": "^10.4.11",
     "axios": "^0.27.2",
-    "bootstrap": "^5.2.0",
     "font-awesome": "^4.7.0",
     "postcss": "^8.4.16",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.13",
-    "react-bootstrap": "^2.5.0",
     "tailwindcss": "^3.1.8"
   }
 }

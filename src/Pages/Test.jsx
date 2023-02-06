@@ -7,12 +7,26 @@ export default function Test() {
       <h1>Test</h1>
       <button
         onClick={() => {
-          axClient.get("/test").then((res) => {
-            console.log(res.data);
-          });
+          axClient
+            .get("https://api.edugate-eg.com/api/EduGate/GetOrgData?OrgId=2")
+            .then((res) => {
+              console.log(res);
+            });
         }}
       >
-        TEST
+        TEST_1
+      </button>
+      <br />
+      <button
+        onClick={() => {
+          axClient
+            .get("https://api.edugate-eg.com/api/EduGate/Countries")
+            .then((res) => {
+              console.log(res);
+            });
+        }}
+      >
+        TEST_2
       </button>
     </div>
   );
