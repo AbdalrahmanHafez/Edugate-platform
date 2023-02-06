@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { useAuth } from "Context/AuthContext";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -59,7 +60,10 @@ function Login() {
             <button
               disabled={login.isLoading}
               onClick={handleSignin}
-              className="mb-10 w-44 rounded-full bg-[#950003] py-3 font-bold text-white hover:bg-[#bb0003] md:mb-0"
+              className={clsx(
+                "btn btn-primary w-44 rounded-full",
+                login.isLoading && "loading"
+              )}
             >
               Login
             </button>

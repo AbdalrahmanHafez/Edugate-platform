@@ -272,6 +272,11 @@ function SignupForm({ activeStep, data, updateData }) {
           className="w-full"
           value={data.phonenumber}
           onChange={(e) => updateData({ phonenumber: e.target.value })}
+          inputProps={{
+            inputMode: "numeric",
+            pattern:
+              "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$",
+          }}
         />
       </div>
       <div>

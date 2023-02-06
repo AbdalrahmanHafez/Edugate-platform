@@ -1,7 +1,7 @@
 import jwt from "jwt-decode";
 import axClient from "./AxiosClient";
 
-const mockData = false;
+const mockData = true;
 
 const registerStudent = (formdata) => {
   if (mockData)
