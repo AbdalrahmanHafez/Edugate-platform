@@ -3,29 +3,44 @@ import * as React from "react";
 import axClient from "./apis/AxiosClient";
 import TextField from "@mui/material/TextField";
 
+const Button = ({ children, ...rest }) => (
+  <button className="btn btn-primary" {...rest}>
+    {children}
+  </button>
+);
+
 export default function Test() {
   const { user } = useAuth();
+
+  React.useEffect(() => {
+    console.log("Initally", axClient.defaults.headers.common);
+  }, []);
+
   return (
-    <div>
-      <button
+    <div className="flex flex-col gap-10 bg-slate-500">
+      <h1 className="bg-yellow-400">TEST 1</h1>
+
+      <Button
         onClick={async () => {
-          console.log("before", axClient.defaults.headers.common);
-
-          axClient.defaults.headers.common[
-            "Authorization"
-          ] = `Bearer ${user.token}`;
-
-          await axClient
-            .get("https://api.edugate-eg.com/api/EduGate/UserDetail?userId=49")
-            .then((res) => console.log("Success, " + res.data.userTypeID));
+          console.log("status", axClient.defaults.headers.common);
         }}
       >
-        axClient Test
-      </button>
+        Auth Status
+      </Button>
 
-      <br />
+      <Button
+        onClick={async () => {
+          await axClient
+            .get("https://api.edugate-eg.com/api/EduGate/UserDetail?userId=49")
+            .then((res) => {
+              console.log("Success, " + res.data.userTypeID);
+            });
+        }}
+      >
+        UserDetail
+      </Button>
 
-      <button
+      <Button
         onClick={() => {
           axClient
             .get("https://api.edugate-eg.com/api/EduGate/GetOrgData?OrgId=2")
@@ -35,9 +50,9 @@ export default function Test() {
         }}
       >
         GetOrgData
-      </button>
-      <br />
-      <button
+      </Button>
+
+      <Button
         onClick={() => {
           axClient
             .get("https://api.edugate-eg.com/api/EduGate/Countries")
@@ -46,30 +61,8 @@ export default function Test() {
             });
         }}
       >
-        Countries
-      </button>
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(e);
-        }}
-      >
-        <TextField
-          required
-          id="phonenumber"
-          label="Phone Number"
-          size="small"
-          className="w-full"
-          inputProps={{
-            inputMode: "numeric",
-            pattern:
-              "^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$",
-          }}
-        />
-
-        <button>SUBMIT</button>
-      </form>
+        GET Countries
+      </Button>
     </div>
   );
 }
