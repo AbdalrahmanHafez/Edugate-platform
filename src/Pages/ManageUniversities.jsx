@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
@@ -11,39 +11,238 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import { useQueries } from "@tanstack/react-query";
+import { useMutation, useQueries, useQuery } from "@tanstack/react-query";
 import axClient from "./apis/AxiosClient";
+import { useForm } from "react-hook-form";
+import { useAuth } from "Context/AuthContext";
+import { toast } from "react-toastify";
+import { getOrgTypes, postRequestNewOrg } from "./apis/Organization";
+import { getCountries, getCities } from "./apis/Auth";
 
-function OrgItem({ orgId }) {}
+const modal_style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
-function GetOrgData(orgId) {
-  return axClient
-    .get("https://api.edugate-eg.com/api/EduGate/GetOrgData?OrgId=" + orgId)
-    .then((res) => res.data);
+function RequestNewOrg() {
+  const {
+    user: { userId },
+  } = useAuth();
+
+  const [modalopen, setopenmodal] = React.useState(false);
+  const handleModalClose = () => setopenmodal(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm();
+
+  const { data: orgTypes } = useQuery(["OrganizationType"], getOrgTypes, {
+    staleTime: Infinity,
+  });
+
+  const { data: countries } = useQuery(["countries"], getCountries, {
+    staleTime: Infinity,
+  });
+
+  const watchCountry = watch("orgcountry");
+
+  const { data: cities } = useQuery(
+    ["cities", watchCountry],
+    () => getCities(watchCountry),
+    {
+      staleTime: Infinity,
+      enabled: !!watchCountry,
+    }
+  );
+
+  const postNewOrgMutation = useMutation(postRequestNewOrg);
+
+  function formonSubmit(data) {
+    const expectedData = {
+      orgID: 0,
+      orgName: data.orgname,
+      orgTypeID: data.orgtype,
+      orgAddress: data.orgaddress,
+      cityID: data.orgcity,
+      orgPhone: data.orgphone,
+      orgEmail: data.orgemail,
+      orgDescription: data.orgdescription,
+      parentOrgID: data.orgparent || 0,
+      creatorID: userId,
+    };
+
+    console.log("sending", expectedData);
+
+    postNewOrgMutation
+      .mutateAsync(expectedData)
+      .then((res) => {
+        console.log(res);
+        toast.success(
+          "Successfully requested a new organization, please wait for the approval"
+        );
+        setopenmodal(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error while requesting a new organization");
+      });
+  }
+
+  return (
+    <div className="mt-5 flex justify-end">
+      <button onClick={() => setopenmodal(true)} className="underline">
+        Request new Organization
+      </button>
+
+      <Modal
+        open={modalopen}
+        onClose={handleModalClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={modal_style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            New Organization
+          </Typography>
+          <Box id="modal-modal-description" sx={{ mt: 2 }}>
+            <form
+              onSubmit={handleSubmit(formonSubmit)}
+              className="flex flex-col gap-5"
+            >
+              <TextField
+                required
+                id="orgname"
+                {...register("orgname")}
+                label="Organization Name"
+                size="small"
+              />
+
+              <FormControl size="small" required>
+                <InputLabel id="orgtype">Organization Type</InputLabel>
+                <Select
+                  {...register("orgtype")}
+                  labelId="orgtype"
+                  id="orgtype"
+                  label="Organization Type"
+                >
+                  {orgTypes?.map((orgType, index) => (
+                    <MenuItem value={orgType.value} key={index}>
+                      {orgType.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+
+              <TextField
+                required
+                id="orgaddress"
+                {...register("orgaddress")}
+                label="Organization Address"
+                size="small"
+                //   value={data.firstname}
+                //   onChange={(e) => updateData({ firstname: e.target.value })}
+              />
+
+              <div className="flex">
+                <FormControl size="small" sx={{ flex: 1 }} required>
+                  <InputLabel id="orgcountry">Country</InputLabel>
+                  <Select
+                    {...register("orgcountry")}
+                    labelId="orgcountry"
+                    id="orgcountry"
+                    label="Country"
+                  >
+                    {countries?.map((countary, index) => (
+                      <MenuItem value={countary.value} key={index}>
+                        {countary.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+
+                <FormControl size="small" sx={{ flex: 1 }} required>
+                  <InputLabel id="orgcity">City</InputLabel>
+                  <Select
+                    labelId="orgcity"
+                    id="orgcity"
+                    label="City"
+                    {...register("orgcity")}
+                  >
+                    {cities?.map((city, index) => (
+                      <MenuItem value={city.value} key={index}>
+                        {city.name}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
+
+              <TextField
+                required
+                {...register("orgphone")}
+                id="orgphone"
+                label="Organization Phone"
+                size="small"
+                //   value={data.firstname}
+                //   onChange={(e) => updateData({ firstname: e.target.value })}
+              />
+
+              <TextField
+                required
+                {...register("orgemail")}
+                id="orgemail"
+                label="Organization Email"
+                size="small"
+                type="email"
+                //   value={data.firstname}
+                //   onChange={(e) => updateData({ firstname: e.target.value })}
+              />
+
+              <TextField
+                required
+                {...register("orgdescription")}
+                id="orgdescription"
+                label="Organization Description"
+                size="small"
+                multiline
+                maxRows={4}
+                //   value={data.firstname}
+                //   onChange={(e) => updateData({ firstname: e.target.value })}
+              />
+
+              <FormControl size="small" sx={{ flex: 1 }} required>
+                <InputLabel id="orgparent">Parent Organization</InputLabel>
+                <Select
+                  {...register("orgparent")}
+                  labelId="orgparent"
+                  id="orgparent"
+                  label="Parent Organization"
+                  disabled
+                >
+                  <MenuItem value={""}>None</MenuItem>
+                </Select>
+              </FormControl>
+
+              <Button type="submit">Request</Button>
+            </form>
+          </Box>
+        </Box>
+      </Modal>
+    </div>
+  );
 }
 
 function ManageUniversities() {
-  const [modalopen, setopenmodal] = React.useState(false);
-
-  //   const results = useQueries({
-  //     queries: Array(1)
-  //       .fill(0)
-  //       .map((item, index) => ({
-  //         queryKey: ["post", 1],
-  //         queryFn: () => GetOrgData(index + 1),
-  //         staleTime: Infinity,
-  //       })),
-  //   });
-
-  //   console.log(results);
-
-  const handleModalClose = () => setopenmodal(false);
-
-  function formonSubmit(e) {
-    e.preventDefault();
-    console.log("Form Submit");
-  }
-
   return (
     <>
       <br />
@@ -79,88 +278,10 @@ function ManageUniversities() {
           ))}
         </div>
 
-        <div className="mt-5 flex justify-end">
-          <button
-            onClick={() => setopenmodal(true)}
-            // className="rounded-sm border p-3 hover:bg-slate-200"
-            className="btn btn-primary normal-case"
-          >
-            Add Organization
-          </button>
-        </div>
-
-        <Modal
-          open={modalopen}
-          onClose={handleModalClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={modal_style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              New Organization
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <form onSubmit={formonSubmit} className="flex flex-col gap-5">
-                <TextField
-                  required
-                  id="orgname"
-                  label="Organization Name"
-                  //   size="small"
-                  //   className="max-w-[151px]"
-                  //   value={data.firstname}
-                  //   onChange={(e) => updateData({ firstname: e.target.value })}
-                />
-                <FormControl
-                //   sx={{ minWidth: 120 }}
-                >
-                  <InputLabel id="orgtype">Type</InputLabel>
-                  <Select
-                    required
-                    labelId="orgtype"
-                    id="orgtype"
-                    label="Organization Type"
-                    // value={data.country || ""}
-                    // empty string means no value selected
-
-                    // onChange={(e) =>
-                    //   updateData({
-                    //     country: e.target.value,
-                    //     city: undefined,
-                    //     district: undefined,
-                    //     nationality: e.target.value,
-                    //   })
-                    // }
-                  >
-                    <MenuItem value={10}>Cairo</MenuItem>
-                    <MenuItem value={20}>Test 1</MenuItem>
-                    <MenuItem value={30}>Test 2</MenuItem>
-                    {/* {countries?.map((country, index) => (
-                      <MenuItem value={country.value} key={index}>
-                        {country.name}
-                      </MenuItem>
-                    ))} */}
-                  </Select>
-                </FormControl>
-                <Button type="submit">Add</Button>
-              </form>
-            </Typography>
-          </Box>
-        </Modal>
+        <RequestNewOrg />
       </div>
     </>
   );
 }
-
-const modal_style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
 
 export default ManageUniversities;

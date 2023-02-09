@@ -40,38 +40,6 @@ const CustomTextField = ({ ...params }) => (
   />
 );
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#950003",
-    },
-  },
-  components: {
-    MuiTextField: {
-      styleOverrides: {
-        root: {
-          // borderRadius: "10px",
-          // outline: "none",
-          // border: "3px solid red",
-        },
-      },
-    },
-    MuiButtonBase: {
-      styleOverrides: {
-        root: {
-          // fontSize: "3rem",
-          // backgroundColor: "orange",
-          // border: "3px solid black",
-          // borderRadius: "70%",
-        },
-      },
-      defaultProps: {
-        disableRipple: true,
-      },
-    },
-  },
-});
-
 const STEP_COUNT = 3;
 
 const TextFieldConfirmPass = ({ password, ...props }) => {
@@ -620,13 +588,12 @@ function Signup() {
               <h1 className={styles.h1 + " mt-10 text-[#950003] md:mt-0"}>
                 Create Your Account
               </h1>
-              <ThemeProvider theme={theme}>
-                <SignupForm
-                  activeStep={activeStep}
-                  data={formdata}
-                  updateData={updateData}
-                />
-              </ThemeProvider>
+
+              <SignupForm
+                activeStep={activeStep}
+                data={formdata}
+                updateData={updateData}
+              />
 
               <div className="mt-5 flex w-full flex-row items-center justify-around">
                 <button
