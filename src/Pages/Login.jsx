@@ -51,11 +51,11 @@ function Login() {
               className={styles.input}
             />
             <input
-              type="text"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
               className={styles.input}
+              type="password"
             />
             <button
               disabled={login.isLoading}

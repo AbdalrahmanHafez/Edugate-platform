@@ -121,20 +121,14 @@ function RequestNewOrg() {
             >
               <TextField
                 required
-                id="orgname"
                 {...register("orgname")}
                 label="Organization Name"
                 size="small"
               />
 
               <FormControl size="small" required>
-                <InputLabel id="orgtype">Organization Type</InputLabel>
-                <Select
-                  {...register("orgtype")}
-                  labelId="orgtype"
-                  id="orgtype"
-                  label="Organization Type"
-                >
+                <InputLabel>Organization Type</InputLabel>
+                <Select {...register("orgtype")} label="Organization Type">
                   {orgTypes?.map((orgType, index) => (
                     <MenuItem value={orgType.value} key={index}>
                       {orgType.name}
@@ -145,23 +139,15 @@ function RequestNewOrg() {
 
               <TextField
                 required
-                id="orgaddress"
                 {...register("orgaddress")}
                 label="Organization Address"
                 size="small"
-                //   value={data.firstname}
-                //   onChange={(e) => updateData({ firstname: e.target.value })}
               />
 
-              <div className="flex">
+              <div className="flex gap-2">
                 <FormControl size="small" sx={{ flex: 1 }} required>
-                  <InputLabel id="orgcountry">Country</InputLabel>
-                  <Select
-                    {...register("orgcountry")}
-                    labelId="orgcountry"
-                    id="orgcountry"
-                    label="Country"
-                  >
+                  <InputLabel>Country</InputLabel>
+                  <Select {...register("orgcountry")} label="Country">
                     {countries?.map((countary, index) => (
                       <MenuItem value={countary.value} key={index}>
                         {countary.name}
@@ -171,13 +157,8 @@ function RequestNewOrg() {
                 </FormControl>
 
                 <FormControl size="small" sx={{ flex: 1 }} required>
-                  <InputLabel id="orgcity">City</InputLabel>
-                  <Select
-                    labelId="orgcity"
-                    id="orgcity"
-                    label="City"
-                    {...register("orgcity")}
-                  >
+                  <InputLabel>City</InputLabel>
+                  <Select label="City" {...register("orgcity")}>
                     {cities?.map((city, index) => (
                       <MenuItem value={city.value} key={index}>
                         {city.name}
@@ -189,43 +170,41 @@ function RequestNewOrg() {
 
               <TextField
                 required
-                {...register("orgphone")}
-                id="orgphone"
+                error={errors.orgphone}
+                helperText={errors.orgphone?.message}
+                {...register("orgphone", {
+                  pattern: {
+                    value:
+                      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                    // value: /^\d{10}$/,
+                    message: "Phone number is incorrect",
+                  },
+                })}
                 label="Organization Phone"
                 size="small"
-                //   value={data.firstname}
-                //   onChange={(e) => updateData({ firstname: e.target.value })}
               />
 
               <TextField
                 required
                 {...register("orgemail")}
-                id="orgemail"
                 label="Organization Email"
                 size="small"
                 type="email"
-                //   value={data.firstname}
-                //   onChange={(e) => updateData({ firstname: e.target.value })}
               />
 
               <TextField
                 required
                 {...register("orgdescription")}
-                id="orgdescription"
                 label="Organization Description"
                 size="small"
                 multiline
                 maxRows={4}
-                //   value={data.firstname}
-                //   onChange={(e) => updateData({ firstname: e.target.value })}
               />
 
               <FormControl size="small" sx={{ flex: 1 }} required>
                 <InputLabel id="orgparent">Parent Organization</InputLabel>
                 <Select
                   {...register("orgparent")}
-                  labelId="orgparent"
-                  id="orgparent"
                   label="Parent Organization"
                   disabled
                 >

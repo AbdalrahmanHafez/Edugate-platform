@@ -27,6 +27,7 @@ export default function Test() {
   }
 
   React.useEffect(() => {
+    // Focus on first error
     const firstError = Object.keys(errors).reduce((field, a) => {
       return !!errors[field] ? field : a;
     }, null);
@@ -46,22 +47,33 @@ export default function Test() {
       >
         <TextField
           error={errors.orgname}
-          helperText={errors.orgname && "Organization Name is required"}
-          required
-          id="orgname"
-          {...register("orgname", { required: true, minLength: 3 })}
+          helperText={errors.orgname && errors.orgname.message}
+          {...register("orgname", {
+            pattern: {
+              value: /^[A-Za-z]+$/i,
+              message: "Only letters are allowed",
+            },
+          })}
           label="Organization Name"
+          size="small"
+        />
+
+        <TextField
+          error={errors.orgphone}
+          helperText={errors.orgphone && errors.orgphone.message}
+          {...register("orgphone")}
+          label="Organization Phone"
           size="small"
         />
 
         <FormControl size="small">
           <InputLabel id="orgtype">Organization Type</InputLabel>
           <Select
-            required
+            // required
             labelId="orgtype"
             id="orgtype"
             label="Organization Type"
-            {...register("orgtype", { required: true })}
+            {...register("orgtype")}
           >
             <MenuItem value={10}>Cairo</MenuItem>
             <MenuItem value={20}>Test 1</MenuItem>
