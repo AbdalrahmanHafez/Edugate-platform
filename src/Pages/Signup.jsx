@@ -25,7 +25,7 @@ import {
   getHscertificates,
   getMajors,
   getDegrees,
-} from "./apis/Auth.js";
+} from "./apis/Common";
 import { toast } from "react-toastify";
 import { useAuth } from "Context/AuthContext.js";
 

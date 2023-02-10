@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "Context/AuthContext";
 import { toast } from "react-toastify";
 import { getOrgTypes, postRequestNewOrg } from "./apis/Organization";
-import { getCountries, getCities } from "./apis/Auth";
+import { getCountries, getCities } from "./apis/Common";
 
 const modal_style = {
   position: "absolute",

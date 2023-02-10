@@ -9,8 +9,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import axClient from "Pages/apis/AxiosClient";
-import { registerStudent } from "Pages/apis/Auth";
-import { userLogin } from "Pages/apis/Auth";
+import { registerStudent, userLogin } from "Pages/apis/Auth";
 
 const Context = createContext(null);
 
