@@ -18,7 +18,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from "./Pages/Home";
-import ManageUniversities from "Pages/ManageUniversities";
+import ManageOrganizations from "Pages/ManageOrganizations";
 import {
   QueryClient,
   QueryClientProvider,
@@ -122,11 +122,11 @@ const App = () => {
 
                 <Route element={<ProtectedRoute userType={3} />}>
                   <Route
-                    path="ManageUniversities"
-                    element={<ManageUniversities />}
+                    path="ManageOrganizations"
+                    element={<ManageOrganizations />}
                   />
                   <Route
-                    path="ManageUniversities/:universityid"
+                    path="ManageUniversity/:universityid"
                     element={<ManageUniversity />}
                   />
                 </Route>

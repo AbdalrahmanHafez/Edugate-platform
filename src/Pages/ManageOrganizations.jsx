@@ -221,7 +221,7 @@ function RequestNewOrg() {
   );
 }
 
-function ManageUniversities() {
+function ManageOrganizations() {
   return (
     <>
       <br />
@@ -249,7 +249,7 @@ function ManageUniversities() {
           ].map((item, index) => (
             <Link
               key={index}
-              to="/ManageUniversities/UniversityId"
+              to="/ManageUniversity/UniversityId"
               className="rounded bg-[#950003] p-3 text-white hover:bg-[#aa0003]"
             >
               {item}
@@ -263,4 +263,4 @@ function ManageUniversities() {
   );
 }
 
-export default ManageUniversities;
+export default ManageOrganizations;

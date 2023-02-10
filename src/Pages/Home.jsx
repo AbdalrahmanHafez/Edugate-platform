@@ -8,15 +8,13 @@ import FeaturedUniversities from "Components/FeaturedUniversities";
 import SearchUnis from "Components/SearchUnis";
 import StudyAbroad from "Components/StudyAbroad";
 import FeaturedPrograms from "Components/FeaturedPrograms";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function Home() {
   return (
-    <div className="w-full h-fit bg-cover mb-5">
+    <div className="mb-5 h-fit w-full bg-cover">
       {/* Search Box */}
-      <section className="h-96 mt-[20px] bg-[url('../public/Banner3.jpg')] bg-[rgba(0,0,0,.4)] bg-blend-multiply bg-cover bg-center flex flex-col justify-center items-center rounded-br-lg">
-        <h1 className="text-5xl text-white mb-5 select-none drop-shadow-[2px_2px_0px_#000000]">
+      <section className="mt-[20px] flex h-96 flex-col items-center justify-center rounded-br-lg bg-[rgba(0,0,0,.4)] bg-[url('../public/Banner3.jpg')] bg-cover bg-center bg-blend-multiply">
+        <h1 className="mb-5 select-none text-5xl text-white drop-shadow-[2px_2px_0px_#000000]">
           Create The Future
         </h1>
         <div className={styles.searchBox}>
