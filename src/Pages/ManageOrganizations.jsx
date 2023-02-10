@@ -37,7 +37,11 @@ function RequestNewOrg() {
   } = useAuth();
 
   const [modalopen, setopenmodal] = React.useState(false);
-  const handleModalClose = () => setopenmodal(false);
+  const [showSuccessPage, setShowPageSuccess] = React.useState(false);
+  const handleModalClose = () => {
+    setShowPageSuccess(false);
+    setopenmodal(false);
+  };
 
   const {
     register,
@@ -87,10 +91,11 @@ function RequestNewOrg() {
       .mutateAsync(expectedData)
       .then((res) => {
         console.log(res);
-        toast.success(
-          "Successfully requested a new organization, please wait for the approval"
-        );
-        setopenmodal(false);
+        // toast.success(
+        //   "Successfully requested a new organization, please wait for the approval"
+        // );
+        // setopenmodal(false);
+        setShowPageSuccess(true);
       })
       .catch((err) => {
         console.log(err);
@@ -111,110 +116,158 @@ function RequestNewOrg() {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modal_style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            New Organization
-          </Typography>
-          <Box id="modal-modal-description" sx={{ mt: 2 }}>
-            <form
-              onSubmit={handleSubmit(formonSubmit)}
-              className="flex flex-col gap-5"
-            >
-              <TextField
-                required
-                {...register("orgname")}
-                label="Organization Name"
-                size="small"
-              />
-
-              <FormControl size="small" required>
-                <InputLabel>Organization Type</InputLabel>
-                <Select {...register("orgtype")} label="Organization Type">
-                  {orgTypes?.map((orgType, index) => (
-                    <MenuItem value={orgType.value} key={index}>
-                      {orgType.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-
-              <TextField
-                required
-                {...register("orgaddress")}
-                label="Organization Address"
-                size="small"
-              />
-
-              <div className="flex gap-2">
-                <FormControl size="small" sx={{ flex: 1 }} required>
-                  <InputLabel>Country</InputLabel>
-                  <Select {...register("orgcountry")} label="Country">
-                    {countries?.map((countary, index) => (
-                      <MenuItem value={countary.value} key={index}>
-                        {countary.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <FormControl size="small" sx={{ flex: 1 }} required>
-                  <InputLabel>City</InputLabel>
-                  <Select label="City" {...register("orgcity")}>
-                    {cities?.map((city, index) => (
-                      <MenuItem value={city.value} key={index}>
-                        {city.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-
-              <TextField
-                required
-                error={errors.orgphone}
-                helperText={errors.orgphone?.message}
-                {...register("orgphone", {
-                  pattern: {
-                    value:
-                      /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
-                    // value: /^\d{10}$/,
-                    message: "Phone number is incorrect",
-                  },
-                })}
-                label="Organization Phone"
-                size="small"
-              />
-
-              <TextField
-                required
-                {...register("orgemail")}
-                label="Organization Email"
-                size="small"
-                type="email"
-              />
-
-              <TextField
-                required
-                {...register("orgdescription")}
-                label="Organization Description"
-                size="small"
-                multiline
-                maxRows={4}
-              />
-
-              <FormControl size="small" sx={{ flex: 1 }} required>
-                <InputLabel id="orgparent">Parent Organization</InputLabel>
-                <Select
-                  {...register("orgparent")}
-                  label="Parent Organization"
-                  disabled
+          {!showSuccessPage ? (
+            <>
+              <Typography id="modal-modal-title" variant="h6" component="h2">
+                New Organization
+              </Typography>
+              <Box id="modal-modal-description" sx={{ mt: 2 }}>
+                <form
+                  onSubmit={handleSubmit(formonSubmit)}
+                  className="flex flex-col gap-5"
                 >
-                  <MenuItem value={""}>None</MenuItem>
-                </Select>
-              </FormControl>
+                  <TextField
+                    required
+                    {...register("orgname")}
+                    label="Organization Name"
+                    size="small"
+                  />
 
-              <Button type="submit">Request</Button>
-            </form>
-          </Box>
+                  <FormControl size="small" required>
+                    <InputLabel>Organization Type</InputLabel>
+                    <Select {...register("orgtype")} label="Organization Type">
+                      {orgTypes?.map((orgType, index) => (
+                        <MenuItem value={orgType.value} key={index}>
+                          {orgType.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+
+                  <TextField
+                    required
+                    {...register("orgaddress")}
+                    label="Organization Address"
+                    size="small"
+                  />
+
+                  <div className="flex gap-2">
+                    <FormControl size="small" sx={{ flex: 1 }} required>
+                      <InputLabel>Country</InputLabel>
+                      <Select {...register("orgcountry")} label="Country">
+                        {countries?.map((countary, index) => (
+                          <MenuItem value={countary.value} key={index}>
+                            {countary.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+
+                    <FormControl size="small" sx={{ flex: 1 }} required>
+                      <InputLabel>City</InputLabel>
+                      <Select label="City" {...register("orgcity")}>
+                        {cities?.map((city, index) => (
+                          <MenuItem value={city.value} key={index}>
+                            {city.name}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </div>
+
+                  <TextField
+                    required
+                    error={errors.orgphone}
+                    helperText={errors.orgphone?.message}
+                    {...register("orgphone", {
+                      pattern: {
+                        value:
+                          /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/,
+                        // value: /^\d{10}$/,
+                        message: "Phone number is incorrect",
+                      },
+                    })}
+                    label="Organization Phone"
+                    size="small"
+                  />
+
+                  <TextField
+                    required
+                    {...register("orgemail")}
+                    label="Organization Email"
+                    size="small"
+                    type="email"
+                  />
+
+                  <TextField
+                    required
+                    {...register("orgdescription")}
+                    label="Organization Description"
+                    size="small"
+                    multiline
+                    maxRows={4}
+                  />
+
+                  <FormControl size="small" sx={{ flex: 1 }} required>
+                    <InputLabel id="orgparent">Parent Organization</InputLabel>
+                    <Select
+                      {...register("orgparent")}
+                      label="Parent Organization"
+                      disabled
+                    >
+                      <MenuItem value={""}>None</MenuItem>
+                    </Select>
+                  </FormControl>
+
+                  <Button type="submit">Request</Button>
+                </form>
+              </Box>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleModalClose}
+                class="btn btn-ghost btn-circle absolute right-0 top-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+
+              <div className="flex items-center gap-5">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-14 w-14 flex-shrink-0 stroke-current text-green-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+                <Typography id="modal-modal-title" variant="h6" component="h2">
+                  Successfully requested a new organization
+                  <br />
+                  Please wait for the approval
+                </Typography>
+              </div>
+            </>
+          )}
         </Box>
       </Modal>
     </div>
