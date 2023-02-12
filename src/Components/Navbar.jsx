@@ -86,9 +86,11 @@ const ProfilePic = ({ user, logout }) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose} disabled>
-          <Avatar /> Profile
-        </MenuItem>
+        <NavItemLink to="/MyProfile">
+          <MenuItem onClick={handleClose}>
+            <Avatar /> Profile
+          </MenuItem>
+        </NavItemLink>
         <MenuItem onClick={handleClose} disabled>
           <Avatar /> My account
         </MenuItem>

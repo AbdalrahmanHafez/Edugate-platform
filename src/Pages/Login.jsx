@@ -50,7 +50,7 @@ function Login() {
               className={styles.input}
             />
             <input
-              type="text"
+              type="password"
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}

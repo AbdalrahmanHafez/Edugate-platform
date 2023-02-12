@@ -29,6 +29,7 @@ import "react-toastify/dist/ReactToastify.css";
 import RepresentativeSignup from "Pages/RepresentativeSignup";
 import { AuthProvider } from "Context/AuthContext";
 import { useAuth } from "Context/AuthContext";
+import MyProfile from "Pages/MyProfile";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +82,7 @@ const App = () => {
                 path="UniversitiesInEgypt"
                 element={<UniversitiesInEgypt />}
               />
+              <Route path="MyProfile" element={<MyProfile />} />
               <Route
                 path="University/:universityid"
                 element={<UniversityPage />}

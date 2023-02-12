@@ -72,6 +72,23 @@ const userLogin = (username, password) => {
     });
 };
 
+const getUserInfo = async (userId) => {
+  if (mockData)
+    return new Promise((res, rej) =>
+      res({
+        token: "eyJhbGciOi",
+        userId: 3,
+      })
+    );
+
+  return axClient
+    .get("https://api.edugate-eg.com/api/EduGate/UserDetail?userId=" + userId)
+    .then(async (res) => {
+      const { data } = res;
+      return data;
+    });
+};
+
 const getCountries = async () => {
   if (!mockData)
     return axClient("https://api.edugate-eg.com/api/EduGate/Countries").then(
@@ -335,4 +352,5 @@ export {
   getDegrees,
   registerStudent,
   userLogin,
+  getUserInfo,
 };
