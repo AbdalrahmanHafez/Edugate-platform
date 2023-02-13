@@ -1,7 +1,7 @@
 import { useAuth } from "Context/AuthContext";
 import React, { useEffect } from "react";
 import { FaBars } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Popover from "@mui/material/Popover";
 import Tooltip from "@mui/material/Tooltip";
 import IconButton from "@mui/material/IconButton";
@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 import { toast } from "react-toastify";
 
 const ProfilePic = ({ user, logout }) => {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -86,11 +87,9 @@ const ProfilePic = ({ user, logout }) => {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <NavItemLink to="/MyProfile">
-          <MenuItem onClick={handleClose}>
-            <Avatar /> Profile
-          </MenuItem>
-        </NavItemLink>
+        <MenuItem onClick={() => navigate("/MyProfile")}>
+          <Avatar /> Profile
+        </MenuItem>
         <MenuItem onClick={handleClose} disabled>
           <Avatar /> My account
         </MenuItem>

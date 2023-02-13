@@ -84,6 +84,8 @@ const ProtectedRoute = ({ userType }) => {
 
   if (!isLoggedIn) return <Navigate to="/login" />;
 
+  if (!userType) return <Outlet />; // if userType is undefined, this will mean that the user simply is logged in (not a specific type
+
   if (user.userType !== userType) return <Navigate to="/" />;
 
   return <Outlet />;
@@ -103,17 +105,15 @@ const App = () => {
               <Route element={<HandleLoggedIn />}>
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Signup />} />
-                
+
                 <Route
                   path="RepresentativeSignup"
                   element={<RepresentativeSignup />}
                 />
               </Route>
-              
 
               <Route element={<NavFooterLayout />}>
                 <Route index element={<Home />} />
-                <Route path="MyProfile" element={<MyProfile />} />
                 <Route
                   path="UniversitiesInEgypt"
                   element={<UniversitiesInEgypt />}
@@ -122,6 +122,10 @@ const App = () => {
                   path="University/:universityid"
                   element={<UniversityPage />}
                 />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="MyProfile" element={<MyProfile />} />
+                </Route>
 
                 <Route element={<ProtectedRoute userType={3} />}>
                   <Route
