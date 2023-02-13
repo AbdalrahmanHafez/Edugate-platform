@@ -193,6 +193,12 @@ export default function Navbar() {
 
             <div className="absolute top-[80%] z-10 hidden lg:group-hover:block">
               <div className="flex w-[150%] flex-col space-y-3 rounded-lg bg-white p-3 shadow">
+                {user?.userType === 3 && (
+                  <Link to="/ManageOrganizations/" className={styles.dditem}>
+                    Manage Organizations
+                  </Link>
+                )}
+
                 <a href="/TODO:link" className={styles.dditem}>
                   Consultancy
                 </a>

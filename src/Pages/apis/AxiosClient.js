@@ -8,6 +8,23 @@ const axClient = axios.create({
   },
 });
 
+axClient.interceptors.request.use((config) => {
+  //  Sets Authorization header if user data exist in localstorage.
+
+  //  FIX: the Auth header is set once the user logs in, but if the user refreshes the page, the header is lost, so we need to set it again from the localstorage.
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const token = user?.token;
+
+  if (token && user) {
+    config.headers.Authorization = `Bearer ${token}`;
+  } else {
+    delete axClient.defaults.headers.common.Authorization;
+  }
+
+  return config;
+});
+
 // function isTokenExpired(token) {
 //   const expiry = JSON.parse(atob(token.split(".")[1])).exp;
 //   return Math.floor(new Date().getTime() / 1000) >= expiry;

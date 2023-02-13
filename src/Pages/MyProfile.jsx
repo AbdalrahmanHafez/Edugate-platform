@@ -20,59 +20,41 @@ function MyProfile() {
     queryOps
   );
 
-  const { isLoading, data: countries } = useQuery(
-    ["countries"],
-    getCountries,
-    queryOps
-  );
-
   if (!userInfo) return null;
-  console.log("userInfo is ", userInfo);
 
   return (
     <div className="mb-5 mt-5 h-fit w-full bg-cover">
       <br />
       <br />
+      <h1 className="text-center text-3xl font-bold">My Profile</h1>
       <br />
 
-      <Grid container rowSpacing={3} columnSpacing={{ xs: 4, sm: 2, md: 3 }}>
-        <Grid className="hover:bg-gray-200" item xs={6}>
-          <div className="text-right">Username:</div>
-        </Grid>
-        <Grid className="hover:bg-gray-200" item xs={6}>
-          <div>{userInfo.userName}</div>
-        </Grid>
-        <Grid className="hover:bg-gray-200" item xs={6}>
-          <div className="text-right">Email:</div>
-        </Grid>
-        <Grid className="hover:bg-gray-200" item xs={6}>
-          <div>{userInfo.userEmail}</div>
-        </Grid>
-        <Grid className="hover:bg-gray-200" item xs={6}>
-          <div className="text-right">Gender:</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div>{userInfo.userGender ? "Male" : "Female"}</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div className="text-right">Birthdate:</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div>{userInfo.birthDate}</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div className="text-right">Phone Number:</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div>{userInfo.userPhone}</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div className="text-right">Grade:</div>
-        </Grid>
-        <Grid item xs={6}>
-          <div>{userInfo.grade}</div>
-        </Grid>
-      </Grid>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="text-right ">Username:</div>
+        <div className="hover:bg-gray-200">{userInfo.userName}</div>
+        <div className="text-right">Email:</div>
+        <div className="hover:bg-gray-200">{userInfo.userEmail}</div>
+        <div className="text-right">Gender:</div>
+        <div className="hover:bg-gray-200">
+          {userInfo.userGender ? "Male" : "Female"}
+        </div>
+        <div className="text-right">Birthdate:</div>
+        <div className="hover:bg-gray-200">{userInfo.birthDate}</div>
+        <div className="text-right">Nationality:</div>
+        <div className="hover:bg-gray-200">{userInfo.nationalityName}</div>
+        <div className="text-right">Country:</div>
+        <div className="hover:bg-gray-200">{userInfo.countryName}</div>
+        <div className="text-right">City:</div>
+        <div className="hover:bg-gray-200">{userInfo.cityName}</div>
+        <div className="text-right">District:</div>
+        <div className="hover:bg-gray-200">{userInfo.districtName}</div>
+        <div className="text-right">High School Certificate Name:</div>
+        <div className="hover:bg-gray-200">{userInfo.hsCertificateName}</div>
+        <div className="text-right">Phone Number:</div>
+        <div className="hover:bg-gray-200">{userInfo.userPhone}</div>
+        <div className="text-right">Grade:</div>
+        <div className="hover:bg-gray-200">{userInfo.grade}</div>
+      </div>
     </div>
   );
 }

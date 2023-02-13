@@ -1,3 +1,4 @@
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
 import PageNotFound from "Components/PageNotFound";
@@ -17,7 +18,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Home from "./Pages/Home";
-import ManageUniversities from "Pages/ManageUniversities";
+import ManageOrganizations from "Pages/ManageOrganizations";
 import {
   QueryClient,
   QueryClientProvider,
@@ -32,6 +33,38 @@ import { useAuth } from "Context/AuthContext";
 import MyProfile from "Pages/MyProfile";
 
 const queryClient = new QueryClient();
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#950003",
+    },
+  },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          // borderRadius: "10px",
+          // outline: "none",
+          // border: "3px solid red",
+        },
+      },
+    },
+    MuiButtonBase: {
+      styleOverrides: {
+        root: {
+          // fontSize: "3rem",
+          // backgroundColor: "orange",
+          // border: "3px solid black",
+          // borderRadius: "70%",
+        },
+      },
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+  },
+});
 
 const NavFooterLayout = () => (
   <>
@@ -61,49 +94,52 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ToastContainer />
 
-      <BrowserRouter>
-        <AuthProvider>
-          <Routes>
-            <Route path="test" element={<Test />} />
+      <ThemeProvider theme={theme}>
+        <BrowserRouter>
+          <AuthProvider>
+            <Routes>
+              <Route path="test" element={<Test />} />
 
-            <Route element={<HandleLoggedIn />}>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route
-                path="RepresentativeSignup"
-                element={<RepresentativeSignup />}
-              />
-            </Route>
-
-            <Route element={<NavFooterLayout />}>
-              <Route index element={<Home />} />
-
-              <Route
-                path="UniversitiesInEgypt"
-                element={<UniversitiesInEgypt />}
-              />
-              <Route path="MyProfile" element={<MyProfile />} />
-              <Route
-                path="University/:universityid"
-                element={<UniversityPage />}
-              />
-
-              <Route element={<ProtectedRoute userType={3} />}>
+              <Route element={<HandleLoggedIn />}>
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+                
                 <Route
-                  path="ManageUniversities"
-                  element={<ManageUniversities />}
-                />
-                <Route
-                  path="ManageUniversities/:universityid"
-                  element={<ManageUniversity />}
+                  path="RepresentativeSignup"
+                  element={<RepresentativeSignup />}
                 />
               </Route>
+              
 
-              <Route path="*" element={<PageNotFound />} />
-            </Route>
-          </Routes>
-        </AuthProvider>
-      </BrowserRouter>
+              <Route element={<NavFooterLayout />}>
+                <Route index element={<Home />} />
+                <Route path="MyProfile" element={<MyProfile />} />
+                <Route
+                  path="UniversitiesInEgypt"
+                  element={<UniversitiesInEgypt />}
+                />
+                <Route
+                  path="University/:universityid"
+                  element={<UniversityPage />}
+                />
+
+                <Route element={<ProtectedRoute userType={3} />}>
+                  <Route
+                    path="ManageOrganizations"
+                    element={<ManageOrganizations />}
+                  />
+                  <Route
+                    path="ManageUniversity/:universityid"
+                    element={<ManageUniversity />}
+                  />
+                </Route>
+
+                <Route path="*" element={<PageNotFound />} />
+              </Route>
+            </Routes>
+          </AuthProvider>
+        </BrowserRouter>
+      </ThemeProvider>
 
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
