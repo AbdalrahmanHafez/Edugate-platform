@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Edugate Platform Frontend Mockup
+EduGate is a platform designed to help students find and choose the right university for their higher education. This website provides detailed information about various universities, including descriptions of their majors, faculties, accommodation options, pricing, and images. EduGate aims to simplify the university selection process and help students make well-informed decisions.
+* Built using React.js for dynamic and responsive user interfaces, and Tailwind CSS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Running Steps
 
-## Available Scripts
+1. Clone the repository
+	```bash
+	git clone https://github.com/AbdalrahmanHafez/Edugate-platform
+	```
 
-In the project directory, you can run:
+2. Install the required dependencies:
+	```bash
+	yarn install
+	```
 
-### `yarn start`
+3. Run the development server
+	```bash
+	yarn start
+	```
+3. Open the website in your browser at http://localhost:3000
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Contributing
+Feel free to fork the repository, open issues, and submit pull requests if you'd like to contribute to improving the platform.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
+* __Landing Page__: A welcoming page with information about the platform and its purpose.
+![image](https://github.com/user-attachments/assets/bd770e84-00a8-4bf4-9e4a-6d23205deacc)
 
-### `yarn test`
+* __University List & Search Page__: A page that allows users to search and filter universities based on different criteria (e.g., location, programs offered).
+![image](https://github.com/user-attachments/assets/245c7857-ea69-46de-a4de-572a639ada0a)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* __University Page__: A dedicated page for each university displaying detailed information, including faculties, study programs, accommodation options, pricing, and images.
+![image](https://github.com/user-attachments/assets/868423eb-4740-4827-9fd6-15a3c4b9d2a2)
 
-### `yarn build`
+* __Admin Page__: A special section for admins to modify the content of university pages, ensuring that the information remains up to date.
+![image](https://github.com/user-attachments/assets/9ce2eb84-3677-4f15-9a81-dd58bbb1de59)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* __Login/Register__:
+![image](https://github.com/user-attachments/assets/af1fa648-b8f7-4df0-ae19-b012f298870f)
+![image](https://github.com/user-attachments/assets/78eb946e-08c2-416f-a8ff-74cf69eb15a4)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
