@@ -1,6 +1,12 @@
 # Edugate Platform Frontend Mockup
 EduGate is a platform designed to help students find and choose the right university for their higher education. This website provides detailed information about various universities, including descriptions of their majors, faculties, accommodation options, pricing, and images. EduGate aims to simplify the university selection process and help students make well-informed decisions.
 * Built using React.js for dynamic and responsive user interfaces, and Tailwind CSS.
+* LIVE demo at:
+	https://edugate-platform.vercel.app/  
+	https://edugate-platform.vercel.app/UniversitiesInEgypt  
+	https://edugate-platform.vercel.app/university/guc
+
+
 
 ## Running Steps
 
